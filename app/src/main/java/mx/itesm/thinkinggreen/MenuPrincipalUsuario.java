@@ -3,11 +3,11 @@ package mx.itesm.thinkinggreen;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+public class MenuPrincipalUsuario extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tarjeta_recompensa_elemento);
+        setContentView(R.layout.activity_menu_principal_usuario);
     }
 }

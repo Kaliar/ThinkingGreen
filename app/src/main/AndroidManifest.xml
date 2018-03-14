@@ -27,6 +27,8 @@
             android:name=".ConsejosActiv"
             android:label="@string/title_activity_consejos" />
         <activity android:name=".MostrarTiendas"></activity>
+        <activity android:name=".MenuPrincipalUsuario" />
+        <activity android:name=".TiendaRecompensas"></activity>
     </application>
 
 </manifest>
