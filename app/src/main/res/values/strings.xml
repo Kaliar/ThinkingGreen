@@ -5,6 +5,13 @@
     <string name="app_name">ThinkingGreen</string>
 
     <string name="str_CrearCuenta">Crear</string>
+    <string name="title_activity_consejos">ConsejosActiv</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="str_Consejo">Consejo Semanal</string>
+    <string name="str_ListaConsejo">Lista de Consejos</string>
+    <string name="str_ajustes">Ajustes</string>
 
     <string name="title_activity_restaurantes">Restaurantes</string>
 
@@ -14,6 +21,7 @@
 
     <string name="str_ejemplo" />
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="str_opcion">Seleccione una Opcion:</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
