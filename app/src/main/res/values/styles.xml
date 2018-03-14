@@ -5,30 +5,30 @@
     <!-- Base application theme. -->
 
 
-    <style parent="Theme.AppCompat.Light" name="AppTheme">
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
 
-    <!-- Customize your theme here. -->
+        <!-- Customize your theme here. -->
 
 
-    <item name="colorPrimary">@color/accent_material_light</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
 
-    <item name="colorPrimaryDark">@color/primary_dark_material_light</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
 
-    <item name="colorAccent">@color/primary_material_light</item>
+        <item name="colorAccent">@color/colorAccent</item>
 
-</style>
+    </style>
 
 
     <style name="AppTheme.NoActionBar">
 
-    <item name="windowActionBar">false</item>
+        <item name="windowActionBar">false</item>
 
-    <item name="windowNoTitle">true</item>
+        <item name="windowNoTitle">true</item>
 
-</style>
+    </style>
 
-    <style parent="ThemeOverlay.AppCompat.Dark.ActionBar" name="AppTheme.AppBarOverlay"/>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style parent="ThemeOverlay.AppCompat.Light" name="AppTheme.PopupOverlay"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>
