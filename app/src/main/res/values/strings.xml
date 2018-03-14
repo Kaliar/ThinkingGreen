@@ -12,6 +12,7 @@
     <string name="str_Consejo">Consejo Semanal</string>
     <string name="str_ListaConsejo">Lista de Consejos</string>
     <string name="str_ajustes">Ajustes</string>
+    <string name="title_tienda_recompensas">Recompensas :D</string>
 
     <string name="title_activity_restaurantes">Restaurantes</string>
 
@@ -25,5 +26,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="strBuscarTiendas">Tiendas\nZeroWaste</string>
+    <string name="strRecompensas">Recompensas</string>
+    <string name="strConsejos">Consejos</string>
+    <string name="strRestaurantes">Restaurantes\nZeroWaste</string>
+    <string name="strPreferencias">Preferencias</string>
+    <string name="strSeleccionRecompensa">Selecciona una categoría\nde recompensas</string>
 
 </resources>
