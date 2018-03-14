@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="Thinkin'Green"
+            android:text="Think-in' Green"
             android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
         <ImageView
@@ -88,6 +88,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="Crear cuenta" />
+        android:text="Crear cuenta"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button" />
 
 </LinearLayout>
