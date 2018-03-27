@@ -81,7 +81,12 @@ public class CreatePersonFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        etName = getActivity().findViewById(R.id.teNameAddUser);
+        etMail = getActivity().findViewById(R.id.teMailAddUser);
+        etPassword = getActivity().findViewById(R.id.tePasswordAddUser);
+        btnAddUser = getActivity().findViewById(R.id.btnAddUser);
         return inflater.inflate(R.layout.fragment_create_person, container, false);
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -94,12 +99,12 @@ public class CreatePersonFrag extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
+        /*if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
-        }
+        }*/
     }
 
     @Override

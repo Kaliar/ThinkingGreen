@@ -68,6 +68,18 @@
             android:layout_height="match_parent"
             android:layout_marginTop="120dp"
             app:srcCompat="@drawable/smile" />
+
+        <fragment
+            android:id="@+id/fragmentPer"
+            android:name="mx.itesm.thinkinggreen.CreatePersonFrag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <fragment
+            android:id="@+id/fragmentInst"
+            android:name="mx.itesm.thinkinggreen.CreateInstitutionFrag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </FrameLayout>
 
 

@@ -4,6 +4,13 @@
 
     <string name="app_name">ThinkingGreen</string>
 
+    <!-- Strings to use the data base-->
+    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+
+    <!-- Here goes the info of the app in back4app -->
+    <string name="back4app_app_id">W6IoAxrOBTot04UtoQpcxFPzA1HxvS0xcUNYI7pJ</string>
+    <string name="back4app_client_key">ZLAhm9UHc58lXHTJXx7hnDZccxjHcEa4mktJEKCb</string>
+
     <string name="strCreateAccount">Crear</string>
     <string name="titleAdvicesActiv">ConsejosActiv</string>
     <!---<string name="titleHome">Home</string>
