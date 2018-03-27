@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="mx.itesm.thinkinggreen.Preferencias">
+    tools:context="mx.itesm.thinkinggreen.UserPreferencesActiv">
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnLogoutUsrPref"
         android:layout_width="261dp"
         android:layout_height="51dp"
         android:layout_marginBottom="8dp"
@@ -15,6 +15,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@color/colorAccent"
+        android:onClick="cerrarSesion"
         android:text="Cerrar sesión"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@color/colorPrimaryText"
@@ -26,7 +27,7 @@
         app:layout_constraintVertical_bias="0.943" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btnSaveUsrPref"
         android:layout_width="234dp"
         android:layout_height="68dp"
         android:layout_marginBottom="8dp"
@@ -34,6 +35,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@color/colorPrimaryLight"
+        android:onClick="guardarCambios"
         android:text="Guardar"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -43,7 +45,7 @@
         app:layout_constraintVertical_bias="0.723" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/etNameUsrPref"
         android:layout_width="335dp"
         android:layout_height="52dp"
         android:layout_marginBottom="8dp"
@@ -62,7 +64,7 @@
         app:layout_constraintVertical_bias="0.157" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvTitleUsrPref"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -80,7 +82,7 @@
         app:layout_constraintVertical_bias="0.016" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/etMailUsrPref"
         android:layout_width="335dp"
         android:layout_height="49dp"
         android:layout_marginBottom="8dp"
@@ -88,6 +90,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
+        android:hint="Correo"
         android:inputType="textPersonName"
         android:text="julio.gon.men96@gmail.com"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -98,7 +101,7 @@
         app:layout_constraintVertical_bias="0.325" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/etPasswordUsrPref"
         android:layout_width="337dp"
         android:layout_height="47dp"
         android:layout_marginBottom="8dp"
@@ -106,6 +109,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
+        android:hint="Contraseña"
         android:inputType="textPassword"
         android:text="Contraseña"
         app:layout_constraintBottom_toBottomOf="parent"

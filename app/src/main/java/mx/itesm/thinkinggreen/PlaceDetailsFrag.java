@@ -7,17 +7,36 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link CrearInstitucion.OnFragmentInteractionListener} interface
+ * {@link PlaceDetailsFrag.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link CrearInstitucion#newInstance} factory method to
+ * Use the {@link PlaceDetailsFrag#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CrearInstitucion extends Fragment {
+public class PlaceDetailsFrag extends Fragment {
+
+    private TextView tvName;
+    private TextView tvAddress;
+    private TextView tvDescription;
+    private TextView tvContact;
+    private ImageView imgLogo;
+
+    // TODO: Assign the components in the right place (onCreate, onResume)
+    /*
+    tvName = getActivity().findViewById(R.id.tvNamePlace);
+        tvAddress = getActivity().findViewById(R.id.tvAddressFullPlace);
+        tvContact = getActivity().findViewById(R.id.tvContactFullPlace);
+        tvDescription = getActivity().findViewById(R.id.tvDescriptionFullPlace);
+        imgLogo = getActivity().findViewById(R.id.imgPlace);
+
+    */
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +48,7 @@ public class CrearInstitucion extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public CrearInstitucion() {
+    public PlaceDetailsFrag() {
         // Required empty public constructor
     }
 
@@ -39,11 +58,11 @@ public class CrearInstitucion extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment CrearInstitucion.
+     * @return A new instance of fragment PlaceDetailsFrag.
      */
     // TODO: Rename and change types and number of parameters
-    public static CrearInstitucion newInstance(String param1, String param2) {
-        CrearInstitucion fragment = new CrearInstitucion();
+    public static PlaceDetailsFrag newInstance(String param1, String param2) {
+        PlaceDetailsFrag fragment = new PlaceDetailsFrag();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,7 +83,7 @@ public class CrearInstitucion extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_crear_institucion, container, false);
+        return inflater.inflate(R.layout.fragment_place_details, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

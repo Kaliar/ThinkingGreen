@@ -4,31 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="mx.itesm.thinkinggreen.mostrarRestaurantesActiv">
+    tools:context="mx.itesm.thinkinggreen.StoresActiv">
 
     <TextView
-        android:id="@+id/tvRest"
+        android:id="@+id/tvTitleStores"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="TextView"
+        android:text="Tiendas cercanas:"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Restaurantes cercanos:" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView2"
+        android:id="@+id/rvStores"
         android:layout_width="match_parent"
-        android:layout_height="443dp"
+        android:layout_height="420dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvRest" />
-
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleStores" />
 </android.support.constraint.ConstraintLayout>

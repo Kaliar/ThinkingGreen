@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="mx.itesm.thinkinggreen.TiendaRecompensas">
+    tools:context="mx.itesm.thinkinggreen.RewardsActiv">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -20,12 +20,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tvDescripcionTiendaRecompensa"
+            android:id="@+id/tvTitleReward"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="@string/strSeleccionRecompensa"
+            android:text="@string/strRewardSelection"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textStyle="bold|italic" />
 
@@ -37,7 +37,7 @@
             android:src="@drawable/leaf" />
 
         <TextView
-            android:id="@+id/tvHojasUsuario"
+            android:id="@+id/tvLeaves"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
@@ -50,7 +50,7 @@
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvCategoriasRecompensas"
+        android:id="@+id/rvRewards"
         android:layout_width="368dp"
         android:layout_height="443dp"
         android:layout_marginBottom="8dp"

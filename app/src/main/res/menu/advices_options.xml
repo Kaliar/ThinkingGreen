@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_home"
+        android:id="@+id/menu_weekly_advice"
         android:icon="@android:drawable/ic_menu_edit"
         android:title="Consejo Semana" />
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/menu_advice_list"
         android:icon="@android:drawable/ic_menu_sort_by_size"
         android:title="Lista de Consejos" />
 
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/menu_advices_preferences"
         android:icon="@android:drawable/ic_menu_manage"
         android:title="Ajustes" />
 

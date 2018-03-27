@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="mx.itesm.thinkinggreen.CrearInstitucion">
+    tools:context="mx.itesm.thinkinggreen.CreatePersonFrag">
 
     <!-- TODO: Update blank fragment layout -->
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="382dp"
-        android:layout_height="match_parent"
+        android:layout_height="372dp"
         tools:layout_editor_absoluteY="139dp">
 
         <android.support.design.widget.TextInputLayout
@@ -21,11 +21,13 @@
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.732">
+            app:layout_constraintVertical_bias="0.581">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/tePasswordAddUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Contraseña"
@@ -45,14 +47,16 @@
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.018">
+            app:layout_constraintVertical_bias="0.026">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/teNameAddUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombre de institución"
+                android:hint="Nombre"
                 android:textColor="#2c912c"
                 android:textColorHint="#2c912c" />
 
@@ -67,11 +71,13 @@
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.547">
+            app:layout_constraintVertical_bias="0.307">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/teMailAddUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Correo"
@@ -82,7 +88,7 @@
         </android.support.design.widget.TextInputLayout>
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imgAddUser"
             android:layout_width="89dp"
             android:layout_height="77dp"
             android:layout_marginBottom="8dp"
@@ -98,7 +104,7 @@
             app:srcCompat="@drawable/leaf" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imgAddUser2"
             android:layout_width="89dp"
             android:layout_height="77dp"
             android:layout_marginBottom="8dp"
@@ -115,58 +121,21 @@
             app:srcCompat="@drawable/leaf" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnAddUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:backgroundTint="#4cad4c"
-            android:text="@string/str_CrearCuenta"
+            android:text="@string/strCreateAccount"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.883"
-            tools:layout_editor_absoluteX="147dp" />
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="366dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.182">
-
-            <android.support.design.widget.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Dirección" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="366dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.378">
-
-            <android.support.design.widget.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Teléfono" />
-        </android.support.design.widget.TextInputLayout>
+            app:layout_constraintVertical_bias="0.883" />
 
     </android.support.constraint.ConstraintLayout>
+
 </FrameLayout>

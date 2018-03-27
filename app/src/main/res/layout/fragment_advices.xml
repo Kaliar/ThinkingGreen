@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="mx.itesm.thinkinggreen.ConsejosFrag">
+    tools:context="mx.itesm.thinkinggreen.AdvicesFrag">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -10,21 +10,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:text="@string/str_Consejo"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="30sp" />
+        <TextView
+            android:id="@+id/tvTitleWeeklyAdvice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="@string/strWeeklyAdvice"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="30sp" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/espejo_de_pared_con_cds" />
+        <ImageView
+            android:id="@+id/imgWeeklyAdvice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/espejo_de_pared_con_cds" />
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -37,7 +37,7 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/tvDescriptionWeeklyAdvice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="@dimen/activity_horizontal_margin"

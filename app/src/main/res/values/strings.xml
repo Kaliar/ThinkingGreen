@@ -4,17 +4,17 @@
 
     <string name="app_name">ThinkingGreen</string>
 
-    <string name="str_CrearCuenta">Crear</string>
-    <string name="title_activity_consejos">ConsejosActiv</string>
-    <string name="title_home">Home</string>
+    <string name="strCreateAccount">Crear</string>
+    <string name="titleAdvicesActiv">ConsejosActiv</string>
+    <!---<string name="titleHome">Home</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-    <string name="str_Consejo">Consejo Semanal</string>
-    <string name="str_ListaConsejo">Lista de Consejos</string>
-    <string name="str_ajustes">Ajustes</string>
-    <string name="title_tienda_recompensas">Recompensas :D</string>
+    <string name="title_notifications">Notifications</string>-->
+    <string name="strWeeklyAdvice">Consejo Semanal</string>
+    <string name="strAdvicesList">Lista de Consejos</string>
+    <string name="strSettings">Ajustes</string>
+    <string name="titleRewardsActiv">Recompensas :D</string>
 
-    <string name="title_activity_restaurantes">Restaurantes</string>
+    <string name="titleRestaurantsActiv">Restaurantes</string>
 
     <string name="large_text"> " MIMI CHENG'S.\n\n" "Family recipes. Made from scratch daily. Always fresh." "We are happy to be able to work with people with the same values as us, prioritizing the dignity of both the livestock" "and the farmers, and have proudly partnered with purveyors like Pat La Frieda and Pino's Butcher Shop to source the " "best pasture-raised and organic meat.\n" "At the heart of our core values is to cultivate each season's best produce and the highest quality ingredients" "that we can find. We believe that eating organic and local food is the best medicine that we can give our bodies" "and that it's important to know about growing techniques. Eating local also helps strengthen the very community" "that we live in, maximize the freshness and nutritional value of our food, and minimize our carbon footprint. \n\n" " February Special Dumplings.\n\n" "Our February Dumpling Special is a dish that we grew up clamoring for with its delicate wontons and fiery sauce. " "This month's special features Spicy Chili Oil Wontons made with organic chicken and celery, dressed with scallions, " "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge " "cilantro, and toasted sesame seeds. Do not order this if you can't handle spicy. " </string>
 
@@ -22,15 +22,15 @@
 
     <string name="str_ejemplo" />
     <string name="title_activity_main2">Main2Activity</string>
-    <string name="str_opcion">Seleccione una Opcion:</string>
+    <string name="strAdviceOption">Seleccione una Opcion:</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="strBuscarTiendas">Tiendas\nZeroWaste</string>
-    <string name="strRecompensas">Recompensas</string>
-    <string name="strConsejos">Consejos</string>
-    <string name="strRestaurantes">Restaurantes\nZeroWaste</string>
-    <string name="strPreferencias">Preferencias</string>
-    <string name="strSeleccionRecompensa">Selecciona una categoría\nde recompensas</string>
+    <string name="strSearchStores">Tiendas\nZeroWaste</string>
+    <string name="strRewards">Recompensas</string>
+    <string name="strAdvices">Consejos</string>
+    <string name="strRestaurants">Restaurantes\nZeroWaste</string>
+    <string name="strPreferences">Preferencias</string>
+    <string name="strRewardSelection">Selecciona una categoría\nde recompensas</string>
 
 </resources>

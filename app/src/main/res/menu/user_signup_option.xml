@@ -3,11 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menu_crear_persona"
+        android:id="@+id/menu_add_person"
         android:icon="@drawable/pawn"
         android:title="Persona" />
     <item
-        android:id="@+id/menu_crear_inst"
+        android:id="@+id/menu_add_institution"
         android:icon="@drawable/institucion"
         android:title="Institución" />
 </menu>

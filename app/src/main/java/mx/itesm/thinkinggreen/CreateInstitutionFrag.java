@@ -3,21 +3,41 @@ package mx.itesm.thinkinggreen;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link CrearPersona.OnFragmentInteractionListener} interface
+ * {@link CreateInstitutionFrag.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link CrearPersona#newInstance} factory method to
+ * Use the {@link CreateInstitutionFrag#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CrearPersona extends Fragment {
+public class CreateInstitutionFrag extends Fragment {
+
+    private TextInputEditText etName;
+    private TextInputEditText etAddress;
+    private TextInputEditText etPhone;
+    private TextInputEditText etMail;
+    private TextInputEditText etPassword;
+    private Button btnAddInstitute;
+
+    // TODO: Assign the components in the right place (onCreate, onResume)
+    /*
+    etName = getActivity().findViewById(R.id.teNameAddInst);
+    etAddress = getActivity().findViewById(R.id.teAddressAddInst);
+    etPhone = getActivity().findViewById(R.id.tePhoneAddInst);
+    etMail = getActivity().findViewById(R.id.teMailAddInst);
+    etPassword = getActivity().findViewById(R.id.tePasswordAddInst);
+    btnAddInstitute = getActivity().findViewById(R.id.btnAddInst);
+    */
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +49,7 @@ public class CrearPersona extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public CrearPersona() {
+    public CreateInstitutionFrag() {
         // Required empty public constructor
     }
 
@@ -39,11 +59,11 @@ public class CrearPersona extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment CrearPersona.
+     * @return A new instance of fragment CreateInstitutionFrag.
      */
     // TODO: Rename and change types and number of parameters
-    public static CrearPersona newInstance(String param1, String param2) {
-        CrearPersona fragment = new CrearPersona();
+    public static CreateInstitutionFrag newInstance(String param1, String param2) {
+        CreateInstitutionFrag fragment = new CreateInstitutionFrag();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -58,13 +78,15 @@ public class CrearPersona extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_crear_persona, container, false);
+        return inflater.inflate(R.layout.fragment_create_institution, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

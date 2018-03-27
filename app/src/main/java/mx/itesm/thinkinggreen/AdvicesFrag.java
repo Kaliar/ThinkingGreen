@@ -7,17 +7,30 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link DetalleLugar.OnFragmentInteractionListener} interface
+ * {@link AdvicesFrag.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link DetalleLugar#newInstance} factory method to
+ * Use the {@link AdvicesFrag#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DetalleLugar extends Fragment {
+public class AdvicesFrag extends Fragment {
+
+    private TextView tvTitle;
+    private TextView tvDescription;
+    private ImageView imgWeeklyAdvice;
+
+    // TODO: Assign the components in the right place (onCreate, onResume)
+    /* tvTitle = getActivity().findViewById(R.id.tvTitleWeeklyAdvice);
+        tvDescription = getActivity().findViewById(R.id.tvDescriptionWeeklyAdvice);
+        imgWeeklyAdvice = getActivity().findViewById(R.id.imgWeeklyAdvice);
+        */
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +42,7 @@ public class DetalleLugar extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public DetalleLugar() {
+    public AdvicesFrag() {
         // Required empty public constructor
     }
 
@@ -39,11 +52,11 @@ public class DetalleLugar extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment DetalleLugar.
+     * @return A new instance of fragment AdvicesFrag.
      */
     // TODO: Rename and change types and number of parameters
-    public static DetalleLugar newInstance(String param1, String param2) {
-        DetalleLugar fragment = new DetalleLugar();
+    public static AdvicesFrag newInstance(String param1, String param2) {
+        AdvicesFrag fragment = new AdvicesFrag();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,7 +77,7 @@ public class DetalleLugar extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detalle_lugar, container, false);
+        return inflater.inflate(R.layout.fragment_advices, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

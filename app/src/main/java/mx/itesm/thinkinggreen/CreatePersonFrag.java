@@ -3,21 +3,38 @@ package mx.itesm.thinkinggreen;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ConsejosFrag.OnFragmentInteractionListener} interface
+ * {@link CreatePersonFrag.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ConsejosFrag#newInstance} factory method to
+ * Use the {@link CreatePersonFrag#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ConsejosFrag extends Fragment {
+public class CreatePersonFrag extends Fragment {
+
+    private TextInputEditText etName;
+    private TextInputEditText etMail;
+    private TextInputEditText etPassword;
+    private Button btnAddUser;
+
+    // TODO: Assign the components in the right place (onCreate, onResume)
+    /*
+    etName = getActivity().findViewById(R.id.teNameAddUser);
+    etMail = getActivity().findViewById(R.id.teMailAddUser);
+    etPassword = getActivity().findViewById(R.id.tePasswordAddUser);
+    btnAddUser = getActivity().findViewById(R.id.btnAddUser);
+
+    */
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +46,7 @@ public class ConsejosFrag extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public ConsejosFrag() {
+    public CreatePersonFrag() {
         // Required empty public constructor
     }
 
@@ -39,11 +56,11 @@ public class ConsejosFrag extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ConsejosFrag.
+     * @return A new instance of fragment CreatePersonFrag.
      */
     // TODO: Rename and change types and number of parameters
-    public static ConsejosFrag newInstance(String param1, String param2) {
-        ConsejosFrag fragment = new ConsejosFrag();
+    public static CreatePersonFrag newInstance(String param1, String param2) {
+        CreatePersonFrag fragment = new CreatePersonFrag();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,7 +81,7 @@ public class ConsejosFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_consejos, container, false);
+        return inflater.inflate(R.layout.fragment_create_person, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

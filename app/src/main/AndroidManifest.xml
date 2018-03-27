@@ -12,23 +12,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".LoginActiv">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CrearUsuario" />
-        <activity android:name=".LoginActiv" />
-        <activity android:name=".mostrarRestaurantesActiv" />
-        <activity android:name=".Preferencias" />
+        <activity android:name=".CreateUserActiv" />
+        <!--activity android:name=".LoginActiv" /-->
+        <activity android:name=".RestaurantsActiv" />
+        <activity android:name=".UserPreferencesActiv" />
         <activity
-            android:name=".ConsejosActiv"
-            android:label="@string/title_activity_consejos" />
-        <activity android:name=".MostrarTiendas"></activity>
-        <activity android:name=".MenuPrincipalUsuario" />
-        <activity android:name=".TiendaRecompensas"></activity>
+            android:name=".AdvicesActiv"
+            android:label="@string/titleAdvicesActiv" />
+        <activity android:name=".StoresActiv"></activity>
+        <activity android:name=".MainMenuUserActiv" />
+        <activity android:name=".RewardsActiv"></activity>
     </application>
 
 </manifest>
