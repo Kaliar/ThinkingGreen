@@ -1,6 +1,8 @@
 package mx.itesm.thinkinggreen;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
+//Imports necessary to add in each class that connects to the back end
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 
 /**
@@ -64,6 +71,8 @@ public class CreatePersonFrag extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Parse initialization
+        Parse.initialize(getContext());
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -96,23 +105,55 @@ public class CreatePersonFrag extends Fragment {
     }
 
     private void registerPerson() {
+        //Create the user instance
+        ParseUser user=new ParseUser();
         // Get User Input
-        String name = etName.getText().toString();
+        final String name = etName.getText().toString();
         String mail = etMail.getText().toString();
         String password = etPassword.getText().toString();
 
-        // TODO: Create new user
-        // TODO: Error handling (Empty fields)
-
-        // TRIAL TOAST
-        String message = "Name: " + name + "\nMail: " + mail + "\n Password: " + password;
-        Toast toast1 = Toast.makeText(getContext(), message, Toast.LENGTH_SHORT);
-        toast1.show();
-
-        // Once the new user is registered, go to login activity
-        Intent intLogin = new Intent(getActivity(), LoginActiv.class);
-        startActivity(intLogin);
-
+        //check if the fields arent empty
+        if(name.equals("")){
+            etName.setError(getResources().getString(R.string.strFieldError));
+        }
+        if(mail.equals("")){
+            etMail.setError(getResources().getString(R.string.strFieldError));
+        }
+        if(password.equals("")){
+            etPassword.setError(getResources().getString(R.string.strFieldError));
+        } else {
+            //assign the values to the user and send them to the db
+            user.setUsername(name);
+            user.setEmail(mail);
+            user.setPassword(password);
+            user.signUpInBackground(new SignUpCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if (e == null) {
+                        //in case of succes will display an alert displayer
+                        alertDisplayer("Sucessful Sign Up!", "Welcome" + name + "!");
+                    } else {
+                        ParseUser.logOut();
+                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+        }
+    }
+    private void alertDisplayer(String title,String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext())
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                        Intent intLogin = new Intent(getActivity(), LoginActiv.class);
+                        startActivity(intLogin);
+                    }
+                });
+        AlertDialog ok = builder.create();
+        ok.show();
     }
 
     // TODO: Rename method, update argument and hook method into UI event

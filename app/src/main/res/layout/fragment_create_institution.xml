@@ -159,7 +159,8 @@
                 android:id="@+id/tePhoneAddInst"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Teléfono" />
+                android:hint="Teléfono"
+                android:inputType="phone" />
         </android.support.design.widget.TextInputLayout>
 
     </android.support.constraint.ConstraintLayout>

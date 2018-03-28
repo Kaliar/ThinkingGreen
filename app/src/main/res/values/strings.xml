@@ -40,5 +40,6 @@
     <string name="strPreferences">Preferencias</string>
     <string name="strRewardSelection">Selecciona una categoría\nde recompensas</string>
     <string name="strInstSingUp">Completa tus datos :)</string>
+    <string name="strFieldError">Por favor completa el campo</string>
 
 </resources>
