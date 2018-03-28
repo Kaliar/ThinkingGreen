@@ -1,6 +1,7 @@
 package mx.itesm.thinkinggreen;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 
 /**
@@ -25,15 +27,6 @@ public class CreatePersonFrag extends Fragment {
     private TextInputEditText etMail;
     private TextInputEditText etPassword;
     private Button btnAddUser;
-
-    // TODO: Assign the components in the right place (onCreate, onResume)
-    /*
-    etName = getActivity().findViewById(R.id.teNameAddUser);
-    etMail = getActivity().findViewById(R.id.teMailAddUser);
-    etPassword = getActivity().findViewById(R.id.tePasswordAddUser);
-    btnAddUser = getActivity().findViewById(R.id.btnAddUser);
-
-    */
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -81,11 +74,44 @@ public class CreatePersonFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_create_person, container, false);
+
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        // Link UI components
         etName = getActivity().findViewById(R.id.teNameAddUser);
         etMail = getActivity().findViewById(R.id.teMailAddUser);
         etPassword = getActivity().findViewById(R.id.tePasswordAddUser);
         btnAddUser = getActivity().findViewById(R.id.btnAddUser);
-        return inflater.inflate(R.layout.fragment_create_person, container, false);
+        btnAddUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                registerPerson();
+            }
+        });
+
+    }
+
+    private void registerPerson() {
+        // Get User Input
+        String name = etName.getText().toString();
+        String mail = etMail.getText().toString();
+        String password = etPassword.getText().toString();
+
+        // TODO: Create new user
+        // TODO: Error handling (Empty fields)
+
+        // TRIAL TOAST
+        String message = "Name: " + name + "\nMail: " + mail + "\n Password: " + password;
+        Toast toast1 = Toast.makeText(getContext(), message, Toast.LENGTH_SHORT);
+        toast1.show();
+
+        // Once the new user is registered, go to login activity
+        Intent intLogin = new Intent(getActivity(), LoginActiv.class);
+        startActivity(intLogin);
 
     }
 

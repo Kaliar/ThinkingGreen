@@ -1,6 +1,7 @@
 package mx.itesm.thinkinggreen;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 
 /**
@@ -27,16 +29,6 @@ public class CreateInstitutionFrag extends Fragment {
     private TextInputEditText etMail;
     private TextInputEditText etPassword;
     private Button btnAddInstitute;
-
-    // TODO: Assign the components in the right place (onCreate, onResume)
-    /*
-    etName = getActivity().findViewById(R.id.teNameAddInst);
-    etAddress = getActivity().findViewById(R.id.teAddressAddInst);
-    etPhone = getActivity().findViewById(R.id.tePhoneAddInst);
-    etMail = getActivity().findViewById(R.id.teMailAddInst);
-    etPassword = getActivity().findViewById(R.id.tePasswordAddInst);
-    btnAddInstitute = getActivity().findViewById(R.id.btnAddInst);
-    */
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -78,15 +70,59 @@ public class CreateInstitutionFrag extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_create_institution, container, false);
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        // Link UI components
+        etName = getActivity().findViewById(R.id.teNameAddInst);
+        etAddress = getActivity().findViewById(R.id.teAddressAddInst);
+        etPhone = getActivity().findViewById(R.id.tePhoneAddInst);
+        etMail = getActivity().findViewById(R.id.teMailAddInst);
+        etPassword = getActivity().findViewById(R.id.tePasswordAddInst);
+        btnAddInstitute = getActivity().findViewById(R.id.btnAddInst);
+
+        btnAddInstitute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                registerInstitution();
+            }
+        });
+
+    }
+
+    private void registerInstitution() {
+        // Get User Input
+        String name = etName.getText().toString();
+        String address = etAddress.getText().toString();
+        String phone = etPhone.getText().toString();
+        String mail = etMail.getText().toString();
+        String password = etPassword.getText().toString();
+
+        // TODO: Create new institution
+        // TODO: Error handling (Empty fields)
+
+        // TRIAL TOAST
+        String message = "Name: " + name +
+                "\nAddress: " + address +
+                "\nPhone: " + phone +
+                "\nMail: " + mail +
+                "\n Password: " + password;
+        Toast toast1 = Toast.makeText(getContext(), message, Toast.LENGTH_SHORT);
+        toast1.show();
+
+        // Once the new user is registered, go to login activity
+        Intent intLogin = new Intent(getActivity(), LoginActiv.class);
+        startActivity(intLogin);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

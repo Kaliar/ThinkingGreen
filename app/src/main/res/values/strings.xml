@@ -39,5 +39,6 @@
     <string name="strRestaurants">Restaurantes\nZeroWaste</string>
     <string name="strPreferences">Preferencias</string>
     <string name="strRewardSelection">Selecciona una categoría\nde recompensas</string>
+    <string name="strInstSingUp">Completa tus datos :)</string>
 
 </resources>

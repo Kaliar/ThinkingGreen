@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<!-- TODO: CHECK THAT THE UI IS CORRECTLY DESIGNED -->
 
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -40,10 +40,25 @@
         </android.support.design.widget.BottomNavigationView>
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/tvSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center_horizontal"
+        android:text="Selecciona el tipo de cuenta"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
     <FrameLayout
         android:id="@+id/frameSignUp"
         android:layout_width="0dp"
-        android:layout_height="418dp"
+        android:layout_height="410dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -53,15 +68,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-        <TextView
-            android:id="@+id/tvSignUp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center_horizontal"
-            android:text="Selecciona el tipo de cuenta"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
         <ImageView
             android:id="@+id/imgSignUp"
             android:layout_width="match_parent"
@@ -69,17 +75,6 @@
             android:layout_marginTop="120dp"
             app:srcCompat="@drawable/smile" />
 
-        <fragment
-            android:id="@+id/fragmentPer"
-            android:name="mx.itesm.thinkinggreen.CreatePersonFrag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <fragment
-            android:id="@+id/fragmentInst"
-            android:name="mx.itesm.thinkinggreen.CreateInstitutionFrag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
     </FrameLayout>
 
 
