@@ -113,6 +113,7 @@ public class CreateInstitutionFrag extends Fragment {
     }
 
     private void registerInstitution() {
+        //We create a new parse object that is equal to a class we have in our data base with the same name of the table we want to modify
         ParseObject institution=new ParseObject("Institution");
         // Get User Input
         final String name = etName.getText().toString();
@@ -136,13 +137,14 @@ public class CreateInstitutionFrag extends Fragment {
         if (password.equals("")) {
             etPassword.setError(getResources().getString(R.string.strFieldError));
         } else {
-            //add to the database the values
+            //add to the database the values, it is necessary to use the function put, dont confuse it with add. Add is for another purpose
             institution.put("name", name);
             institution.put("phoneNumber", phone);
             institution.put("email", mail);
             institution.put("password", password);
             institution.put("address", address);
             institution.put("type", "institucion");
+            //we use Savecallback if we want something displayed after the information has been stored
             institution.saveInBackground(new SaveCallback() {
                 @Override
                 public void done(ParseException e) {
