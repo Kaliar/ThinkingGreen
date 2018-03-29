@@ -31,6 +31,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:11.8.0'
     // we use parse for the data base
     compile 'com.parse:parse-android:1.16.7'
+    implementation 'org.jsoup:jsoup:1.11.2'
 }
 // This is also used to connect to back4app
 repositories {
