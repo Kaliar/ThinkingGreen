@@ -30,15 +30,17 @@ public class UserPreferencesActiv extends AppCompatActivity {
         btnLogOut = findViewById(R.id.btnLogoutUsrPref);
     }
 
-    public void guardarCambios(View v){
+    public void saveChanges(View v){
         user = etUser.getText().toString();
         mail = etMail.getText().toString();
         password = etPassword.getText().toString();
 
         // TODO: Código para actualizar la cuenta del user
+        Intent intMenu = new Intent(this, MainMenuUserActiv.class);
+        startActivity(intMenu);
     }
 
-    public void cerrarSesion(View v){
+    public void logout(View v){
         // TODO: Código para cerrar la sesión
 
         Intent intLogin = new Intent(this, LoginActiv.class);

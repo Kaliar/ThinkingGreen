@@ -14,22 +14,16 @@ import android.widget.TextView;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link AdvicesFrag.OnFragmentInteractionListener} interface
+ * {@link AdviceWeekFrag.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link AdvicesFrag#newInstance} factory method to
+ * Use the {@link AdviceWeekFrag#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AdvicesFrag extends Fragment {
+public class AdviceWeekFrag extends Fragment {
 
     private TextView tvTitle;
     private TextView tvDescription;
     private ImageView imgWeeklyAdvice;
-
-    // TODO: Assign the components in the right place (onCreate, onResume)
-    /* tvTitle = getActivity().findViewById(R.id.tvTitleWeeklyAdvice);
-        tvDescription = getActivity().findViewById(R.id.tvDescriptionWeeklyAdvice);
-        imgWeeklyAdvice = getActivity().findViewById(R.id.imgWeeklyAdvice);
-        */
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,7 +36,7 @@ public class AdvicesFrag extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public AdvicesFrag() {
+    public AdviceWeekFrag() {
         // Required empty public constructor
     }
 
@@ -52,11 +46,11 @@ public class AdvicesFrag extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment AdvicesFrag.
+     * @return A new instance of fragment AdviceWeekFrag.
      */
     // TODO: Rename and change types and number of parameters
-    public static AdvicesFrag newInstance(String param1, String param2) {
-        AdvicesFrag fragment = new AdvicesFrag();
+    public static AdviceWeekFrag newInstance(String param1, String param2) {
+        AdviceWeekFrag fragment = new AdviceWeekFrag();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -77,7 +71,15 @@ public class AdvicesFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_advices, container, false);
+        return inflater.inflate(R.layout.fragment_advice_week, container, false);
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        tvTitle = getActivity().findViewById(R.id.tvTitleWeeklyAdvice);
+        tvDescription = getActivity().findViewById(R.id.tvDescriptionWeeklyAdvice);
+        imgWeeklyAdvice = getActivity().findViewById(R.id.imgWeeklyAdvice);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -90,12 +92,12 @@ public class AdvicesFrag extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
+        /*if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
-        }
+        }*/
     }
 
     @Override

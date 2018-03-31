@@ -15,7 +15,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@color/colorAccent"
-        android:onClick="cerrarSesion"
+        android:onClick="logout"
         android:text="Cerrar sesión"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@color/colorPrimaryText"
@@ -35,7 +35,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@color/colorPrimaryLight"
-        android:onClick="guardarCambios"
+        android:onClick="saveChanges"
         android:text="Guardar"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -120,3 +120,4 @@
         app:layout_constraintVertical_bias="0.479" />
 
 </android.support.constraint.ConstraintLayout>
+
