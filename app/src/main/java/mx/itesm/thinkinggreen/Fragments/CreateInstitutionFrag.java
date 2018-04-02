@@ -1,4 +1,4 @@
-package mx.itesm.thinkinggreen;
+package mx.itesm.thinkinggreen.Fragments;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -17,11 +17,10 @@ import android.widget.Toast;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
-import com.parse.ParseClassName;
 import com.parse.SaveCallback;
-import com.parse.SignUpCallback;
 
-import static mx.itesm.thinkinggreen.R.string.strFieldError;
+import mx.itesm.thinkinggreen.Activities.LoginActiv;
+import mx.itesm.thinkinggreen.R;
 
 
 /**

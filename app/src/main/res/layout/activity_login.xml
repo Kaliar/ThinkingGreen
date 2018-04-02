@@ -10,7 +10,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-    tools:context="mx.itesm.thinkinggreen.LoginActiv">
+    tools:context="mx.itesm.thinkinggreen.Activities.LoginActiv">
 
     <!-- Login progress -->
     <LinearLayout

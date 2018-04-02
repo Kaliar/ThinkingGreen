@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:backgroundTint="@android:color/background_light"
-    tools:context="mx.itesm.thinkinggreen.CreateUserActiv">
+    tools:context="mx.itesm.thinkinggreen.Activities.CreateUserActiv">
 
     <LinearLayout
         android:id="@+id/linearLayout"

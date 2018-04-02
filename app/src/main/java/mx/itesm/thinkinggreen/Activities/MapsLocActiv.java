@@ -1,4 +1,4 @@
-package mx.itesm.thinkinggreen;
+package mx.itesm.thinkinggreen.Activities;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -9,6 +9,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import mx.itesm.thinkinggreen.R;
 
 public class MapsLocActiv extends FragmentActivity implements OnMapReadyCallback {
 

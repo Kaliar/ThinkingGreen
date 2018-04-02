@@ -1,4 +1,4 @@
-package mx.itesm.thinkinggreen;
+package mx.itesm.thinkinggreen.Activities;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -9,6 +9,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import mx.itesm.thinkinggreen.Fragments.CreateInstitutionFrag;
+import mx.itesm.thinkinggreen.Fragments.CreatePersonFrag;
+import mx.itesm.thinkinggreen.R;
 
 public class CreateUserActiv extends AppCompatActivity {
     private TextView tvMessage;

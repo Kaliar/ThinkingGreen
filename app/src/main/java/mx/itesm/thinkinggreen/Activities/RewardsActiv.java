@@ -1,9 +1,11 @@
-package mx.itesm.thinkinggreen;
+package mx.itesm.thinkinggreen.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
+
+import mx.itesm.thinkinggreen.R;
 
 public class RewardsActiv extends AppCompatActivity {
 

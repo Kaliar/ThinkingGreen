@@ -1,4 +1,4 @@
-package mx.itesm.thinkinggreen;
+package mx.itesm.thinkinggreen.Fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -7,18 +7,26 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import mx.itesm.thinkinggreen.R;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link AdviceWebFrag.OnFragmentInteractionListener} interface
+ * {@link AdviceWeekFrag.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link AdviceWebFrag#newInstance} factory method to
+ * Use the {@link AdviceWeekFrag#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AdviceWebFrag extends Fragment {
+public class AdviceWeekFrag extends Fragment {
+
+    private TextView tvTitle;
+    private TextView tvDescription;
+    private ImageView imgWeeklyAdvice;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -30,7 +38,7 @@ public class AdviceWebFrag extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public AdviceWebFrag() {
+    public AdviceWeekFrag() {
         // Required empty public constructor
     }
 
@@ -40,11 +48,11 @@ public class AdviceWebFrag extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment AdviceWebFrag.
+     * @return A new instance of fragment AdviceWeekFrag.
      */
     // TODO: Rename and change types and number of parameters
-    public static AdviceWebFrag newInstance(String param1, String param2) {
-        AdviceWebFrag fragment = new AdviceWebFrag();
+    public static AdviceWeekFrag newInstance(String param1, String param2) {
+        AdviceWeekFrag fragment = new AdviceWeekFrag();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -62,18 +70,18 @@ public class AdviceWebFrag extends Fragment {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        WebView webView;
-        webView=getActivity().findViewById(R.id.webWiew);
-        webView.loadUrl("http://www.sustentator.com/blog-es/2017/07/tips-para-empezar-con-el-zero-waste/");
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_advice_web, container, false);
+        return inflater.inflate(R.layout.fragment_advice_week, container, false);
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        tvTitle = getActivity().findViewById(R.id.tvTitleWeeklyAdvice);
+        tvDescription = getActivity().findViewById(R.id.tvDescriptionWeeklyAdvice);
+        imgWeeklyAdvice = getActivity().findViewById(R.id.imgWeeklyAdvice);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -86,12 +94,12 @@ public class AdviceWebFrag extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
+        /*if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
-        }
+        }*/
     }
 
     @Override

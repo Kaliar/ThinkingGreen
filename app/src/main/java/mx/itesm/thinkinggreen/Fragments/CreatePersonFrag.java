@@ -1,4 +1,4 @@
-package mx.itesm.thinkinggreen;
+package mx.itesm.thinkinggreen.Fragments;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -18,6 +18,9 @@ import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
+
+import mx.itesm.thinkinggreen.Activities.LoginActiv;
+import mx.itesm.thinkinggreen.R;
 
 
 /**

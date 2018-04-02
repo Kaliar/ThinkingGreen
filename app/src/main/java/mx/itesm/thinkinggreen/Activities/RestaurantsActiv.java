@@ -1,19 +1,22 @@
-package mx.itesm.thinkinggreen;
+package mx.itesm.thinkinggreen.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
-public class StoresActiv extends AppCompatActivity {
+import mx.itesm.thinkinggreen.R;
+
+public class RestaurantsActiv extends AppCompatActivity {
 
     private TextView tvTitle;
-    private RecyclerView rvStores;
+    private RecyclerView rvRestaurants;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stores);
+        setContentView(R.layout.activity_restaurants);
+        rvRestaurants = findViewById(R.id.rvRestaurants);
     }
 
     //TODO: Link RecyclerView with fragments

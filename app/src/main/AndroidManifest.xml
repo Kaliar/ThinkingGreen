@@ -23,23 +23,23 @@
         <meta-data
             android:name="com.parse.CLIENT_KEY"
             android:value="@string/back4app_client_key" />
-        <activity android:name=".LoginActiv">
+        <activity android:name=".Activities.LoginActiv">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CreateUserActiv" />
+        <activity android:name=".Activities.CreateUserActiv" />
         <!--activity android:name=".LoginActiv" /-->
-        <activity android:name=".RestaurantsActiv" />
-        <activity android:name=".UserPreferencesActiv" />
+        <activity android:name=".Activities.RestaurantsActiv" />
+        <activity android:name=".Activities.UserPreferencesActiv" />
         <activity
-            android:name=".AdvicesActiv"
+            android:name=".Activities.AdvicesActiv"
             android:label="@string/titleAdvicesActiv" />
-        <activity android:name=".StoresActiv"></activity>
-        <activity android:name=".MainMenuUserActiv" />
-        <activity android:name=".RewardsActiv"></activity>
+        <activity android:name=".Activities.StoresActiv"></activity>
+        <activity android:name=".Activities.MainMenuUserActiv" />
+        <activity android:name=".Activities.RewardsActiv"></activity>
     </application>
 
 </manifest>

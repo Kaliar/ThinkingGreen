@@ -1,4 +1,4 @@
-package mx.itesm.thinkinggreen;
+package mx.itesm.thinkinggreen.Models;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

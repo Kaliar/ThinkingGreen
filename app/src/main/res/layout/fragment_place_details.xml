@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="mx.itesm.thinkinggreen.PlaceDetailsFrag">
+    tools:context="mx.itesm.thinkinggreen.Fragments.PlaceDetailsFrag">
 
     <!-- TODO: Update blank fragment layout -->
 
