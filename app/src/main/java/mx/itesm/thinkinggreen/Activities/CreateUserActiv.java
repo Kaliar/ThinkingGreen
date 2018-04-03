@@ -56,6 +56,7 @@ public class CreateUserActiv extends AppCompatActivity {
         CreatePersonFrag fragPer = new CreatePersonFrag(); // Fragment of a Person
         FragmentTransaction fragTrans = getSupportFragmentManager().beginTransaction();
         fragTrans.replace(R.id.frameSignUp, fragPer); // Set the PersonFrag Layout
+        fragTrans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         fragTrans.commit(); // Schedule the operation into thread
     }
 
@@ -64,6 +65,7 @@ public class CreateUserActiv extends AppCompatActivity {
         CreateInstitutionFrag fragInst = new CreateInstitutionFrag(); // Fragment of a Institution
         FragmentTransaction fragTrans = getSupportFragmentManager().beginTransaction();
         fragTrans.replace(R.id.frameSignUp, fragInst); // Set the InstitutionFrag Layout
+        fragTrans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         fragTrans.commit(); // Schedule the operation into thread
     }
 }

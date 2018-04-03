@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import mx.itesm.thinkinggreen.Fragments.AdviceListFrag;
+import mx.itesm.thinkinggreen.Fragments.AdviceSettingsFrag;
 import mx.itesm.thinkinggreen.Fragments.AdviceWeekFrag;
 import mx.itesm.thinkinggreen.R;
 
@@ -23,24 +25,23 @@ public class AdvicesActiv extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            btnAdvices.setVisibility(View.VISIBLE);
-            tvMessage.setVisibility(View.VISIBLE);
+            btnAdvices.setVisibility(View.INVISIBLE);
+            tvMessage.setVisibility(View.INVISIBLE);
             switch (item.getItemId()) {
                 case R.id.menu_weekly_advice:
-                    tvMessage.setVisibility(View.INVISIBLE);
-                    btnAdvices.setVisibility(View.INVISIBLE);
                     tvMessage.setText("Consejo Semanal:");
                     loadWeekAdviceFrag();
                     return true;
 
                 case R.id.menu_advice_list:
+
                     tvMessage.setText("Lista de Consejos:");
                     loadAdvicesListFrag();
                     return true;
 
                 case R.id.menu_advices_preferences:
                     tvMessage.setText("Preferencias de Consejos:");
-                    loadAdvicePreferenceFrag();
+                    loadAdviceSettingsFrag();
                     return true;
             }
             return false;
@@ -60,19 +61,21 @@ public class AdvicesActiv extends AppCompatActivity {
 
 
     // TODO: Load Fragment of Advices Preferences
-    private void loadAdvicePreferenceFrag() {
-        //AdviceWeekFrag fragPrefAdvice = new AdviceWeekFrag(); // Fragment of the advices preferences
+    private void loadAdviceSettingsFrag() {
+        AdviceSettingsFrag fragSetAdv = new AdviceSettingsFrag(); // Fragment of the advices preferences
         FragmentTransaction fragTrans = getSupportFragmentManager().beginTransaction();
-        //fragTrans.replace(R.id.frameAdvices, fragPrefAdvice); // Set the AdvicePreference Layout
+        fragTrans.replace(R.id.frameAdvices, fragSetAdv); // Set the AdvicePreference Layout
+        fragTrans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         fragTrans.commit(); // Schedule the operation into thread
 
     }
 
     // TODO: Load Fragment of Advices Lists
     private void loadAdvicesListFrag() {
-        //AdviceWeekFrag fragListFrag = new AdviceWeekFrag(); // Fragment of the advices list
+        AdviceListFrag fragListFrag = new AdviceListFrag(); // Fragment of the advices list
         FragmentTransaction fragTrans = getSupportFragmentManager().beginTransaction();
-        //fragTrans.replace(R.id.frameAdvices, fragListFrag); // Set the AdviceList Layout
+        fragTrans.replace(R.id.frameAdvices, fragListFrag); // Set the AdviceList Layout
+        fragTrans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         fragTrans.commit(); // Schedule the operation into thread
 
     }
@@ -82,6 +85,7 @@ public class AdvicesActiv extends AppCompatActivity {
         AdviceWeekFrag fragWeekAdvice = new AdviceWeekFrag(); // Fragment of the advices of the week
         FragmentTransaction fragTrans = getSupportFragmentManager().beginTransaction();
         fragTrans.replace(R.id.frameAdvices, fragWeekAdvice); // Set the AdviceWeek Layout
+        fragTrans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         fragTrans.commit(); // Schedule the operation into thread
 
     }

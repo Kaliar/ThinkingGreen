@@ -2,49 +2,58 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/tvDescripcionRecompensa"
+            android:id="@+id/tvDescAdvItem"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:text="Necesitas leer los mejores consejos de mis ecobloggers favoritos para una vida zero waste"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imgIconoRecompensa"
-            app:layout_constraintTop_toBottomOf="@+id/tvNombreRecompensa" />
+            app:layout_constraintStart_toEndOf="@+id/imgAdvItem"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleAdvItem" />
 
         <ImageView
-            android:id="@+id/imgIconoRecompensa"
+            android:id="@+id/imgAdvItem"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
             android:layout_weight="1"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.31"
             app:srcCompat="@drawable/leaf" />
 
         <TextView
-            android:id="@+id/tvNombreRecompensa"
+            android:id="@+id/tvTitleAdvItem"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:text="Tour por los mejores consejos para una vida zero waste"
+            android:text="Tour por los mejores consejos\npara una vida zero waste"
             android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/imgIconoRecompensa"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgAdvItem"
             app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

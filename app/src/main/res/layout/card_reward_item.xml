@@ -2,28 +2,31 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/tvDescripcionRecompensa"
+            android:id="@+id/tvDescItemRew"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_weight="1"
             android:text="Disfruta un descuento\nchido en BK"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imgIconoRecompensa"
-            app:layout_constraintTop_toBottomOf="@+id/tvNombreRecompensa" />
+            app:layout_constraintStart_toEndOf="@+id/imgItemRew"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
         <ImageView
-            android:id="@+id/imgHojaMonedaRecompensa"
+            android:id="@+id/imgLeafItemRew"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginEnd="68dp"
@@ -32,18 +35,6 @@
             android:src="@drawable/leaf"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imgIconoRecompensa"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
-            android:layout_weight="1"
-            android:background="@drawable/recompensa"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/recompensa" />
 
         <TextView
             android:id="@+id/tvHojasRecompensa"
@@ -61,23 +52,32 @@
             android:textStyle="bold|italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.227"
-            app:layout_constraintStart_toEndOf="@+id/imgHojaMonedaRecompensa"
+            app:layout_constraintStart_toEndOf="@+id/imgLeafItemRew"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/imgItemRew"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/recompensa" />
+
         <TextView
-            android:id="@+id/tvNombreRecompensa"
-            android:layout_width="0dp"
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="24dp"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:text="-20% Whopper"
+            android:text="-20% de descuento"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/imgHojaMonedaRecompensa"
-            app:layout_constraintStart_toEndOf="@+id/imgIconoRecompensa"
+            app:layout_constraintEnd_toStartOf="@+id/imgLeafItemRew"
+            app:layout_constraintStart_toEndOf="@+id/imgItemRew"
             app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 
