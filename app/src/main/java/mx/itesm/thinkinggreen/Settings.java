@@ -13,11 +13,13 @@ public class Settings {
     }
 
     public static void setThemeLight() {
-        currTheme = R.style.AppThemeLight;
+        // TODO: ARREGLAR VAINA COOLORES
+        //currTheme = R.style.AppThemeLight;
     }
 
     public static void setThemeDark() {
-        currTheme = R.style.AppThemeDark;
+        // TODO: ARREGLAR VAINA COOLORES
+        //currTheme = R.style.AppThemeDark;
     }
 
     public static void setThemeInv() {

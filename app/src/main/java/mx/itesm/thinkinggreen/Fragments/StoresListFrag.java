@@ -14,32 +14,34 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import mx.itesm.thinkinggreen.Adapters.AdviceListAdapter;
+import mx.itesm.thinkinggreen.Adapters.StoreListAdapter;
 import mx.itesm.thinkinggreen.Models.Advices;
+import mx.itesm.thinkinggreen.Models.Stores;
 import mx.itesm.thinkinggreen.R;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link AdviceListFrag.OnFragmentInteractionListener} interface
+ * {@link StoresListFrag.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link AdviceListFrag#newInstance} factory method to
+ * Use the {@link StoresListFrag#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AdviceListFrag extends Fragment {
+public class StoresListFrag extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARR_ADVS = "arrAdvs";
+    private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
+
+    protected static Stores store;
     private OnFragmentInteractionListener mListener;
 
-    private static Advices[] arrAdvs;
-
-    public AdviceListFrag() {
+    public StoresListFrag() {
         // Required empty public constructor
     }
 
@@ -49,13 +51,13 @@ public class AdviceListFrag extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment AdviceListFrag.
+     * @return A new instance of fragment StoresListFrag.
      */
     // TODO: Rename and change types and number of parameters
-    public static AdviceListFrag newInstance(String param1, String param2) {
-        AdviceListFrag fragment = new AdviceListFrag();
+    public static StoresListFrag newInstance(String param1, String param2) {
+        StoresListFrag fragment = new StoresListFrag();
         Bundle args = new Bundle();
-        args.putString(ARR_ADVS, param1);
+        args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
@@ -65,7 +67,7 @@ public class AdviceListFrag extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARR_ADVS);
+            mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
@@ -74,30 +76,31 @@ public class AdviceListFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_advice_list, container, false);
+        return inflater.inflate(R.layout.fragment_stores_list, container, false);
     }
-
 
     @Override
     public void onStart(){
         super.onStart();
-        createAdvListAdapter();
+        createStoreListAdapter();
     }
 
-    private void createAdvListAdapter() {
-        arrAdvs = Advices.getArrAdvs(); // Hardcoded Advices Array (Temporal)
+    private void createStoreListAdapter() {
+        final Stores[] arrStores = Stores.getArrStores(); // Hardcoded Advices Array (Temporal)
 
         // Instantiate an adapter for the advice list
         // Send the CardVIew XML for the advice
-        AdviceListAdapter adapter = new AdviceListAdapter(arrAdvs, R.layout.card_advice_item,
-                new AdviceListAdapter.OnItemClickListener() {
+        StoreListAdapter adapter = new StoreListAdapter(arrStores, R.layout.card_store_item,
+                new StoreListAdapter.OnItemClickListener() {
                     // Define the onClick response for each card
                     @Override
                     public void onItemClick(int position) {
-                        Toast.makeText(getContext(),  "Seleccionaste el consejo: " + position, Toast.LENGTH_LONG).show();
-                        AdviceWeekFrag fragWeekAdvice = new AdviceWeekFrag(); // Fragment of the advices of the week
+                        store = arrStores[position];
+                        Toast.makeText(getContext(),  "Seleccionaste la tienda: " + store.getName(), Toast.LENGTH_LONG).show();
+
+                        PlaceDetailsFrag fragPlaceDesc = new PlaceDetailsFrag(); // Fragment of the advices of the week
                         FragmentTransaction fragTrans = getActivity().getSupportFragmentManager().beginTransaction();
-                        fragTrans.replace(R.id.frameAdvices, fragWeekAdvice); // Set the AdviceWeek Layout
+                        fragTrans.replace(R.id.frameStores, fragPlaceDesc); // Set the AdviceWeek Layout
                         fragTrans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                         fragTrans.addToBackStack(null);
                         fragTrans.commit(); // Schedule the operation into thread
@@ -106,7 +109,7 @@ public class AdviceListFrag extends Fragment {
                 });
 
         // Link the Recycler View with the adapter
-        RecyclerView rvAdvsList = getActivity().findViewById(R.id.rvAdvList);
+        RecyclerView rvAdvsList = getActivity().findViewById(R.id.rvStoresList);
         rvAdvsList.setHasFixedSize(true);   // Same size for each card, enhances performance
         rvAdvsList.setItemAnimator(new DefaultItemAnimator());
         rvAdvsList.setLayoutManager(new LinearLayoutManager(getContext())); // Cards distribution
@@ -123,7 +126,7 @@ public class AdviceListFrag extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-       /* if (context instanceof OnFragmentInteractionListener) {
+        /*if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()

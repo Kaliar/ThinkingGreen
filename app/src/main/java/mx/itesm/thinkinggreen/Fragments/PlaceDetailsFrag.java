@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import mx.itesm.thinkinggreen.Models.Stores;
 import mx.itesm.thinkinggreen.R;
 
 
@@ -27,17 +28,8 @@ public class PlaceDetailsFrag extends Fragment {
     private TextView tvAddress;
     private TextView tvDescription;
     private TextView tvContact;
+    private TextView tvTyPlace;
     private ImageView imgLogo;
-
-    // TODO: Assign the components in the right place (onCreate, onResume)
-    /*
-    tvName = getActivity().findViewById(R.id.tvNamePlace);
-        tvAddress = getActivity().findViewById(R.id.tvAddressFullPlace);
-        tvContact = getActivity().findViewById(R.id.tvContactFullPlace);
-        tvDescription = getActivity().findViewById(R.id.tvDescriptionFullPlace);
-        imgLogo = getActivity().findViewById(R.id.imgPlace);
-
-    */
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -82,6 +74,31 @@ public class PlaceDetailsFrag extends Fragment {
     }
 
     @Override
+    public void onStart(){
+        super.onStart();
+
+        tvName = getActivity().findViewById(R.id.tvNamePlace);
+        tvAddress = getActivity().findViewById(R.id.tvAddressFullPlace);
+        tvContact = getActivity().findViewById(R.id.tvContactFullPlace);
+        tvDescription = getActivity().findViewById(R.id.tvDescriptionFullPlace);
+        tvTyPlace = getActivity().findViewById(R.id.tvTypePlace);
+        imgLogo = getActivity().findViewById(R.id.imgPlace);
+
+        displayStore();
+    }
+
+    private void displayStore() {
+        Stores store = StoresListFrag.store;
+        tvName.setText(store.getName());
+        tvAddress.setText(store.getAddress());
+        tvContact.setText(store.getMail() + "\n" + store.getPhone());
+        tvDescription.setText(store.getDescription());
+        tvTyPlace.setText("Restaurante");
+        imgLogo.setImageDrawable(getActivity().getResources().getDrawable(store.getImgId()));
+
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -98,12 +115,12 @@ public class PlaceDetailsFrag extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
+       /* if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
-        }
+        }*/
     }
 
     @Override

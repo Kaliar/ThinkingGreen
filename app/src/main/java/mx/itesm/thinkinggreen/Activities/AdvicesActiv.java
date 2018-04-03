@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import mx.itesm.thinkinggreen.Fragments.AdviceListFrag;
 import mx.itesm.thinkinggreen.Fragments.AdviceSettingsFrag;
+import mx.itesm.thinkinggreen.Fragments.AdviceWebFrag;
 import mx.itesm.thinkinggreen.Fragments.AdviceWeekFrag;
 import mx.itesm.thinkinggreen.R;
 
@@ -59,8 +60,6 @@ public class AdvicesActiv extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
-
-    // TODO: Load Fragment of Advices Preferences
     private void loadAdviceSettingsFrag() {
         AdviceSettingsFrag fragSetAdv = new AdviceSettingsFrag(); // Fragment of the advices preferences
         FragmentTransaction fragTrans = getSupportFragmentManager().beginTransaction();
@@ -70,7 +69,6 @@ public class AdvicesActiv extends AppCompatActivity {
 
     }
 
-    // TODO: Load Fragment of Advices Lists
     private void loadAdvicesListFrag() {
         AdviceListFrag fragListFrag = new AdviceListFrag(); // Fragment of the advices list
         FragmentTransaction fragTrans = getSupportFragmentManager().beginTransaction();
@@ -80,9 +78,9 @@ public class AdvicesActiv extends AppCompatActivity {
 
     }
 
-
+    // Web Frag
     private void loadWeekAdviceFrag() {
-        AdviceWeekFrag fragWeekAdvice = new AdviceWeekFrag(); // Fragment of the advices of the week
+        AdviceWebFrag fragWeekAdvice = new AdviceWebFrag(); // Fragment of the advices of the week
         FragmentTransaction fragTrans = getSupportFragmentManager().beginTransaction();
         fragTrans.replace(R.id.frameAdvices, fragWeekAdvice); // Set the AdviceWeek Layout
         fragTrans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);

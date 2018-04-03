@@ -9,12 +9,12 @@
 
         <!-- Customize your theme here. -->
 
+        <!-- TODO: Arreglar descaque -->
+        <item name="colorPrimary">@color/colorPrimaryDefault</item>
 
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkDefault</item>
 
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorAccentDefault</item>
 
     </style>
 
