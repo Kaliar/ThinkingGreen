@@ -5,9 +5,9 @@
     <item
         android:id="@+id/menu_add_person"
         android:icon="@drawable/pawn"
-        android:title="Persona" />
+        android:title="@string/strPerson" />
     <item
         android:id="@+id/menu_add_institution"
         android:icon="@drawable/institucion"
-        android:title="Institución" />
+        android:title="@string/strInst" />
 </menu>

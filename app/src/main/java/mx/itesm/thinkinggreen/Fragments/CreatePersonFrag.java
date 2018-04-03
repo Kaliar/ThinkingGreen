@@ -129,12 +129,13 @@ public class CreatePersonFrag extends Fragment {
             user.setUsername(name);
             user.setEmail(mail);
             user.setPassword(password);
+            user.put("points", 0);
             user.signUpInBackground(new SignUpCallback() {
                 @Override
                 public void done(ParseException e) {
                     if (e == null) {
                         //in case of succes will display an alert displayer
-                        alertDisplayer("Sucessful Sign Up!", "Welcome" + name + "!");
+                        alertDisplayer("¡Registrado exitosamente!", "¡Bienvenido " + name + "!");
                     } else {
                         ParseUser.logOut();
                         Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();

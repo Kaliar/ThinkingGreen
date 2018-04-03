@@ -30,6 +30,10 @@
     <string name="str_ejemplo" />
     <string name="title_activity_main2">Main2Activity</string>
     <string name="strAdviceOption">Seleccione una Opcion:</string>
+    <string name="strSuccessTitle">¡Éxito!</string>
+    <string name="strSuccessMsgProfile">¡Has actualizado correctamente tu perfil!</string>
+    <string name="strFailTitle">Algo salió mal</string>
+    <string name="strFailMsgProfile">Tus datos no han sido actualizados correctamente. Prueba en otro momento.</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -41,5 +45,43 @@
     <string name="strRewardSelection">Selecciona una categoría\nde recompensas</string>
     <string name="strInstSingUp">Completa tus datos :)</string>
     <string name="strFieldError">Por favor completa el campo</string>
+    <string name="strSelectAcct">Selecciona el tipo de cuenta</string>
+    <string name="strPerson">Persona</string>
+    <string name="strInst">Institución</string>
+    <string name="strWeeklyAdv">Consejo semanal</string>
+    <string name="strAdvList">Lista de consejos</string>
+    <string name="strPref">Ajustes</string>
+    <string name="strUsrLogIn">Usuario:</string>
+    <string name="strPwdLogIn">Contraseña:</string>
+    <string name="strLogIn">Iniciar sesión</string>
+    <string name="strCreateAcct">Crear cuenta</string>
+    
+    
+    <!--Store -->
+    <!--Categories -->
+    <string name="strCatDcts">Descuentos</string>
+    <string name="strCatThemes">Temas</string>
 
+    <!--Discounts -->
+    <string name="strDctEns">Ensaladissima: 20% en Ensalada César</string>
+    <string name="strDctEnsCode">CE20R</string>
+    <string name="strDctMc">McDonalds: Gratis una manzana en cualquier combo grande</string>
+    <string name="strDctMcCode">MXN3087</string>
+    <string name="strDctCoffee">Coffee House: Café biodegradable a 20 pesos</string>
+    <string name="strDctCoffeeCode">BI0c0FF3</string>
+
+    <!--Themes -->
+    <string name="strThemeDefault">Tema por default</string>
+    <string name="strThemeDark">Tema oscuro</string>
+    <string name="strThemeLight">Tema claro</string>
+    <string name="strThemeInv">Tema inverso</string>
+    <string name="strThemeSea">Tema acuático</string>
+
+
+    <string name="str_EditProfile">Editar Perfil</string>
+    <string name="str_Save">Guardar</string>
+    <string name="str_Logout">Cerrar sesión</string>
+    <string name="str_User">Usuario</string>
+    <string name="str_Email">Correo</string>
+    <string name="str_Pwd">Contraseña</string>
 </resources>

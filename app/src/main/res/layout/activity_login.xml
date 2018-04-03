@@ -49,7 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="Usuario:" />
+        android:text="@string/strUsrLogIn" />
 
     <EditText
         android:id="@+id/etUserNameLogin"
@@ -64,7 +64,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="Contraseña:" />
+        android:text="@string/strPwdLogIn" />
 
     <EditText
         android:id="@+id/etPasswordLogin"
@@ -81,7 +81,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-smallcaps"
         android:onClick="login"
-        android:text="Iniciar sesion" />
+        android:text="@string/strLogIn" />
 
     <Button
         android:id="@+id/btnSignUp"
@@ -90,7 +90,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-smallcaps"
         android:onClick="signUp"
-        android:text="Crear cuenta"
+        android:text="@string/strCreateAcct"
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button" />
 
 </LinearLayout>
