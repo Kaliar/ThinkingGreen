@@ -10,13 +10,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.ParseInstallation;
 import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
 import com.parse.LogInCallback;
+
+import java.util.List;
 
 import mx.itesm.thinkinggreen.R;
 
@@ -45,37 +50,34 @@ public class LoginActiv extends AppCompatActivity {
         btnSignUp = findViewById(R.id.btnSignUp);
     }
 
-    public void login(View v){
-        boolean isUser = true;
-        boolean isInst = true;
-        username = etUsername.getText().toString();
-        password = etPassword.getText().toString();
+    public void Login(View v){
+        final String strUsuario = etUsername.getText().toString();
+        final String strContrasena = etPassword.getText().toString();
 
-        // TODO: Validate user login
-        ParseUser.logInInBackground(username, password, new LogInCallback() {
+        ParseUser.logInInBackground(strUsuario, strContrasena, new LogInCallback() {
             @Override
-            public void done(ParseUser parseUser, ParseException e) {
-                if (parseUser != null) {
-                    alertDisplayer("¡Bienvenido de nuevo","¡Sesión iniciada con éxito!");
-                    // User Login
-                    Intent intUserMainMenu = new Intent(getApplicationContext(), MainMenuUserActiv.class);
-                    startActivity(intUserMainMenu);
-                } else {
-                    ParseUser.logOut();
+            public void done(ParseUser user, ParseException e) {
+                if(user !=null){
+                    alertDisplayer("Successful Login", "Welcome back"+ strUsuario + "!");
+                }else{
+                    ParseQuery<ParseObject> queryUs=ParseQuery.getQuery("Institution");
+                    queryUs.whereFullText("name",strUsuario);
+                    queryUs.whereEqualTo("password",strContrasena);
+
+                    queryUs.findInBackground(new FindCallback<ParseObject>() {
+                        @Override
+                        public void done(List<ParseObject> objects, ParseException e) {
+                            if(e ==null){
+                                alertDisplayer("Succesfull login", "Welcome "+objects.size());
+                            }
+                            else {
+                                Toast.makeText(LoginActiv.this, "Wrong Password /Username", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
                 }
             }
         });
-        isUser = false;
-        if(!isUser) {
-            //Login of a BA/Restaurant
-            // TODO: Create intent for BA/Restaurants
-
-            //isInst = false;
-            if(!isInst) alertDisplayer("Error con inicio de sesión", "Por favor intente de nuevo");
-        }
-
-
-
     }
 
     // Change Activity to Sign Up
@@ -92,6 +94,8 @@ public class LoginActiv extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
+                        Intent intMenu=new Intent(LoginActiv.this,MainMenuUserActiv.class);
+                        startActivity(intMenu);
 
                     }
                 });
