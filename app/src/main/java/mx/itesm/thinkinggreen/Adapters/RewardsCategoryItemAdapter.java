@@ -81,8 +81,8 @@ public class RewardsCategoryItemAdapter extends RecyclerView.Adapter<RewardsCate
         }
 
         public void bind(RewardsItems item) {
-            TextView tvTitle = card.findViewById(R.id.tvItemTitleRew);
-            TextView tvDesc = card.findViewById(R.id.tvDescItemRew);
+            TextView tvTitle = card.findViewById(R.id.tvDescItemRew);
+            TextView tvDesc = card.findViewById(R.id.tvTitleItemRew);
             ImageView img = card.findViewById(R.id.imgItemRew);
             TextView tvLeaf = card.findViewById(R.id.tvLeafRew);
 

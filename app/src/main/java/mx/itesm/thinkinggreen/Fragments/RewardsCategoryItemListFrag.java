@@ -67,6 +67,7 @@ public class RewardsCategoryItemListFrag extends Fragment {
         RewardsCategoryItemListFrag fragment = new RewardsCategoryItemListFrag();
         Bundle args = new Bundle();
         args.putBoolean(VIENDO_CATEGORIAS, viendoCategorias);
+        args.putInt(CATEGORY, category);
         fragment.setArguments(args);
         return fragment;
     }
@@ -101,9 +102,9 @@ public class RewardsCategoryItemListFrag extends Fragment {
     }
 
     private void createItemAdapter() {
-        Log.i("categoryClick","categoryPos: "+categoryPos);
         final RewardsItems[] arrItems = RewardsItems.getRewItems(this.categoryPos); // Hardcoded Advices Array (Temporal)
-        Log.i("categoryClick","ItemAdap recuperado ");
+        Log.i("itemClick","categoryPos: "+categoryPos);
+        Log.i("itemClick","ItemAdap recuperado ");
         // Instantiate an adapter for the advice list
         // Send the CardVIew XML for the advice
         RewardsCategoryItemAdapter adapter = new RewardsCategoryItemAdapter(arrItems, R.layout.card_reward_item,
@@ -112,7 +113,7 @@ public class RewardsCategoryItemListFrag extends Fragment {
                     @Override
                     public void onItemClick(int position) {
                         RewardsItems rewItem = arrItems[position];
-                        Toast.makeText(getContext(),  "Seleccionaste el item: " + rewItem.getTitle(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(),  "Seleccionaste el item: " + rewItem.getCode(), Toast.LENGTH_LONG).show();
                     }
                 });
 
@@ -136,6 +137,7 @@ public class RewardsCategoryItemListFrag extends Fragment {
                     @Override
                     public void onItemClick(int position) {
                         Log.i("categoryClick","Todo chido");
+                        Log.i("itemClick","categoryPos: "+position);
                         RewardsCategories category = arrCateg[position];
                         Toast.makeText(getContext(),  "Seleccionaste la categoría: " + category.getTitle(), Toast.LENGTH_LONG).show();
 

@@ -50,7 +50,7 @@ public class LoginActiv extends AppCompatActivity {
         btnSignUp = findViewById(R.id.btnSignUp);
     }
 
-    public void Login(View v){
+    public void login(View v){
         final String strUsuario = etUsername.getText().toString();
         final String strContrasena = etPassword.getText().toString();
 
