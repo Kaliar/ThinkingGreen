@@ -13,21 +13,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import mx.itesm.thinkinggreen.Adapters.AdviceListAdapter;
+import mx.itesm.thinkinggreen.Adapters.RestaurantListAdapter;
 import mx.itesm.thinkinggreen.Adapters.StoreListAdapter;
-import mx.itesm.thinkinggreen.Models.Advices;
+import mx.itesm.thinkinggreen.Models.Restaurants;
 import mx.itesm.thinkinggreen.Models.Stores;
 import mx.itesm.thinkinggreen.R;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link StoresListFrag.OnFragmentInteractionListener} interface
+ * {@link RestaurantsListFrag.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link StoresListFrag#newInstance} factory method to
+ * Use the {@link RestaurantsListFrag#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class StoresListFrag extends Fragment {
+public class RestaurantsListFrag extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -37,11 +37,12 @@ public class StoresListFrag extends Fragment {
     private String mParam1;
     private String mParam2;
 
-
-    protected static Stores store;
     private OnFragmentInteractionListener mListener;
 
-    public StoresListFrag() {
+    protected static Restaurants[] arrRestaurans;
+    protected static Restaurants restaurant;
+
+    public RestaurantsListFrag() {
         // Required empty public constructor
     }
 
@@ -51,11 +52,11 @@ public class StoresListFrag extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment StoresListFrag.
+     * @return A new instance of fragment RestaurantsListFrag.
      */
     // TODO: Rename and change types and number of parameters
-    public static StoresListFrag newInstance(String param1, String param2) {
-        StoresListFrag fragment = new StoresListFrag();
+    public static RestaurantsListFrag newInstance(String param1, String param2) {
+        RestaurantsListFrag fragment = new RestaurantsListFrag();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -76,31 +77,31 @@ public class StoresListFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_stores_list, container, false);
+        return inflater.inflate(R.layout.fragment_restaurants_list_frag, container, false);
     }
 
     @Override
     public void onStart(){
         super.onStart();
-        createStoreListAdapter();
+        createRestaurantsAdapter();
     }
 
-    private void createStoreListAdapter() {
-        final Stores[] arrStores = Stores.getArrStores(); // Hardcoded Advices Array (Temporal)
+    private void createRestaurantsAdapter() {
+        final Restaurants[] arrRestaurants = Restaurants.getArrRestaurants(); // Hardcoded Advices Array (Temporal)
 
         // Instantiate an adapter for the advice list
         // Send the CardVIew XML for the advice
-        StoreListAdapter adapter = new StoreListAdapter(arrStores, R.layout.card_store_item,
+        RestaurantListAdapter adapter = new RestaurantListAdapter(arrRestaurants, R.layout.card_store_item,
                 new StoreListAdapter.OnItemClickListener() {
                     // Define the onClick response for each card
                     @Override
                     public void onItemClick(int position) {
-                        store = arrStores[position];
-                        Toast.makeText(getContext(),  "Seleccionaste la tienda: " + store.getName(), Toast.LENGTH_LONG).show();
+                        restaurant = arrRestaurants[position];
+                        Toast.makeText(getContext(),  "Seleccionaste el restaurante: " + restaurant.getName(), Toast.LENGTH_LONG).show();
 
-                        PlaceDetailsFrag fragPlaceDesc = PlaceDetailsFrag.newInstance(true); // Fragment of the advices of the week
+                        PlaceDetailsFrag fragPlaceDesc = PlaceDetailsFrag.newInstance(false); // Fragment of the advices of the week
                         FragmentTransaction fragTrans = getActivity().getSupportFragmentManager().beginTransaction();
-                        fragTrans.replace(R.id.frameStores, fragPlaceDesc); // Set the AdviceWeek Layout
+                        fragTrans.replace(R.id.frameRestaurants, fragPlaceDesc); // Set the AdviceWeek Layout
                         fragTrans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                         fragTrans.addToBackStack(null);
                         fragTrans.commit(); // Schedule the operation into thread
@@ -109,7 +110,7 @@ public class StoresListFrag extends Fragment {
                 });
 
         // Link the Recycler View with the adapter
-        RecyclerView rvAdvsList = getActivity().findViewById(R.id.rvStoresList);
+        RecyclerView rvAdvsList = getActivity().findViewById(R.id.rvRestaurantsList);
         rvAdvsList.setHasFixedSize(true);   // Same size for each card, enhances performance
         rvAdvsList.setItemAnimator(new DefaultItemAnimator());
         rvAdvsList.setLayoutManager(new LinearLayoutManager(getContext())); // Cards distribution
@@ -126,7 +127,7 @@ public class StoresListFrag extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        /*if (context instanceof OnFragmentInteractionListener) {
+       /* if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()

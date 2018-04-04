@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import mx.itesm.thinkinggreen.Models.Restaurants;
 import mx.itesm.thinkinggreen.Models.Stores;
 import mx.itesm.thinkinggreen.R;
 
@@ -33,11 +34,11 @@ public class PlaceDetailsFrag extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
+    private static final String isStoreFlag = "isStoreFlag";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
+    private boolean isStore;
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
@@ -51,15 +52,14 @@ public class PlaceDetailsFrag extends Fragment {
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * //@param param2 Parameter 2.
      * @return A new instance of fragment PlaceDetailsFrag.
      */
     // TODO: Rename and change types and number of parameters
-    public static PlaceDetailsFrag newInstance(String param1, String param2) {
+    public static PlaceDetailsFrag newInstance(boolean param1) {
         PlaceDetailsFrag fragment = new PlaceDetailsFrag();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putBoolean(isStoreFlag, param1);
         fragment.setArguments(args);
         return fragment;
     }
@@ -68,8 +68,7 @@ public class PlaceDetailsFrag extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            isStore = getArguments().getBoolean(isStoreFlag);
         }
     }
 
@@ -83,8 +82,22 @@ public class PlaceDetailsFrag extends Fragment {
         tvDescription = getActivity().findViewById(R.id.tvDescriptionFullPlace);
         tvTyPlace = getActivity().findViewById(R.id.tvTypePlace);
         imgLogo = getActivity().findViewById(R.id.imgPlace);
+        if (isStore){
+            displayStore();
+        }
+        else {
+            displayRestaurant();
+        }
+    }
 
-        displayStore();
+    private void displayRestaurant() {
+        Restaurants restaurant = RestaurantsListFrag.restaurant;
+        tvName.setText(restaurant.getName());
+        tvAddress.setText(restaurant.getAddress());
+        tvContact.setText(restaurant.getMail() + "\n" + restaurant.getPhone());
+        tvDescription.setText(restaurant.getDescription());
+        tvTyPlace.setText("Restaurante");
+        imgLogo.setImageDrawable(getActivity().getResources().getDrawable(restaurant.getImgId()));
     }
 
     private void displayStore() {
@@ -93,7 +106,7 @@ public class PlaceDetailsFrag extends Fragment {
         tvAddress.setText(store.getAddress());
         tvContact.setText(store.getMail() + "\n" + store.getPhone());
         tvDescription.setText(store.getDescription());
-        tvTyPlace.setText("Restaurante");
+        tvTyPlace.setText("Tienda");
         imgLogo.setImageDrawable(getActivity().getResources().getDrawable(store.getImgId()));
 
     }

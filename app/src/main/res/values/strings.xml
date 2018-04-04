@@ -55,8 +55,8 @@
     <string name="strPwdLogIn">Contraseña:</string>
     <string name="strLogIn">Iniciar sesión</string>
     <string name="strCreateAcct">Crear cuenta</string>
-    
-    
+
+
     <!--Store -->
     <!--Categories -->
     <string name="strCatDcts">Descuentos</string>
@@ -72,10 +72,15 @@
 
     <!--Themes -->
     <string name="strThemeDefault">Tema por default</string>
+    <string name="strThemeDefaultCode">THMDFT</string>
     <string name="strThemeDark">Tema oscuro</string>
+    <string name="strThemeDarkCode">THMDRK</string>
     <string name="strThemeLight">Tema claro</string>
+    <string name="strThemeLightCode">THMCLR</string>
     <string name="strThemeInv">Tema inverso</string>
+    <string name="strThemeInvCode">THMINVRS</string>
     <string name="strThemeSea">Tema acuático</string>
+    <string name="strThemeSeaCode">THMAQUA</string>
 
 
     <string name="str_EditProfile">Editar Perfil</string>
