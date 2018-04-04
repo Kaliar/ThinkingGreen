@@ -15,6 +15,7 @@ import mx.itesm.thinkinggreen.Fragments.AdviceSettingsFrag;
 import mx.itesm.thinkinggreen.Fragments.AdviceWebFrag;
 import mx.itesm.thinkinggreen.Fragments.AdviceWeekFrag;
 import mx.itesm.thinkinggreen.R;
+import mx.itesm.thinkinggreen.Settings;
 
 public class AdvicesActiv extends AppCompatActivity {
 
@@ -51,6 +52,7 @@ public class AdvicesActiv extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.setTheme(Settings.getCurrTheme());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_advices);
 

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import mx.itesm.thinkinggreen.Fragments.CreateInstitutionFrag;
 import mx.itesm.thinkinggreen.Fragments.CreatePersonFrag;
 import mx.itesm.thinkinggreen.R;
+import mx.itesm.thinkinggreen.Settings;
 
 public class CreateUserActiv extends AppCompatActivity {
     private TextView tvMessage;
@@ -42,6 +43,7 @@ public class CreateUserActiv extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.setTheme(Settings.getCurrTheme());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_user);
         tvMessage = findViewById(R.id.tvSignUp);

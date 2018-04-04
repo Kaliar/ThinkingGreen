@@ -9,6 +9,18 @@ import android.widget.TextView;
 import mx.itesm.thinkinggreen.Fragments.RestaurantsListFrag;
 import mx.itesm.thinkinggreen.Fragments.RewardsCategoryItemListFrag;
 import mx.itesm.thinkinggreen.R;
+import mx.itesm.thinkinggreen.Settings;
+
+import com.parse.FindCallback;
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+import com.parse.ParseInstallation;
+import com.parse.SaveCallback;
+import com.parse.SignUpCallback;
+import com.parse.LogInCallback;
 
 public class RewardsActiv extends AppCompatActivity {
 
@@ -18,8 +30,14 @@ public class RewardsActiv extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.setTheme(Settings.getCurrTheme());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rewards);
+
+        ParseUser user = ParseUser.getCurrentUser();
+        int points = (Integer) user.get("points");
+        tvUsrLeaves = findViewById(R.id.tvLeaves);
+        tvUsrLeaves.setText(""+points);
 
         RewardsCategoryItemListFrag fragRestList = RewardsCategoryItemListFrag.newInstance(true); // Fragment of a Person
         FragmentTransaction fragTrans = getSupportFragmentManager().beginTransaction();
@@ -28,6 +46,22 @@ public class RewardsActiv extends AppCompatActivity {
         fragTrans.commit(); // Schedule the operation into thread
         //Toast.makeText(this,"AAAAHHH",Toast.LENGTH_LONG).show();
     }
+
+
+
+    /*switch(position) {
+         case 0:
+     *       alertDisplayer("¡Felicidades!","Código: " + getString(R.string.strDctEnsCode));
+     *       break;
+     *   case 1:
+     *       alertDisplayer("¡Felicidades!","Código: " + getString(R.string.strDctMcCode));
+     *       break;
+     *   case 2:
+     *       alertDisplayer("¡Felicidades!","Código: " + getString(R.string.strDctCoffeeCode));
+     *       break;
+     *   default:
+     *       break;
+     * }*/
 
     // TODO: Link RecyclerView with fragments
 }

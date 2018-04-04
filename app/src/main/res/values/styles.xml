@@ -3,28 +3,29 @@
 <resources>
 
     <!-- Base application theme. -->
-
-
     <style name="AppTheme" parent="Theme.AppCompat.Light">
-
-        <!-- Customize your theme here. -->
-
-        <!-- TODO: Arreglar descaque -->
         <item name="colorPrimary">@color/colorPrimaryDefault</item>
-
         <item name="colorPrimaryDark">@color/colorPrimaryDarkDefault</item>
-
         <item name="colorAccent">@color/colorAccentDefault</item>
+        <item name="android:navigationBarColor">@color/colorPrimaryDarkLight</item>
 
     </style>
 
+    <!-- Dark theme -->
+    <style name="AppThemeDark">
+        <item name="colorPrimary">@color/colorPrimaryDarkDefault</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkDefault</item>
+        <item name="colorAccent">@color/colorAccentDark</item>
+        <item name="android:navigationBarColor">@color/colorPrimaryDarkDark</item>
 
-    <style name="AppTheme.NoActionBar">
+    </style>
 
-        <item name="windowActionBar">false</item>
-
-        <item name="windowNoTitle">true</item>
-
+    <!-- Light theme -->
+    <style name="AppThemeLight">
+        <item name="colorPrimary">@color/colorPrimaryLight</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkLight</item>
+        <item name="colorAccent">@color/colorAccentDefault</item>
+        <item name="android:navigationBarColor">@color/colorNavBarLight</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

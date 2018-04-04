@@ -14,18 +14,18 @@ public class Settings {
 
     public static void setThemeLight() {
         // TODO: ARREGLAR VAINA COOLORES
-        //currTheme = R.style.AppThemeLight;
+        currTheme = R.style.AppThemeLight;
     }
 
     public static void setThemeDark() {
         // TODO: ARREGLAR VAINA COOLORES
-        //currTheme = R.style.AppThemeDark;
+        currTheme = R.style.AppThemeDark;
     }
 
     public static void setThemeInv() {
     }
 
-    public static void setThemeSea() {
+    public static void setThemeAqua() {
 
     }
 

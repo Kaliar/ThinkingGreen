@@ -9,11 +9,13 @@ import android.widget.TextView;
 import mx.itesm.thinkinggreen.Fragments.RestaurantsListFrag;
 import mx.itesm.thinkinggreen.Fragments.StoresListFrag;
 import mx.itesm.thinkinggreen.R;
+import mx.itesm.thinkinggreen.Settings;
 
 public class RestaurantsActiv extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.setTheme(Settings.getCurrTheme());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurants);
 

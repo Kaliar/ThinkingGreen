@@ -24,6 +24,7 @@ import com.parse.LogInCallback;
 import java.util.List;
 
 import mx.itesm.thinkinggreen.R;
+import mx.itesm.thinkinggreen.Settings;
 
 public class LoginActiv extends AppCompatActivity {
 
@@ -37,6 +38,7 @@ public class LoginActiv extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.setTheme(Settings.getCurrTheme());
         super.onCreate(savedInstanceState);
 
         //Initialize parse
@@ -58,7 +60,7 @@ public class LoginActiv extends AppCompatActivity {
             @Override
             public void done(ParseUser user, ParseException e) {
                 if(user !=null){
-                    alertDisplayer("Successful Login", "Welcome back"+ strUsuario + "!");
+                    alertDisplayer(getString(R.string.strSuccessTitle), getString(R.string.str_Welcome) + " " + strUsuario + "!");
                 }else{
                     ParseQuery<ParseObject> queryUs=ParseQuery.getQuery("Institution");
                     queryUs.whereFullText("name",strUsuario);
@@ -68,10 +70,10 @@ public class LoginActiv extends AppCompatActivity {
                         @Override
                         public void done(List<ParseObject> objects, ParseException e) {
                             if(e ==null){
-                                alertDisplayer("Succesfull login", "Welcome "+objects.size());
+                                alertDisplayer(getString(R.string.strSuccessTitle), getString(R.string.str_Welcome) + " " + objects.size());
                             }
                             else {
-                                Toast.makeText(LoginActiv.this, "Wrong Password /Username", Toast.LENGTH_LONG).show();
+                                Toast.makeText(LoginActiv.this, getString(R.string.strFailTitle), Toast.LENGTH_LONG).show();
                             }
                         }
                     });

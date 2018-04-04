@@ -27,7 +27,6 @@
 
     <string name="action_settings">Settings</string>
 
-    <string name="str_ejemplo" />
     <string name="title_activity_main2">Main2Activity</string>
     <string name="strAdviceOption">Seleccione una Opcion:</string>
     <string name="strSuccessTitle">¡Éxito!</string>
@@ -35,8 +34,6 @@
     <string name="strFailTitle">Algo salió mal</string>
     <string name="strFailMsgProfile">Tus datos no han sido actualizados correctamente. Prueba en otro momento.</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="strSearchStores">Tiendas\nZeroWaste</string>
     <string name="strRewards">Recompensas</string>
     <string name="strAdvices">Consejos</string>
@@ -89,4 +86,8 @@
     <string name="str_User">Usuario</string>
     <string name="str_Email">Correo</string>
     <string name="str_Pwd">Contraseña</string>
+    <string name="str_Read">Marcar como leído</string>
+    <string name="str_getPoints">¡Puntos conseguidos!</string>
+    <string name="str_AlreadyRead">Consejo ya leído</string>
+    <string name="str_Welcome">¡Bienvenido</string>
 </resources>

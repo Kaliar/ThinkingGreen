@@ -7,8 +7,18 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.ParseInstallation;
+import com.parse.SaveCallback;
+import com.parse.SignUpCallback;
+import com.parse.LogInCallback;
 
 import mx.itesm.thinkinggreen.R;
 
@@ -26,7 +36,8 @@ public class AdviceWeekFrag extends Fragment {
     private TextView tvTitle;
     private TextView tvDescription;
     private ImageView imgWeeklyAdvice;
-
+    private Button btnRead;
+    private boolean isRead =  false;
     // TODO: CREATE CODE FOR DOWNLOADING THE WEEK ADVICE FRM THE DB/INTERNET
 
     // TODO: Rename parameter arguments, choose names that match
@@ -84,6 +95,13 @@ public class AdviceWeekFrag extends Fragment {
         tvTitle = getActivity().findViewById(R.id.tvTitleWeeklyAdvice);
         tvDescription = getActivity().findViewById(R.id.tvDescriptionWeeklyAdvice);
         imgWeeklyAdvice = getActivity().findViewById(R.id.imgWeeklyAdvice);
+        btnRead = getActivity().findViewById(R.id.btnFinish);
+        btnRead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickRead();
+            }
+        });
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -108,6 +126,29 @@ public class AdviceWeekFrag extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    private void clickRead(){
+        if(!isRead) {
+            ParseUser user = ParseUser.getCurrentUser();
+            int points = (Integer) user.get("points");
+            points++;
+            user.put("points", points);
+            user.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if (e == null) {
+                        Toast.makeText(getActivity().getApplicationContext(), getString(R.string.str_getPoints), Toast.LENGTH_SHORT).show();
+                        isRead = true;
+                    } else {
+                        Toast.makeText(getActivity().getApplicationContext(), getString(R.string.strFailTitle), Toast.LENGTH_LONG).show();
+
+                    }
+                }
+            });
+        } else{
+            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.str_AlreadyRead), Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**

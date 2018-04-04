@@ -1,6 +1,7 @@
 package mx.itesm.thinkinggreen.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import mx.itesm.thinkinggreen.Activities.MainMenuUserActiv;
 import mx.itesm.thinkinggreen.Adapters.RestaurantListAdapter;
 import mx.itesm.thinkinggreen.Adapters.RewardsCategoryItemAdapter;
 import mx.itesm.thinkinggreen.Adapters.StoreListAdapter;
@@ -21,6 +23,17 @@ import mx.itesm.thinkinggreen.Models.Restaurants;
 import mx.itesm.thinkinggreen.Models.RewardsCategories;
 import mx.itesm.thinkinggreen.Models.RewardsItems;
 import mx.itesm.thinkinggreen.R;
+import mx.itesm.thinkinggreen.Settings;
+import com.parse.FindCallback;
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+import com.parse.ParseInstallation;
+import com.parse.SaveCallback;
+import com.parse.SignUpCallback;
+import com.parse.LogInCallback;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -102,9 +115,9 @@ public class RewardsCategoryItemListFrag extends Fragment {
     }
 
     private void createItemAdapter() {
+        Log.i("categoryClick","categoryPos: "+categoryPos);
         final RewardsItems[] arrItems = RewardsItems.getRewItems(this.categoryPos); // Hardcoded Advices Array (Temporal)
-        Log.i("itemClick","categoryPos: "+categoryPos);
-        Log.i("itemClick","ItemAdap recuperado ");
+        Log.i("categoryClick","ItemAdap recuperado ");
         // Instantiate an adapter for the advice list
         // Send the CardVIew XML for the advice
         RewardsCategoryItemAdapter adapter = new RewardsCategoryItemAdapter(arrItems, R.layout.card_reward_item,
@@ -112,8 +125,51 @@ public class RewardsCategoryItemListFrag extends Fragment {
                     // Define the onClick response for each card
                     @Override
                     public void onItemClick(int position) {
+                        int points = (Integer) ParseUser.getCurrentUser().get("points");
+                        boolean flagChange = false;
                         RewardsItems rewItem = arrItems[position];
-                        Toast.makeText(getContext(),  "Seleccionaste el item: " + rewItem.getCode(), Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getContext(),  "Seleccionaste el item: " + getString(rewItem.getTitle()), Toast.LENGTH_LONG).show();
+                        switch(position) {
+                            case 0:
+                                if(points > 10) {
+                                    Settings.setThemeDefault();
+                                    flagChange = true;
+                                }
+                                else
+                                break;
+                            case 1:
+                                if(points > 20) {
+                                    Settings.setThemeDark();
+                                    flagChange = true;
+                                }
+                                break;
+                            case 2:
+                                if(points > 30) {
+                                    Settings.setThemeLight();
+                                    flagChange = true;
+                                }
+                                break;
+                            case 3:
+                                if(points > 40) {
+                                    Settings.setThemeInv();
+                                    flagChange = true;
+                                }
+                                break;
+                            case 4:
+                                if(points > 50) {
+                                    Settings.setThemeAqua();
+                                    flagChange = true;
+                                }
+                                break;
+                            default:
+                                break;
+
+                        }
+                        Toast.makeText(getContext(),"Puntos insuficientes", Toast.LENGTH_SHORT).show();
+                        if(flagChange) {
+                            Intent intMenu = new Intent(getContext(), MainMenuUserActiv.class);
+                            startActivity(intMenu);
+                        }
                     }
                 });
 

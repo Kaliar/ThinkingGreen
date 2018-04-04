@@ -44,6 +44,13 @@
                     android:layout_height="wrap_content"
                     android:text="@string/large_text"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                <Button
+                    android:id="@+id/btnFinish"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimaryLight"
+                    android:text="@string/str_Read" />
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
     </LinearLayout>

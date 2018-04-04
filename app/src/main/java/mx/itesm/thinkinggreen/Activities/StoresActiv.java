@@ -9,11 +9,13 @@ import android.widget.Toast;
 
 import mx.itesm.thinkinggreen.Fragments.StoresListFrag;
 import mx.itesm.thinkinggreen.R;
+import mx.itesm.thinkinggreen.Settings;
 
 public class StoresActiv extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.setTheme(Settings.getCurrTheme());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stores);
 

@@ -11,6 +11,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import mx.itesm.thinkinggreen.R;
+import mx.itesm.thinkinggreen.Settings;
 
 public class MapsLocActiv extends FragmentActivity implements OnMapReadyCallback {
 
@@ -18,6 +19,7 @@ public class MapsLocActiv extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.setTheme(Settings.getCurrTheme());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps_loc);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
