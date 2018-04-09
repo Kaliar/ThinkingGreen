@@ -90,4 +90,8 @@
     <string name="str_getPoints">¡Puntos conseguidos!</string>
     <string name="str_AlreadyRead">Consejo ya leído</string>
     <string name="str_Welcome">¡Bienvenido</string>
+    <string name="str_setting">Ajustes</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -3,6 +3,7 @@ package mx.itesm.thinkinggreen.Activities;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -13,9 +14,9 @@ import android.widget.TextView;
 import mx.itesm.thinkinggreen.Fragments.AdviceListFrag;
 import mx.itesm.thinkinggreen.Fragments.AdviceSettingsFrag;
 import mx.itesm.thinkinggreen.Fragments.AdviceWebFrag;
-import mx.itesm.thinkinggreen.Fragments.AdviceWeekFrag;
 import mx.itesm.thinkinggreen.R;
 import mx.itesm.thinkinggreen.Settings;
+import mx.itesm.thinkinggreen.Fragments.YoutubeFragment;
 
 public class AdvicesActiv extends AppCompatActivity {
 
@@ -32,7 +33,8 @@ public class AdvicesActiv extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.menu_weekly_advice:
                     tvMessage.setText("Consejo Semanal:");
-                    loadWeekAdviceFrag();
+                    //loadWeekAdviceFrag();
+                    loadYoutubeFragment();
                     return true;
 
                 case R.id.menu_advice_list:
@@ -60,6 +62,7 @@ public class AdvicesActiv extends AppCompatActivity {
         btnAdvices = findViewById(R.id.btnAdvices);
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
     }
 
     private void loadAdviceSettingsFrag() {
@@ -88,6 +91,18 @@ public class AdvicesActiv extends AppCompatActivity {
         fragTrans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         fragTrans.commit(); // Schedule the operation into thread
 
+
     }
+
+    //Video View
+    private void  loadYoutubeFragment(){
+        YoutubeFragment fragment = new YoutubeFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction()
+                .replace(R.id.frameAdvices, fragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
 
 }
