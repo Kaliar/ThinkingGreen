@@ -1,6 +1,8 @@
 package mx.itesm.thinkinggreen.Activities;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
@@ -10,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import java.util.Calendar;
 
 import mx.itesm.thinkinggreen.Fragments.AdviceListFrag;
 import mx.itesm.thinkinggreen.Fragments.AdviceSettingsFrag;
@@ -63,6 +67,8 @@ public class AdvicesActiv extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        changeDaily();
+
     }
 
     private void loadAdviceSettingsFrag() {
@@ -102,6 +108,53 @@ public class AdvicesActiv extends AppCompatActivity {
                 .replace(R.id.frameAdvices, fragment)
                 .addToBackStack(null)
                 .commit();
+    }
+
+
+    public void changeDaily(){
+
+        Calendar c = Calendar.getInstance();
+        int thisDay = c.get(Calendar.DAY_OF_YEAR); //You can chose something else to compare too, such as DATE..
+        long todayMillis = c.getTimeInMillis(); //We might need this a bit later.
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        long last = prefs.getLong("date", 0); //If we don't have a saved value, use 0.
+        c.setTimeInMillis(last);
+        int lastDay = c.get(Calendar.DAY_OF_YEAR);
+
+        if(lastDay != thisDay ){
+            //New day, update View and preference:
+            SharedPreferences.Editor edit = prefs.edit();
+            edit.putLong("date", todayMillis);
+            edit.commit();
+            YoutubeFragment video = new YoutubeFragment();
+            video.setVideoID("BT59rohv6jw");
+
+        }
+
+    }
+
+    public void changeWeekly(){
+
+        Calendar c = Calendar.getInstance();
+        int thisWeek = c.get(Calendar.WEEK_OF_YEAR); //You can chose something else to compare too, such as DATE..
+        long todayMillis = c.getTimeInMillis(); //We might need this a bit later.
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        long last = prefs.getLong("date", 0); //If we don't have a saved value, use 0.
+        c.setTimeInMillis(last);
+        int lastWeek = c.get(Calendar.WEEK_OF_YEAR);
+
+        if(lastWeek != thisWeek ){
+            //New week, update View and preference:
+            SharedPreferences.Editor edit = prefs.edit();
+            edit.putLong("date", todayMillis);
+            edit.commit();
+            YoutubeFragment video = new YoutubeFragment();
+            video.setVideoID("BT59rohv6jw");
+
+        }
+
     }
 
 
