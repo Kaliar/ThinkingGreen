@@ -33,6 +33,7 @@ dependencies {
     implementation 'com.parse:parse-android:1.16.7'
     implementation 'org.jsoup:jsoup:1.11.2'
     implementation files('libs/YouTubeAndroidPlayerApi-1/libs/YouTubeAndroidPlayerApi.jar')
+    implementation 'com.github.GwonHyeok:StickySwitch:0.0.15'
 }
 // This is also used to connect to back4app
 repositories {
