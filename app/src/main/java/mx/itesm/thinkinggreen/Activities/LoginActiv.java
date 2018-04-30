@@ -32,15 +32,10 @@ public class LoginActiv extends AppCompatActivity {
 
     private EditText etUsername;
     private EditText etPassword;
-    private Button btnLogin;
-    private Button btnSignUp;
-    private String username;
-    private String password;
     private ProgressDialog pDiag;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Settings.getPrefs(this);
         this.setTheme(Settings.getCurrTheme());
         super.onCreate(savedInstanceState);
 
@@ -51,13 +46,19 @@ public class LoginActiv extends AppCompatActivity {
 
         etUsername = findViewById(R.id.etUserNameLogin);
         etPassword = findViewById(R.id.etPasswordLogin);
-        btnLogin = findViewById(R.id.btnLogin);
-        btnSignUp = findViewById(R.id.btnSignUp);
-
         pDiag = new ProgressDialog(this);
+        if(Settings.isUserLogged()){
+            login(Settings.getUsrName(), Settings.getPwd());
+        }
     }
 
-    public void login(View v){
+    public void loginBtn(View v){
+        login(etUsername.getText().toString(),etPassword.getText().toString());
+    }
+
+    private void login(String username, String pwd){
+        final String strUser = username;
+        final String strPwd = pwd;
         // Configure and display the progress dialog
         pDiag.setMessage(getString(R.string.strLoading));
         pDiag.setTitle(getString(R.string.strLoginIn));
@@ -65,30 +66,36 @@ public class LoginActiv extends AppCompatActivity {
         pDiag.setCancelable(true);
         pDiag.show();
 
-        final String strUser = etUsername.getText().toString();
-        final String strPassword = etPassword.getText().toString();
-
         new Handler().postDelayed(new Runnable() {  // Delay login by one second
             @Override
             public void run() {
 
-                // Login process
-                ParseUser.logInInBackground(strUser, strPassword, new LogInCallback() {
+
+                ParseUser.logInInBackground(strUser, strPwd, new LogInCallback() {
                     @Override
                     public void done(ParseUser user, ParseException e) {
-                        if(user !=null) {
+                        if (user != null) {
+                            Settings.savePrefsUser(strUser, strPwd, LoginActiv.this);
                             alertDisplayer(getString(R.string.strSuccessTitle), getString(R.string.str_Welcome) + " " + strUser + "!");
                             pDiag.dismiss(); // Hide dialog
-                        } else{
-                            ParseQuery<ParseObject> queryUs=ParseQuery.getQuery("Institution");
-                            queryUs.whereFullText("name",strUser);
-                            queryUs.whereEqualTo("password",strPassword);
+                        } else {
+                            ParseQuery<ParseObject> queryUs = ParseQuery.getQuery("Institution");
+                            queryUs.whereFullText("name", strUser);
+                            queryUs.whereEqualTo("password", strPwd);
 
                             queryUs.findInBackground(new FindCallback<ParseObject>() {
                                 @Override
                                 public void done(List<ParseObject> objects, ParseException e) {
-                                    if(e ==null){
-                                        alertDisplayer(getString(R.string.strSuccessTitle), getString(R.string.str_Welcome) + " " + objects.size());
+                                    if (e == null) {
+                                        if(objects.size() == 1) {
+                                            Settings.savePrefsUser(strUser, strPwd, LoginActiv.this);
+                                            alertDisplayer(getString(R.string.strSuccessTitle), getString(R.string.str_Welcome) + " " + objects.get(0).get("name") + "!");
+                                            pDiag.dismiss();
+                                        }
+                                        else {
+                                            pDiag.dismiss();
+                                            Toast.makeText(LoginActiv.this, getString(R.string.strLogFail), Toast.LENGTH_SHORT).show();
+                                        }
                                     }
                                     else {
                                         Toast.makeText(LoginActiv.this, getString(R.string.strFailTitle), Toast.LENGTH_LONG).show();
@@ -124,4 +131,8 @@ public class LoginActiv extends AppCompatActivity {
         ok.show();
     }
 
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
+    }
 }

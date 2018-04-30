@@ -105,7 +105,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="Bienvenido: Usuario"
+        android:text="@string/strWelcome"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintStart_toStartOf="parent"

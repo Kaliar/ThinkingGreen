@@ -57,8 +57,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:fontFamily="sans-serif-smallcaps"
-        android:inputType="textPersonName"
-        android:text="prueba2" />
+        android:inputType="textPersonName" />
 
     <TextView
         android:id="@+id/tvPassword"
@@ -73,8 +72,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:fontFamily="sans-serif-smallcaps"
-        android:inputType="textPassword"
-        android:text="prueba" />
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/btnLogin"
@@ -82,7 +80,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-smallcaps"
-        android:onClick="login"
+        android:onClick="loginBtn"
         android:text="@string/strLogIn" />
 
     <Button

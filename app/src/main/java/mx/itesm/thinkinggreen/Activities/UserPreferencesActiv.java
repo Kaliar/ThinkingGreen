@@ -23,11 +23,14 @@ public class UserPreferencesActiv extends AppCompatActivity {
     private EditText etUser;
     private EditText etPassword;
     private EditText etMail;
-    private Button btnSave;
-    private Button btnLogOut;
+    private EditText etNewPwd;
+    private EditText etConfPwd;
+
     private String user;
     private String mail;
     private String password;
+    private String newPwd;
+    private String confPwd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +41,8 @@ public class UserPreferencesActiv extends AppCompatActivity {
         etUser = findViewById(R.id.etNameUsrPref);
         etPassword = findViewById(R.id.etPasswordUsrPref);
         etMail = findViewById(R.id.etMailUsrPref);
-        btnSave = findViewById(R.id.btnSaveUsrPref);
-        btnLogOut = findViewById(R.id.btnLogoutUsrPref);
+        etNewPwd = findViewById(R.id.ETNewPwd);
+        etConfPwd = findViewById(R.id.ETConfirmPwd);
         ParseUser user = ParseUser.getCurrentUser();
         etUser.setText(user.getUsername());
         etMail.setText(user.getEmail());
@@ -49,6 +52,8 @@ public class UserPreferencesActiv extends AppCompatActivity {
         user = etUser.getText().toString();
         mail = etMail.getText().toString();
         password = etPassword.getText().toString();
+        newPwd = etNewPwd.getText().toString();
+        confPwd = etConfPwd.getText().toString();
         //check if the fields arent empty
         if(user.equals("")){
             etUser.setError(getResources().getString(R.string.strFieldError));
@@ -58,27 +63,40 @@ public class UserPreferencesActiv extends AppCompatActivity {
         }
         if(password.equals("")){
             etPassword.setError(getResources().getString(R.string.strFieldError));
-        } else {
-
-            ParseUser.getCurrentUser().setEmail(mail);
-            ParseUser.getCurrentUser().setUsername(user);
-            ParseUser.getCurrentUser().setPassword(password);
-            ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
-                @Override
-                public void done(ParseException e) {
-                    if(e == null){
-                        Intent intMenu = new Intent(getApplicationContext(), MainMenuUserActiv.class);
-                        startActivity(intMenu);
-                    } else {
-                        alertDisplayer("Error", e.getMessage());
-                    }
+        } if(!password.equals(Settings.getPwd())){
+            etPassword.setError(getString(R.string.strWrongPwd));
+        } else{
+            if((!newPwd.equals("") || !confPwd.equals("")) && !newPwd.equals(confPwd)){
+                etNewPwd.setError(getString(R.string.strWrongPwd));
+                etConfPwd.setError(getString(R.string.strWrongPwd));
+            }else {
+                ParseUser.getCurrentUser().setEmail(mail);
+                ParseUser.getCurrentUser().setUsername(user);
+                if(newPwd.equals("")) {
+                    Settings.savePrefsUser(user, password, this);
+                    ParseUser.getCurrentUser().setPassword(password);
                 }
-            });
-
+                else {
+                    Settings.savePrefsUser(user, newPwd, this);
+                    ParseUser.getCurrentUser().setPassword(newPwd);
+                }
+                ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if (e == null) {
+                            Intent intMenu = new Intent(getApplicationContext(), MainMenuUserActiv.class);
+                            startActivity(intMenu);
+                        } else {
+                            alertDisplayer("Error", e.getMessage());
+                        }
+                    }
+                });
+            }
         }
     }
 
     public void logout(View v){
+        Settings.logOut(this);
         ParseUser.logOut();
         Intent intLogin = new Intent(this, LoginActiv.class);
         startActivity(intLogin);
