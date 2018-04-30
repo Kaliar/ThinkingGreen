@@ -1,6 +1,8 @@
 package mx.itesm.thinkinggreen.Fragments;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import mx.itesm.thinkinggreen.Activities.LoginActiv;
 import mx.itesm.thinkinggreen.Activities.MainMenuUserActiv;
 import mx.itesm.thinkinggreen.Adapters.RestaurantListAdapter;
 import mx.itesm.thinkinggreen.Adapters.RewardsCategoryItemAdapter;
@@ -52,6 +55,8 @@ public class RewardsCategoryItemListFrag extends Fragment {
     // TODO: Rename and change types of parameters
     private boolean viendoCategorias;
     private int categoryPos;
+    private final int DISCOUNTS = 0;
+    private final int THEMES = 1;
 
     private OnFragmentInteractionListener mListener;
 
@@ -114,6 +119,57 @@ public class RewardsCategoryItemListFrag extends Fragment {
         }
     }
 
+    private void unlockThemes(int points, int position){
+        boolean flagChange = false;
+        //RewardsItems rewItem = arrItems[position];
+        //Toast.makeText(getContext(),  "Seleccionaste el item: " + getString(rewItem.getTitle()), Toast.LENGTH_LONG).show();
+        switch(position) {
+            case 0: // Default
+                if(points > 10) {
+                    Settings.setThemeDefault();
+                    flagChange = true;
+                }
+                else
+                    break;
+            case 1: // Dark
+                if(points > 20) {
+                    Settings.setThemeDark();
+                    flagChange = true;
+                }
+                break;
+            case 2: // Light
+                if(points > 30) {
+                    Settings.setThemeLight();
+                    flagChange = true;
+                }
+                break;
+            case 3: //Inv
+                if(points > 40) {
+                    Settings.setThemeInv();
+                    flagChange = true;
+                }
+                break;
+            case 4: // Aqua
+                if(points > 50) {
+                    Settings.setThemeAqua();
+                    flagChange = true;
+                }
+                break;
+            default:
+                break;
+
+        }
+        if(flagChange) {
+            Toast.makeText(getContext(),R.string.strRewardUnlocked, Toast.LENGTH_SHORT).show();
+            Intent intMenu = new Intent(getContext(), MainMenuUserActiv.class);
+            //getActivity().finish();
+            startActivity(intMenu);
+        }
+        else {
+            Toast.makeText(getContext(),R.string.strFewPoints, Toast.LENGTH_SHORT).show();
+        }
+    }
+
     private void createItemAdapter() {
         Log.i("categoryClick","categoryPos: "+categoryPos);
         final RewardsItems[] arrItems = RewardsItems.getRewItems(this.categoryPos); // Hardcoded Advices Array (Temporal)
@@ -126,49 +182,15 @@ public class RewardsCategoryItemListFrag extends Fragment {
                     @Override
                     public void onItemClick(int position) {
                         int points = (Integer) ParseUser.getCurrentUser().get("points");
-                        boolean flagChange = false;
-                        RewardsItems rewItem = arrItems[position];
+                        //RewardsItems rewItem = arrItems[position];
                         //Toast.makeText(getContext(),  "Seleccionaste el item: " + getString(rewItem.getTitle()), Toast.LENGTH_LONG).show();
-                        switch(position) {
-                            case 0:
-                                if(points > 10) {
-                                    Settings.setThemeDefault();
-                                    flagChange = true;
-                                }
-                                else
-                                break;
-                            case 1:
-                                if(points > 20) {
-                                    Settings.setThemeDark();
-                                    flagChange = true;
-                                }
-                                break;
-                            case 2:
-                                if(points > 30) {
-                                    Settings.setThemeLight();
-                                    flagChange = true;
-                                }
-                                break;
-                            case 3:
-                                if(points > 40) {
-                                    Settings.setThemeInv();
-                                    flagChange = true;
-                                }
-                                break;
-                            case 4:
-                                if(points > 50) {
-                                    Settings.setThemeAqua();
-                                    flagChange = true;
-                                }
+
+                        switch(categoryPos) {   // Category selected
+                            case THEMES: // Themes Category
+                                unlockThemes(points, position);
                                 break;
                             default:
                                 break;
-
-                        }
-                        Toast.makeText(getContext(),"Puntos insuficientes", Toast.LENGTH_SHORT).show();
-                        if(flagChange) {
-                            Intent intMenu = new Intent(getContext(), MainMenuUserActiv.class);
-                            startActivity(intMenu);
                         }
                     }
                 });
@@ -192,19 +214,31 @@ public class RewardsCategoryItemListFrag extends Fragment {
                     // Define the onClick response for each card
                     @Override
                     public void onItemClick(int position) {
-                        Log.i("categoryClick","Todo chido");
                         Log.i("itemClick","categoryPos: "+position);
                         RewardsCategories category = arrCateg[position];
-                        Toast.makeText(getContext(),  "Seleccionaste la categoría: " + category.getTitle(), Toast.LENGTH_LONG).show();
-
-                        RewardsCategoryItemListFrag fragPlaceDesc = RewardsCategoryItemListFrag.newInstance(false, position); // Fragment of the advices of the week
-                        Log.i("categoryClick","fragment items creado");
-                        FragmentTransaction fragTrans = getActivity().getSupportFragmentManager().beginTransaction();
-                        fragTrans.replace(R.id.frameRewards, fragPlaceDesc); // Set the AdviceWeek Layout
-                        fragTrans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                        fragTrans.addToBackStack(null);
-                        fragTrans.commit(); // Schedule the operation into thread
-
+                        //Toast.makeText(getContext(),  "Seleccionaste la categoría: " + getString(category.getTitle()), Toast.LENGTH_LONG).show();
+                        if (position == DISCOUNTS){ // Discounts Category Selected
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext())
+                                    .setTitle(getString(R.string.strDiscountsNotAvailable))
+                                    .setMessage(R.string.strDiscountsDescription)
+                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.cancel();
+                                        }
+                                    });
+                            AlertDialog alertDialog = builder.create();
+                            alertDialog.show();
+                        }
+                        else {  // Any other rewards
+                            RewardsCategoryItemListFrag fragPlaceDesc = RewardsCategoryItemListFrag.newInstance(false, position); // Fragment of the advices of the week
+                            Log.i("categoryClick","fragment items creado");
+                            FragmentTransaction fragTrans = getActivity().getSupportFragmentManager().beginTransaction();
+                            fragTrans.replace(R.id.frameRewards, fragPlaceDesc); // Set the AdviceWeek Layout
+                            fragTrans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                            fragTrans.addToBackStack(null);
+                            fragTrans.commit(); // Schedule the operation into thread
+                        }
                     }
                 });
 

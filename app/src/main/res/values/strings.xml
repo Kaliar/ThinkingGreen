@@ -91,6 +91,14 @@
     <string name="str_AlreadyRead">Consejo ya leído</string>
     <string name="str_Welcome">¡Bienvenido</string>
     <string name="str_setting">Ajustes</string>
+    <string name="strLoginIn">Iniciando sesión...</string>
+    <string name="strLoading">Cargando...</string>
+
+    <string name="strDiscountsNotAvailable">¡Espéralos próximamente!</string>
+    <string name="strDiscountsDescription">Podrás ahorrar con tu nuevo estilo de vida</string>
+
+    <string name="strFewPoints">Puntos Insuficientes :(</string>
+    <string name="strRewardUnlocked">Tema Seleccionado :D</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -44,7 +44,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
-            android:fontFamily="sans-serif"
+            android:fontFamily="sans-serif-smallcaps"
             android:text="@string/strAdviceOption"
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryText"
