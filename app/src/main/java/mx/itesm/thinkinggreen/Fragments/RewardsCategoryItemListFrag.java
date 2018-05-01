@@ -138,7 +138,7 @@ public class RewardsCategoryItemListFrag extends Fragment {
                 break;
             case 2: // Light
                 if(points > 30) {
-                    Settings.setCurrTheme(R.style.AppThemeLight, getContext());
+                    Settings.setCurrTheme(R.style.AppThemePastel, getContext()); // Se cambio de AppThemeLight a Pastel
                     flagChange = true;
                 }
                 break;

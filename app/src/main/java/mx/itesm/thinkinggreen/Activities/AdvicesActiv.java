@@ -24,6 +24,7 @@ import java.util.Calendar;
 import mx.itesm.thinkinggreen.Fragments.AdviceListFrag;
 import mx.itesm.thinkinggreen.Fragments.AdviceSettingsFrag;
 import mx.itesm.thinkinggreen.Fragments.AdviceWebFrag;
+import mx.itesm.thinkinggreen.Fragments.RestaurantsListFrag;
 import mx.itesm.thinkinggreen.R;
 import mx.itesm.thinkinggreen.Settings;
 import mx.itesm.thinkinggreen.Fragments.YoutubeFragment;
@@ -77,7 +78,9 @@ public class AdvicesActiv extends AppCompatActivity {
             changeDaily();
         else
             changeWeekly();
-
+        tvMessage.setVisibility(View.INVISIBLE);
+        btnAdvices.setVisibility(View.INVISIBLE);
+        loadYoutubeFragment();
     }
 
     private void loadAdviceSettingsFrag() {

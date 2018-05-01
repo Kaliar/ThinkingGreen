@@ -63,8 +63,8 @@ public class LoginActiv extends AppCompatActivity {
         btnLogIn = findViewById(R.id.btnLogin);
         btnSignUp = findViewById(R.id.btnSignUp);
         //Change the color of the buttons
-        btnLogIn.setBackgroundColor(getResources().getColor(Settings.setBtnOK()));
-        btnSignUp.setBackgroundColor(getResources().getColor(Settings.setBtnAlternate()));
+        //btnLogIn.setBackgroundColor(getResources().getColor(Settings.setBtnOK()));
+        //btnSignUp.setBackgroundColor(getResources().getColor(Settings.setBtnAlternate()));
         pDiag = new ProgressDialog(this);
         if(Settings.isUserLogged()){    // Previously Logon
                 quickLogin(Settings.getUsrName(), Settings.getPwd());
