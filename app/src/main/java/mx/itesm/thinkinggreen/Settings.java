@@ -90,8 +90,8 @@ public class Settings {
             case R.style.AppTheme:
                 return R.color.colorPrimaryDarkLight;
             case R.style.AppThemeDark:
-                return R.color.colorPrimaryLightLight;
-            case R.style.AppThemeLight:
+                return R.color.colorPrimaryDarkLight;
+            case R.style.AppThemePastel:
                 return R.color.colorPrimaryDarkDark;
             case R.style.AppThemeInverse:
                 return 0;
@@ -106,8 +106,8 @@ public class Settings {
             case R.style.AppTheme:
                 return R.color.colorPrimaryDarkLight;
             case R.style.AppThemeDark:
-                return R.color.colorPrimaryLightLight;
-            case R.style.AppThemeLight:
+                return R.color.colorPrimaryDarkLight;
+            case R.style.AppThemePastel:
                 return R.color.colorPrimaryDarkDark;
             case R.style.AppThemeInverse:
                 return 0;

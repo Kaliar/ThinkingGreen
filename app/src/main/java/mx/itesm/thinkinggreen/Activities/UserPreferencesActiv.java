@@ -52,8 +52,8 @@ public class UserPreferencesActiv extends AppCompatActivity {
         etConfPwd = findViewById(R.id.ETConfirmPwd);
         btnSave = findViewById(R.id.btnSaveUsrPref);
         btnLogOut = findViewById(R.id.btnLogoutUsrPref);
-        btnSave.setBackgroundColor(getResources().getColor(Settings.setBtnOK()));
-        btnLogOut.setBackgroundColor(getResources().getColor(Settings.setBtnAlternate()));
+        //btnSave.setBackgroundColor(getResources().getColor(Settings.setBtnOK()));
+       // btnLogOut.setBackgroundColor(getResources().getColor(Settings.setBtnAlternate()));
         ParseUser user = ParseUser.getCurrentUser();
         etUser.setText(user.getUsername());
         etMail.setText(user.getEmail());

@@ -17,6 +17,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -38,6 +39,8 @@ public class LoginActiv extends AppCompatActivity {
     private EditText etUsername;
     private EditText etPassword;
     private ProgressDialog pDiag;
+    private Button btnLogIn;
+    private Button btnSignUp;
     private final int INTERNET = 10;
     private final int FINE_LOCATION = 20;
     private final int COARSE_LOCATION = 30;
@@ -57,6 +60,11 @@ public class LoginActiv extends AppCompatActivity {
 
         etUsername = findViewById(R.id.etUserNameLogin);
         etPassword = findViewById(R.id.etPasswordLogin);
+        btnLogIn = findViewById(R.id.btnLogin);
+        btnSignUp = findViewById(R.id.btnSignUp);
+        //Change the color of the buttons
+        btnLogIn.setBackgroundColor(getResources().getColor(Settings.setBtnOK()));
+        btnSignUp.setBackgroundColor(getResources().getColor(Settings.setBtnAlternate()));
         pDiag = new ProgressDialog(this);
         if(Settings.isUserLogged()){    // Previously Logon
                 quickLogin(Settings.getUsrName(), Settings.getPwd());

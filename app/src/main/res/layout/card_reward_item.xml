@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     android:paddingBottom="16dp"
-    app:cardBackgroundColor="@color/colorPrimaryLight"
+    app:cardBackgroundColor="@color/colorPrimaryPastel"
     app:cardCornerRadius="25dp">
 
     <android.support.constraint.ConstraintLayout

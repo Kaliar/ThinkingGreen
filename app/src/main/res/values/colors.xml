@@ -19,27 +19,42 @@
     <color name="colorDivider">#BDBDBD</color>
 
 
-    <!-- Theme Light -->
-    <color name="colorPrimaryLight">#8bc34a</color>
-    <color name="colorPrimaryDarkLight">#689f38</color>
-    <color name="colorPrimaryLightLight">#DCEDC8</color>
-    <color name="colorTextIconsLight">#212121</color>
-    <color name="colorNavBarLight">#aed581</color>
+
+
+    <!-- Theme Pastel -->
+    <color name="colorPrimaryPastel">#8FA6CB</color>
+    <color name="colorPrimaryPastelDark">#7D84B2</color>
+    <color name="colorPrimaryPastelLight">#FFE8D1</color>
+    <color name="colorAccentPastel">#FFAC81</color>
+    <color name="colorNavBarPastel">#68C3D4</color>
 
     <!-- Theme Dark -->
-    <color name="colorAccentDark">#ff5722</color>
-    <color name="colorPrimaryDarkDark">#558b2f</color>
+    <color name="colorPrimaryDark">#C3EB78</color>
+    <color name="colorPrimaryDarkLight">#F3FFC6</color>
+    <color name="colorAccentDark">#3C91E6</color>
+    <color name="colorPrimaryDarkDark">#4BA851</color>
 
     <!-- Theme Inverse -->
-    <color name="colorPrimaryInv">#FFC107</color>
-    <color name="colorPrimaryDarkInv">#FFA000</color>
-    <color name="colorPrimaryLightInv">#ffd863</color>
-    <color name="colorAccentInverse">#4CAF50</color>
+    <color name="colorPrimaryInv">#A2D3C2</color>
+    <color name="colorPrimaryDarkInv">#357266</color>
+    <color name="colorPrimaryLightInv">#EDFF7A</color>
+    <color name="colorAccentInverse">#E8D33F</color>
+    <color name="colorNavBarInverse">#0E3B43</color>
 
     <!-- Theme Aqua -->
-    <color name="colorPrimaryAqua">#2196F3</color>
-    <color name="colorPrimaryDarkAqua">#1976d2</color>
-    <color name="colorPrimaryLightAqua">#BBDEFB</color>
-    <color name="colorAccentAqua">#009688</color>
+    <color name="colorPrimaryAqua">#01b6ad</color>
+    <color name="colorPrimaryDarkAqua">#006064</color>
+    <color name="colorPrimaryLightAqua">#b2ebf2</color>
+    <color name="colorAccentAqua">#FFC49E</color>
+    <color name="colorNavBarAqua">#4db6ac</color>
+    <color name="colorStatBar">#3C474B</color>
+
+    <!-- Theme Coral -->
+    <color name="colorPrimaryCoral">#68C3D4</color>
+    <color name="colorPrimaryDarkCoral">#508CA4</color>
+    <color name="colorPrimaryLightCoral">#7CDEDC</color>
+    <color name="colorAccentCoral">#ed665a</color>
+    <color name="colorNavBarCoral">#A9B3CE</color>
+
 
 </resources>

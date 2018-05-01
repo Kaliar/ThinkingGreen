@@ -50,7 +50,7 @@
                     android:id="@+id/btnFinish"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorPrimaryLight"
+                    android:background="@color/colorPrimaryPastel"
                     android:text="@string/str_Read" />
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
