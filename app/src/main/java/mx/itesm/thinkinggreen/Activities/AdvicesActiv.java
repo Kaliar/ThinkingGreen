@@ -13,6 +13,12 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
+import com.parse.SignUpCallback;
+
 import java.util.Calendar;
 
 import mx.itesm.thinkinggreen.Fragments.AdviceListFrag;
@@ -67,7 +73,10 @@ public class AdvicesActiv extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        changeDaily();
+        if(ParseUser.getCurrentUser().get("frequency").equals("daily"))
+            changeDaily();
+        else
+            changeWeekly();
 
     }
 

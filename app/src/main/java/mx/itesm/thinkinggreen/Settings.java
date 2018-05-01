@@ -55,26 +55,15 @@ public class Settings {
         return currTheme;
     }
 
-    public static void setThemeDefault() {
-        currTheme = R.style.AppTheme;
+    public static void setCurrTheme(int theme, Context con){
+        currTheme = theme;
+        SharedPreferences settings = con.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("theme", currTheme);
+        editor.commit();
     }
 
-    public static void setThemeLight() {
-        // TODO: ARREGLAR VAINA COOLORES
-        currTheme = R.style.AppThemeLight;
-    }
 
-    public static void setThemeDark() {
-        // TODO: ARREGLAR VAINA COOLORES
-        currTheme = R.style.AppThemeDark;
-    }
-
-    public static void setThemeInv() {
-    }
-
-    public static void setThemeAqua() {
-
-    }
 
     // Verfication of network
     public static boolean isNetAvailable(ConnectivityManager connectivityManager) {  // Network is Enabled

@@ -126,31 +126,31 @@ public class RewardsCategoryItemListFrag extends Fragment {
         switch(position) {
             case 0: // Default
                 if(points > 10) {
-                    Settings.setThemeDefault();
+                    Settings.setCurrTheme(R.style.AppTheme, getContext());
                     flagChange = true;
                 }
                 break;
             case 1: // Dark
                 if(points > 20) {
-                    Settings.setThemeDark();
+                    Settings.setCurrTheme(R.style.AppThemeDark, getContext());
                     flagChange = true;
                 }
                 break;
             case 2: // Light
                 if(points > 30) {
-                    Settings.setThemeLight();
+                    Settings.setCurrTheme(R.style.AppThemeLight, getContext());
                     flagChange = true;
                 }
                 break;
             case 3: //Inv
                 if(points > 40) {
-                    Settings.setThemeInv();
+                    Settings.setCurrTheme(R.style.AppThemeInverse, getContext());
                     flagChange = true;
                 }
                 break;
             case 4: // Aqua
                 if(points > 50) {
-                    Settings.setThemeAqua();
+                    Settings.setCurrTheme(R.style.AppThemeAqua, getContext());
                     flagChange = true;
                 }
                 break;
