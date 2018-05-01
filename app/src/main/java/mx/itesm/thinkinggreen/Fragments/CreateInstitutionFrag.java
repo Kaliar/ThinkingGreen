@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
@@ -21,6 +22,7 @@ import com.parse.SaveCallback;
 
 import mx.itesm.thinkinggreen.Activities.LoginActiv;
 import mx.itesm.thinkinggreen.R;
+import mx.itesm.thinkinggreen.Settings;
 
 
 /**
@@ -112,50 +114,57 @@ public class CreateInstitutionFrag extends Fragment {
     }
 
     private void registerInstitution() {
-        //We create a new parse object that is equal to a class we have in our data base with the same name of the table we want to modify
-        ParseObject institution=new ParseObject("Institution");
-        // Get User Input
-        final String name = etName.getText().toString();
-        String address = etAddress.getText().toString();
-        String phone = etPhone.getText().toString();
-        String mail = etMail.getText().toString();
-        String password = etPassword.getText().toString();
-        //Checks if fields are empty
-        if (name.equals("")) {
-            etName.setError(getResources().getString(R.string.strFieldError));
-        }
-        if (address.equals("")) {
-            etAddress.setError(getResources().getString(R.string.strFieldError));
-        }
-        if (phone.equals("")) {
-            etPhone.setError(getResources().getString(R.string.strFieldError));
-        }
-        if (mail.equals("")) {
-            etMail.setError(getResources().getString(R.string.strFieldError));
-        }
-        if (password.equals("")) {
-            etPassword.setError(getResources().getString(R.string.strFieldError));
-        } else {
-            //add to the database the values, it is necessary to use the function put, dont confuse it with add. Add is for another purpose
-            institution.put("name", name);
-            institution.put("phoneNumber", phone);
-            institution.put("email", mail);
-            institution.put("password", password);
-            institution.put("address", address);
-            institution.put("type", "institucion");
-            //we use Savecallback if we want something displayed after the information has been stored
-            institution.saveInBackground(new SaveCallback() {
-                @Override
-                public void done(ParseException e) {
-                    if (e == null) {
-                        //in case of succes will display an alert displayer
-                        alertDisplayer("Sucessful Sign Up!", "Welcome" + name + "!");
-                    } else {
-                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+        if (Settings.isNetAvailable((ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE))
+                && Settings.isOnline()){
+            //We create a new parse object that is equal to a class we have in our data base with the same name of the table we want to modify
+            ParseObject institution=new ParseObject("Institution");
+            // Get User Input
+            final String name = etName.getText().toString();
+            String address = etAddress.getText().toString();
+            String phone = etPhone.getText().toString();
+            String mail = etMail.getText().toString();
+            String password = etPassword.getText().toString();
+            //Checks if fields are empty
+            if (name.equals("")) {
+                etName.setError(getResources().getString(R.string.strFieldError));
+            }
+            if (address.equals("")) {
+                etAddress.setError(getResources().getString(R.string.strFieldError));
+            }
+            if (phone.equals("")) {
+                etPhone.setError(getResources().getString(R.string.strFieldError));
+            }
+            if (mail.equals("")) {
+                etMail.setError(getResources().getString(R.string.strFieldError));
+            }
+            if (password.equals("")) {
+                etPassword.setError(getResources().getString(R.string.strFieldError));
+            } else {
+                //add to the database the values, it is necessary to use the function put, dont confuse it with add. Add is for another purpose
+                institution.put("name", name);
+                institution.put("phoneNumber", phone);
+                institution.put("email", mail);
+                institution.put("password", password);
+                institution.put("address", address);
+                institution.put("type", "institucion");
+                //we use Savecallback if we want something displayed after the information has been stored
+                institution.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if (e == null) {
+                            //in case of succes will display an alert displayer
+                            alertDisplayer("Sucessful Sign Up!", "Welcome" + name + "!");
+                        } else {
+                            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
                     }
-                }
-            });
+                });
+            }
         }
+        else{
+            Toast.makeText(getContext(), R.string.strNoNetwork, Toast.LENGTH_LONG).show();
+        }
+
 
     }
     private void alertDisplayer(String title,String message){

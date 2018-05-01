@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
@@ -21,6 +22,7 @@ import com.parse.SignUpCallback;
 
 import mx.itesm.thinkinggreen.Activities.LoginActiv;
 import mx.itesm.thinkinggreen.R;
+import mx.itesm.thinkinggreen.Settings;
 
 
 /**
@@ -108,41 +110,48 @@ public class CreatePersonFrag extends Fragment {
     }
 
     private void registerPerson() {
-        //Create the user instance
-        ParseUser user=new ParseUser();
-        // Get User Input
-        final String name = etName.getText().toString();
-        String mail = etMail.getText().toString();
-        String password = etPassword.getText().toString();
+        if (Settings.isNetAvailable((ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE))
+            && Settings.isOnline()){
+            //Create the user instance
+            ParseUser user=new ParseUser();
+            // Get User Input
+            final String name = etName.getText().toString();
+            String mail = etMail.getText().toString();
+            String password = etPassword.getText().toString();
 
-        //check if the fields arent empty
-        if(name.equals("")){
-            etName.setError(getResources().getString(R.string.strFieldError));
-        }
-        if(mail.equals("")){
-            etMail.setError(getResources().getString(R.string.strFieldError));
-        }
-        if(password.equals("")){
-            etPassword.setError(getResources().getString(R.string.strFieldError));
-        } else {
-            //assign the values to the user and send them to the db
-            user.setUsername(name);
-            user.setEmail(mail);
-            user.setPassword(password);
-            user.put("points", 0);
-            user.signUpInBackground(new SignUpCallback() {
-                @Override
-                public void done(ParseException e) {
-                    if (e == null) {
-                        //in case of succes will display an alert displayer
-                        alertDisplayer("¡Registrado exitosamente!", "¡Bienvenido " + name + "!");
-                    } else {
-                        ParseUser.logOut();
-                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            //check if the fields arent empty
+            if(name.equals("")){
+                etName.setError(getResources().getString(R.string.strFieldError));
+            }
+            if(mail.equals("")){
+                etMail.setError(getResources().getString(R.string.strFieldError));
+            }
+            if(password.equals("")){
+                etPassword.setError(getResources().getString(R.string.strFieldError));
+            } else {
+                //assign the values to the user and send them to the db
+                user.setUsername(name);
+                user.setEmail(mail);
+                user.setPassword(password);
+                user.put("points", 0);
+                user.signUpInBackground(new SignUpCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if (e == null) {
+                            //in case of succes will display an alert displayer
+                            alertDisplayer("¡Registrado exitosamente!", "¡Bienvenido " + name + "!");
+                        } else {
+                            ParseUser.logOut();
+                            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
                     }
-                }
-            });
+                });
+            }
         }
+        else {
+            Toast.makeText(getContext(), R.string.strNoNetwork, Toast.LENGTH_LONG).show();
+        }
+
     }
     private void alertDisplayer(String title,String message){
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext())

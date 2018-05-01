@@ -15,7 +15,7 @@
         <TextView
             android:id="@+id/tvTitleAdvSet"
             android:layout_width="wrap_content"
-            android:layout_height="43dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-smallcaps"
@@ -26,61 +26,59 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <io.ghyeok.stickyswitch.widget.StickySwitch
-            android:id="@+id/sticky_switch"
-            android:layout_width="127dp"
-            android:layout_height="69dp"
-            android:layout_centerInParent="true"
+            android:id="@+id/swAdvFreq"
+            android:layout_width="150dp"
+            android:layout_height="63dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.565"
-            app:layout_constraintStart_toEndOf="@+id/textView5"
             app:layout_constraintTop_toBottomOf="@+id/tvTitleAdvSet"
             app:ss_animationDuration="600"
-            app:ss_animationType="line"
-            app:ss_iconPadding="11dp"
-            app:ss_iconSize="15dp"
+            app:ss_animationType="curved"
+            app:ss_iconPadding="10dp"
+            app:ss_iconSize="20dp"
             app:ss_leftIcon="@drawable/daily"
-            app:ss_leftText="Daily"
+            app:ss_leftText="@string/strDailyAdv"
             app:ss_rightIcon="@drawable/weekly"
-            app:ss_rightText="Weekly    l"
-            app:ss_selectedTextSize="14sp"
+            app:ss_rightText="@string/strWeekAdv"
+            app:ss_selectedTextSize="18sp"
             app:ss_sliderBackgroundColor="@color/colorPrimaryDefault"
             app:ss_switchColor="@color/colorAccentDefault"
             app:ss_textColor="@android:color/background_dark"
-            app:ss_textSize="14sp"
+            app:ss_textSize="15sp"
             tools:ignore="MissingConstraints" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tvSelectAdvSet"
             android:layout_width="0dp"
             android:layout_height="33dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="Seleccione el tipo de consejo"
+            android:text="@string/strTypeAdv"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sticky_switch" />
+            app:layout_constraintTop_toBottomOf="@+id/swAdvFreq" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/tvFrequencyAdvSet"
             android:layout_width="0dp"
-            android:layout_height="33dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="Frecuencia de consejo"
+            android:text="@string/strFrequencyAdv"
             android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/swAdvFreq"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTitleAdvSet" />
 
         <CheckBox
-            android:id="@+id/checkBox2"
+            android:id="@+id/cbRecycle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -88,53 +86,53 @@
             android:layout_marginTop="24dp"
             android:checked="true"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="Reciclaje"
+            android:text="@string/strRecyclingAdv"
             android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@+id/checkBox3"
+            app:layout_constraintEnd_toStartOf="@+id/cbReduce"
             app:layout_constraintHorizontal_bias="0.35"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/tvSelectAdvSet" />
 
         <CheckBox
-            android:id="@+id/checkBox3"
+            android:id="@+id/cbReduce"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="104dp"
             android:layout_marginTop="24dp"
             android:checked="true"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="Reducir"
+            android:text="@string/strReduceAdv"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/tvSelectAdvSet" />
 
         <CheckBox
-            android:id="@+id/checkBox4"
+            android:id="@+id/cbDIY"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:checked="true"
-            android:text="DIY"
+            android:text="@string/strDIYAdv"
             android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@+id/checkBox5"
-            app:layout_constraintHorizontal_bias="0.257"
+            app:layout_constraintEnd_toStartOf="@+id/cbZeroWate"
+            app:layout_constraintHorizontal_bias="0.189"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+            app:layout_constraintTop_toBottomOf="@+id/cbRecycle" />
 
         <CheckBox
-            android:id="@+id/checkBox5"
+            android:id="@+id/cbZeroWate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="72dp"
             android:layout_marginTop="16dp"
             android:checked="true"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="Zero Waste"
+            android:text="@string/strZeroWasteAdv"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
+            app:layout_constraintTop_toBottomOf="@+id/cbReduce" />
 
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>

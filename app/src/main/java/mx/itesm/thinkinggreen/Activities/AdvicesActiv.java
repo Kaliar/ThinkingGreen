@@ -106,7 +106,7 @@ public class AdvicesActiv extends AppCompatActivity {
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction()
                 .replace(R.id.frameAdvices, fragment)
-                .addToBackStack(null)
+                //.addToBackStack(null)
                 .commit();
     }
 
@@ -129,7 +129,6 @@ public class AdvicesActiv extends AppCompatActivity {
             edit.commit();
             YoutubeFragment video = new YoutubeFragment();
             video.setVideoID("BT59rohv6jw");
-
         }
 
     }

@@ -2,6 +2,8 @@ package mx.itesm.thinkinggreen;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 
 public class Settings {
 
@@ -72,6 +74,26 @@ public class Settings {
 
     public static void setThemeAqua() {
 
+    }
+
+    // Verfication of network
+    public static boolean isNetAvailable(ConnectivityManager connectivityManager) {  // Network is Enabled
+        NetworkInfo actNetInfo = connectivityManager.getActiveNetworkInfo();
+
+        return (actNetInfo != null && actNetInfo.isConnected());
+    }
+
+    public static boolean isOnline() { // Has Internet Connection
+        try {
+            Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.com");
+            int val = p.waitFor();
+            boolean reachable = (val == 0);
+            return reachable;
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return false;
     }
 
 

@@ -106,6 +106,22 @@
     <string name="strFewPoints">Puntos Insuficientes :(</string>
     <string name="strRewardUnlocked">Tema Seleccionado :D</string>
 
+    <string name="strRecyclingAdv">Reciclaje</string>
+    <string name="strDIYAdv">D.I.Y</string>
+    <string name="strReduceAdv">Reducir</string>
+    <string name="strZeroWasteAdv">Zero Waste</string>
+    <string name="strFrequencyAdv">Frecuencia de consejo</string>
+    <string name="strTypeAdv">Seleccione el tipo de consejo</string>
+    <string name="strDailyAdv">Día</string>
+    <string name="strWeekAdv">Sem</string>
+
+    <string name="strNoNetwork">No hay conexión a Internet</string>
+    <string name="strGPSOff">El GPS está apagado, ¿Quieres prenderlo?</string>
+    <string name="strNo">No</string>
+    <string name="strYes">Sí</string>
+
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="strNewPwd">Nueva contraseña</string>
