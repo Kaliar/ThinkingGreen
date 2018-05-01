@@ -129,8 +129,7 @@ public class RewardsCategoryItemListFrag extends Fragment {
                     Settings.setThemeDefault();
                     flagChange = true;
                 }
-                else
-                    break;
+                break;
             case 1: // Dark
                 if(points > 20) {
                     Settings.setThemeDark();

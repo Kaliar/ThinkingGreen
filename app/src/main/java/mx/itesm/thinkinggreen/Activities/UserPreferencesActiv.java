@@ -30,6 +30,9 @@ public class UserPreferencesActiv extends AppCompatActivity {
     private EditText etNewPwd;
     private EditText etConfPwd;
 
+    private Button btnSave;
+    private Button btnLogOut;
+
     private String user;
     private String mail;
     private String password;
@@ -47,6 +50,10 @@ public class UserPreferencesActiv extends AppCompatActivity {
         etMail = findViewById(R.id.etMailUsrPref);
         etNewPwd = findViewById(R.id.ETNewPwd);
         etConfPwd = findViewById(R.id.ETConfirmPwd);
+        btnSave = findViewById(R.id.btnSaveUsrPref);
+        btnLogOut = findViewById(R.id.btnLogoutUsrPref);
+        btnSave.setBackgroundColor(getResources().getColor(Settings.setBtnOK()));
+        btnLogOut.setBackgroundColor(getResources().getColor(Settings.setBtnAlternate()));
         ParseUser user = ParseUser.getCurrentUser();
         etUser.setText(user.getUsername());
         etMail.setText(user.getEmail());
