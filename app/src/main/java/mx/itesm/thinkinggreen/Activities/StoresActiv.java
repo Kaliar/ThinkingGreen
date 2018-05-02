@@ -26,7 +26,7 @@ import mx.itesm.thinkinggreen.Settings;
 public class StoresActiv extends AppCompatActivity implements LocationListener{
 
     private LocationManager gps;
-    private Location userLocation;
+    public static Location userLocation;
     protected static final Location defaultLocation = new Location("");
 
     @Override

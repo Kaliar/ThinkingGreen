@@ -37,9 +37,11 @@ public class Settings {
         SharedPreferences settings = con.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         usrName = null;
         pwd = null;
+        currTheme = R.style.AppTheme;
         SharedPreferences.Editor editor = settings.edit();
         editor.putString("user",usrName);
         editor.putString("pwd",pwd);
+        editor.putInt("theme", currTheme);
         editor.commit();
     }
 

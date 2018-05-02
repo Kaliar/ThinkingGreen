@@ -1,5 +1,6 @@
 package mx.itesm.thinkinggreen.Fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,10 +9,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.parse.ParseGeoPoint;
 
 import mx.itesm.thinkinggreen.Activities.RestaurantsActiv;
 import mx.itesm.thinkinggreen.Adapters.RestaurantListAdapter;
@@ -84,12 +88,17 @@ public class RestaurantsListFrag extends Fragment {
     @Override
     public void onStart(){
         super.onStart();
+        Log.i("OnStart RestListFrag","ME CREE CHIDO");
         createRestaurantsAdapter();
     }
 
     private void createRestaurantsAdapter() {
-        final Restaurants[] arrRestaurants = Restaurants.getArrRestaurants(); // Hardcoded Advices Array (Temporal)
-
+        //TODO PONER LOCALIZACION DEL USUARIO AQUI
+        ParseGeoPoint usrLocation = new ParseGeoPoint();
+        Log.i("CREATE ADP RestListFrag","VOA PEDIR LOS RESTAURANTES");
+        final Restaurants[] arrRestaurants = Restaurants.getArrRestaurants(usrLocation, getContext()); // Hardcoded Advices Array (Temporal)
+        Log.i("CREATE ADP RestListFrag","tENGO LOS RESTAURANTES");
+        Log.i("CREATE ADP RestListFrag","rESAURANTES: " +(arrRestaurants == null));
         // Instantiate an adapter for the advice list
         // Send the CardVIew XML for the advice
         RestaurantListAdapter adapter = new RestaurantListAdapter(arrRestaurants, R.layout.card_store_item,

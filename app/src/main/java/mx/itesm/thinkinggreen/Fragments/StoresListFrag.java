@@ -13,9 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.parse.ParseGeoPoint;
+
+import mx.itesm.thinkinggreen.Activities.StoresActiv;
 import mx.itesm.thinkinggreen.Adapters.AdviceListAdapter;
 import mx.itesm.thinkinggreen.Adapters.StoreListAdapter;
 import mx.itesm.thinkinggreen.Models.Advices;
+import mx.itesm.thinkinggreen.Models.Restaurants;
 import mx.itesm.thinkinggreen.Models.Stores;
 import mx.itesm.thinkinggreen.R;
 
@@ -86,7 +90,8 @@ public class StoresListFrag extends Fragment {
     }
 
     private void createStoreListAdapter() {
-        final Stores[] arrStores = Stores.getArrStores(); // Hardcoded Advices Array (Temporal)
+        ParseGeoPoint usrLocation = new ParseGeoPoint(StoresActiv.userLocation.getLatitude(), StoresActiv.userLocation.getLongitude());
+        final Stores[] arrStores = Stores.getArrStores(usrLocation, getContext());  // Hardcoded Advices Array (Temporal)
 
         // Instantiate an adapter for the advice list
         // Send the CardVIew XML for the advice

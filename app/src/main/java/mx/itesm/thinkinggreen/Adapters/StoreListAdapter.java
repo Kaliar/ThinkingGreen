@@ -1,5 +1,6 @@
 package mx.itesm.thinkinggreen.Adapters;
 
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.ByteArrayInputStream;
 
 import mx.itesm.thinkinggreen.Models.Stores;
 import mx.itesm.thinkinggreen.R;
@@ -54,7 +57,9 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.View
             TextView tvName = card.findViewById(R.id.tvTitleStoreItem);
             TextView tvDesc = card.findViewById(R.id.tvDescStoreItem);
 
-            img.setImageDrawable(card.getResources().getDrawable(store.getImgId()));
+            ByteArrayInputStream is = new ByteArrayInputStream(store.getImgId());
+            Drawable drw = Drawable.createFromStream(is, "ABSOLUTE UNIT");
+            img.setImageDrawable(drw);
             tvName.setText(store.getName());
             tvDesc.setText(store.getDescription());
 

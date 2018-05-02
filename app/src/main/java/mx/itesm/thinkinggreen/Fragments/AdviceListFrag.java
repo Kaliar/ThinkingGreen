@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.parse.ParseGeoPoint;
+
 import mx.itesm.thinkinggreen.Adapters.AdviceListAdapter;
 import mx.itesm.thinkinggreen.Models.Advices;
 import mx.itesm.thinkinggreen.R;
@@ -85,7 +87,9 @@ public class AdviceListFrag extends Fragment {
     }
 
     private void createAdvListAdapter() {
-        arrAdvs = Advices.getArrAdvs(); // Hardcoded Advices Array (Temporal)
+        //TODO PONER LOCALIZACION DEL USUARIO AQUI
+        ParseGeoPoint usrLocation = new ParseGeoPoint();
+        final Advices[] arrStores = Advices.getArrAdvs(usrLocation, getContext());  // Hardcoded Advices Array (Temporal)
 
         // Instantiate an adapter for the advice list
         // Send the CardVIew XML for the advice
@@ -94,14 +98,19 @@ public class AdviceListFrag extends Fragment {
                     // Define the onClick response for each card
                     @Override
                     public void onItemClick(int position) {
-                        Toast.makeText(getContext(),  "Seleccionaste el consejo: " + position, Toast.LENGTH_LONG).show();
-                        AdviceWeekFrag fragWeekAdvice = new AdviceWeekFrag(); // Fragment of the advices of the week
-                        FragmentTransaction fragTrans = getActivity().getSupportFragmentManager().beginTransaction();
-                        fragTrans.replace(R.id.frameAdvices, fragWeekAdvice); // Set the AdviceWeek Layout
+                        FragmentTransaction fragTrans;
+                        if(arrAdvs[position].getAdvType().equals("WEB")){
+                            AdviceWebFrag webFrag =  new AdviceWebFrag();
+                            fragTrans = getActivity().getSupportFragmentManager().beginTransaction();
+                            fragTrans.replace(R.id.frameAdvices, webFrag); // Set the AdviceWeek Layout
+                        } else {
+                            YoutubeFragment tubeFrag =  new YoutubeFragment();
+                            fragTrans = getActivity().getSupportFragmentManager().beginTransaction();
+                            fragTrans.replace(R.id.frameAdvices, tubeFrag); // Set the AdviceWeek Layout
+                        }
                         fragTrans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                         fragTrans.addToBackStack(null);
                         fragTrans.commit(); // Schedule the operation into thread
-
                     }
                 });
 

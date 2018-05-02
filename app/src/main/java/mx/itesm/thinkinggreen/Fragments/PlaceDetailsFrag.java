@@ -1,6 +1,7 @@
 package mx.itesm.thinkinggreen.Fragments;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.ByteArrayInputStream;
 
 import mx.itesm.thinkinggreen.Models.Restaurants;
 import mx.itesm.thinkinggreen.Models.Stores;
@@ -97,7 +100,10 @@ public class PlaceDetailsFrag extends Fragment {
         tvContact.setText(restaurant.getMail() + "\n" + restaurant.getPhone());
         tvDescription.setText(restaurant.getDescription());
         tvTyPlace.setText("Restaurante");
-        imgLogo.setImageDrawable(getActivity().getResources().getDrawable(restaurant.getImgId()));
+        ByteArrayInputStream is = new ByteArrayInputStream(restaurant.getImgId());
+        Drawable drw = Drawable.createFromStream(is, "ABSOLUTE UNIT");
+        imgLogo.setImageDrawable(drw);
+        //imgLogo.setImageDrawable(getActivity().getResources().getDrawable(restaurant.getImgId()));
     }
 
     private void displayStore() {
@@ -107,7 +113,10 @@ public class PlaceDetailsFrag extends Fragment {
         tvContact.setText(store.getMail() + "\n" + store.getPhone());
         tvDescription.setText(store.getDescription());
         tvTyPlace.setText("Tienda");
-        imgLogo.setImageDrawable(getActivity().getResources().getDrawable(store.getImgId()));
+        ByteArrayInputStream is = new ByteArrayInputStream(store.getImgId());
+        Drawable drw = Drawable.createFromStream(is, "ABSOLUTE UNIT");
+        imgLogo.setImageDrawable(drw);
+        //imgLogo.setImageDrawable(getActivity().getResources().getDrawable(store.getImgId()));
 
     }
 
