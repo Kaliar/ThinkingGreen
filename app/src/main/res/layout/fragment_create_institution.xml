@@ -82,43 +82,12 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <ImageView
-            android:id="@+id/imgAddInst"
-            android:layout_width="89dp"
-            android:layout_height="77dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnAddInst"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/leaf" />
-
-        <ImageView
-            android:id="@+id/imgAddInst2"
-            android:layout_width="89dp"
-            android:layout_height="77dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:scaleX="-1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btnAddInst"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/leaf" />
-
         <Button
             android:id="@+id/btnAddInst"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:backgroundTint="#4cad4c"
+            android:backgroundTint="?attr/colorAccent"
             android:fontFamily="sans-serif-smallcaps"
             android:text="@string/strCreateAccount"
             app:layout_constraintEnd_toEndOf="parent"

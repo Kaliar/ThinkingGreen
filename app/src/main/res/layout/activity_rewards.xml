@@ -29,12 +29,14 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textStyle="bold|italic" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/imgHojaMoneda"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:src="@drawable/leaf" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="?android:attr/panelBackground"
+            android:tint="?attr/colorAccent"
+            app:srcCompat="@drawable/ic_bug_report_black_48dp" />
 
         <TextView
             android:id="@+id/tvLeaves"
