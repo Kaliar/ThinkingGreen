@@ -86,6 +86,10 @@ public class Restaurants {
         this.phone = phone;
     }
 
+    public ParseGeoPoint getLocation() {
+        return location;
+    }
+
     public static Restaurants[] getArrRestaurants(ParseGeoPoint usrLocation, final Context con) {
         ParseQuery<ParseObject> queryRes = ParseQuery.getQuery("Restaurants");
         queryRes.whereNear("location", usrLocation);

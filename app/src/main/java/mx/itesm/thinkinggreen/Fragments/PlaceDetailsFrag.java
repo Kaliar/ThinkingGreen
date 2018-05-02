@@ -1,6 +1,8 @@
 package mx.itesm.thinkinggreen.Fragments;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,6 +37,7 @@ public class PlaceDetailsFrag extends Fragment {
     private TextView tvContact;
     private TextView tvTyPlace;
     private ImageView imgLogo;
+    private Button btnMap;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -85,6 +89,18 @@ public class PlaceDetailsFrag extends Fragment {
         tvDescription = getActivity().findViewById(R.id.tvDescriptionFullPlace);
         tvTyPlace = getActivity().findViewById(R.id.tvTypePlace);
         imgLogo = getActivity().findViewById(R.id.imgPlace);
+        btnMap = getActivity().findViewById(R.id.btnViewMap);
+        btnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isStore){
+                    viewMap(StoresListFrag.store);
+                }
+                else {
+                    viewMap(RestaurantsListFrag.restaurant);
+                }
+            }
+        });
         if (isStore){
             displayStore();
         }
@@ -118,6 +134,35 @@ public class PlaceDetailsFrag extends Fragment {
         imgLogo.setImageDrawable(drw);
         //imgLogo.setImageDrawable(getActivity().getResources().getDrawable(store.getImgId()));
 
+    }
+
+    public void viewMap(Restaurants restaurants){
+        Uri uriCoord;
+        uriCoord = Uri.parse("geo:0,0?q=" + restaurants.getLocation().getLatitude()
+                + "," + restaurants.getLocation().getLongitude() + "("+restaurants.getName()+")");
+
+        Intent intMap = new Intent(Intent.ACTION_VIEW);
+        intMap.putExtra("coordenada", uriCoord.toString());
+        intMap.setData(uriCoord);
+        if (intMap.resolveActivity(getActivity().getPackageManager()) != null) {
+            Intent selector = Intent.createChooser(intMap,"Selecciona");
+            startActivity(selector);
+        }
+    }
+
+    public void viewMap(Stores stores){
+
+        Uri uriCoord;
+        uriCoord = Uri.parse("geo:0,0?q=" + stores.getLocation().getLatitude()
+                + "," + stores.getLocation().getLongitude() + "("+ stores.getName()+")");
+
+        Intent intMap = new Intent(Intent.ACTION_VIEW);
+        intMap.putExtra("coordenada", uriCoord.toString());
+        intMap.setDataAndNormalize(uriCoord);
+        if (intMap.resolveActivity(getActivity().getPackageManager()) != null) {
+            Intent selector = Intent.createChooser(intMap,"Selecciona");
+            startActivity(selector);
+        }
     }
 
     @Override

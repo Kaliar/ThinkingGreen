@@ -83,6 +83,10 @@ public class Stores {
         this.phone = phone;
     }
 
+    public ParseGeoPoint getLocation() {
+        return location;
+    }
+
     public static Stores[] getArrStores(ParseGeoPoint usrLocation, final Context con) {
 
         ParseQuery<ParseObject> queryRes = ParseQuery.getQuery("Stores");
