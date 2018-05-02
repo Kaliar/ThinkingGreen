@@ -31,10 +31,10 @@
     <color name="colorNavBarPastel">#68C3D4</color>
 
     <!-- Theme Dark -->
-    <color name="colorPrimaryDark">#C3EB78</color>
-    <color name="colorPrimaryDarkLight">#F3FFC6</color>
-    <color name="colorAccentDark">#3C91E6</color>
-    <color name="colorPrimaryDarkDark">#4BA851</color>
+    <color name="colorPrimaryDark">#3e92cc</color>
+    <color name="colorPrimaryDarkLight">#98dfaf</color>
+    <color name="colorAccentDark">#414288</color>
+    <color name="colorPrimaryDarkDark">#2a628f</color>
 
     <!-- Theme Inverse -->
     <color name="colorPrimaryInv">#A2D3C2</color>
