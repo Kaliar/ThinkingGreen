@@ -9,6 +9,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDarkDefault</item>
         <item name="colorAccent">@color/colorAccentDefault</item>
         <item name="android:navigationBarColor">@color/colorNavBarDefault</item>
+        <item name="colorBackgroundFloating">@color/colorPrimaryLightDefault</item>
 
     </style>
 
@@ -18,6 +19,7 @@
         <item name="colorPrimary">@color/colorPrimaryDark</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDarkDark</item>
         <item name="colorAccent">@color/colorAccentDark</item>
+        <item name="colorBackgroundFloating">@color/colorPrimaryDarkLight</item>
 
     </style>
 
@@ -28,6 +30,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryPastelDark</item>
         <item name="colorAccent">@color/colorAccentPastel</item>
         <item name="android:navigationBarColor">@color/colorNavBarPastel</item>
+        <item name="colorBackgroundFloating">@color/colorPrimaryPastelLight</item>
     </style>
 
     <!--Inverse theme-->
@@ -37,6 +40,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDarkInv</item>
         <item name="colorAccent">@color/colorAccentInverse</item>
         <item name="android:navigationBarColor">@color/colorNavBarInverse</item>
+        <item name="colorBackgroundFloating">@color/colorPrimaryLightInv</item>
         
     </style>
 
@@ -47,6 +51,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDarkAqua</item>
         <item name="colorAccent">@color/colorAccentAqua</item>
         <item name="android:navigationBarColor">@color/colorNavBarAqua</item>
+        <item name="colorBackgroundFloating">@color/colorPrimaryLightAqua</item>
     </style>
 
     <!--Coral Theme-->
@@ -56,6 +61,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDarkCoral</item>
         <item name="colorAccent">@color/colorAccentCoral</item>
         <item name="android:navigationBarColor">@color/colorNavBarCoral</item>
+        <item name="colorBackgroundFloating">@color/colorPrimaryLightCoral</item>
     </style>
 
 
