@@ -20,19 +20,22 @@
 
         <TextView
             android:id="@+id/tvTitleUserMenu"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="sans-serif-smallcaps"
             android:text="Think-in' Green"
             android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-        <ImageView
-            android:id="@+id/imgLogin"
-            android:layout_width="match_parent"
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/logo" />
+            android:background="?android:attr/windowBackground"
+            android:tint="?attr/colorPrimary"
+            app:srcCompat="@drawable/icon_leaf" />
+
     </LinearLayout>
 
     <ProgressBar
