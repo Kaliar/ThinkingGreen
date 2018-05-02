@@ -8,6 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.Button;
+import android.widget.Toast;
+
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import mx.itesm.thinkinggreen.R;
 
@@ -29,6 +35,8 @@ public class AdviceWebFrag extends Fragment {
     private String url;
 
     private OnFragmentInteractionListener mListener;
+    private Button btnRead;
+    private boolean isRead =  false;
 
     public AdviceWebFrag() {
         // Required empty public constructor
@@ -64,9 +72,39 @@ public class AdviceWebFrag extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        btnRead = getActivity().findViewById(R.id.btnWebRead);
+        btnRead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickRead();
+            }
+        });
         WebView webView;
         webView=getActivity().findViewById(R.id.webWiew);
         webView.loadUrl(url);
+    }
+
+    private void clickRead(){
+        if(!isRead) {
+            ParseUser user = ParseUser.getCurrentUser();
+            int points = (Integer) user.get("points");
+            points++;
+            user.put("points", points);
+            user.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if (e == null) {
+                        Toast.makeText(getActivity().getApplicationContext(), getString(R.string.str_getPoints), Toast.LENGTH_SHORT).show();
+                        isRead = true;
+                    } else {
+                        Toast.makeText(getActivity().getApplicationContext(), getString(R.string.strFailTitle), Toast.LENGTH_LONG).show();
+
+                    }
+                }
+            });
+        } else{
+            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.str_AlreadyRead), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

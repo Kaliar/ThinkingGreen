@@ -7,9 +7,29 @@
     tools:context=".Fragments.AdviceWebFrag">
 
     <!-- TODO: Update blank fragment layout -->
-    <WebView
-        android:id="@+id/webWiew"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <WebView
+                android:id="@+id/webWiew"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+            </WebView>
+
+            <Button
+                android:id="@+id/btnWebRead"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/str_Read" />
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>
