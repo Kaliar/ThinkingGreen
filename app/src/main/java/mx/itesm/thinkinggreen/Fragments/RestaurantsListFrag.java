@@ -21,7 +21,6 @@ import mx.itesm.thinkinggreen.Activities.RestaurantsActiv;
 import mx.itesm.thinkinggreen.Adapters.RestaurantListAdapter;
 import mx.itesm.thinkinggreen.Adapters.StoreListAdapter;
 import mx.itesm.thinkinggreen.Models.Restaurants;
-import mx.itesm.thinkinggreen.Models.Stores;
 import mx.itesm.thinkinggreen.R;
 
 /**
@@ -94,7 +93,7 @@ public class RestaurantsListFrag extends Fragment {
 
     private void createRestaurantsAdapter() {
         //TODO PONER LOCALIZACION DEL USUARIO AQUI
-        ParseGeoPoint usrLocation = new ParseGeoPoint();
+        ParseGeoPoint usrLocation = new ParseGeoPoint(RestaurantsActiv.userLocation.getLatitude(), RestaurantsActiv.userLocation.getLongitude());
         Log.i("CREATE ADP RestListFrag","VOA PEDIR LOS RESTAURANTES");
         final Restaurants[] arrRestaurants = Restaurants.getArrRestaurants(usrLocation, getContext()); // Hardcoded Advices Array (Temporal)
         Log.i("CREATE ADP RestListFrag","tENGO LOS RESTAURANTES");

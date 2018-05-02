@@ -19,7 +19,6 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDarkDark</item>
         <item name="colorAccent">@color/colorAccentDark</item>
 
-
     </style>
 
     <!-- Pastel theme -->

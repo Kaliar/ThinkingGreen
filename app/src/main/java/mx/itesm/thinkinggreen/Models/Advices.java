@@ -91,7 +91,36 @@ public class Advices {
         queryRes.whereNear("location", usrLocation);
         queryRes.setLimit(20);
 
-        queryRes.findInBackground(new FindCallback<ParseObject>() {
+        try {
+            List<ParseObject> objects = queryRes.find();
+            arrAdvs = new Advices[objects.size()];
+            ParseObject objActual;
+            Advices advActual;
+            int imageId;
+            String advType;
+            for(int i = 0; i < objects.size(); i++) {
+                objActual = objects.get(i);
+                advType = objActual.getString("Category");
+
+                if (advType.equals("Reciclaje")) {
+                    imageId = R.drawable.consejos;
+                } else if (advType.equals("DIY")) {
+                    imageId = R.drawable.consejos;
+                } else if (advType.equals("Reducir")) {
+                    imageId = R.drawable.consejos;
+                } else if (advType.equals("Zero Waste")) {
+                    imageId = R.drawable.consejos;
+                }
+                imageId = R.drawable.consejos;
+                advActual = new Advices(imageId, objActual.getString("URL"), objActual.getString("Category"),
+                        objActual.getString("title"), objActual.getString("description"), objActual.getString("type"));
+                arrAdvs[i] = advActual;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        /*queryRes.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 if (e == null) {
@@ -101,27 +130,28 @@ public class Advices {
                     int imageId;
                     String advType;
                     for(int i = 0; i < objects.size(); i++){
-                        /*objActual = objects.get(i);
+                        objActual = objects.get(i);
                         advType = objActual.getString("Category");
 
                         if(advType.equals("Reciclaje")){
-                            imageId = R.drawable.catReciclaje;
+                            imageId = R.drawable.consejos;
                         }else if(advType.equals("DIY")){
-                            imageId = R.drawable.catDIY;
+                            imageId = R.drawable.consejos;
                         }else if(advType.equals("Reducir")){
-                            imageId = R.drawable.catReducir;
+                            imageId = R.drawable.consejos;
                         }else if(advType.equals("Zero Waste")){
-                            imageId = R.drawable.catZeroWaste;
+                            imageId = R.drawable.consejos;
                         }
+                        imageId = R.drawable.consejos;
                         advActual = new Advices(imageId, objActual.getString("URL"), objActual.getString("Category"),
                                 objActual.getString("title"), objActual.getString("description"), objActual.getString("type"));
-                        arrAdvs[i] = advActual;*/
+                        arrAdvs[i] = advActual;
                     }
                 } else {
                     Toast.makeText(con, "Ocurrió un error: " + e.toString(), Toast.LENGTH_LONG).show();
                 }
             }
-        });
+        });*/
         /*String[] arrTitles = {"Primer Consejo", "Segundo Consejo", "Tercer Consejo"};
         String[] arrDescriptions = {"Necesitas leer los mejores consejos de mis ecobloggers favoritos para una vida zero waste",
                 "Necesitas leer los mejores consejos de mis ecobloggers favoritos para una vida zero waste",

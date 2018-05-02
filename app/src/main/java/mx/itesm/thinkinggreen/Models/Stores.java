@@ -1,6 +1,7 @@
 package mx.itesm.thinkinggreen.Models;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -88,24 +89,23 @@ public class Stores {
         queryRes.whereNear("location", usrLocation);
         queryRes.setLimit(20);
 
-        queryRes.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-                if (e == null) {
-                    arrStores = new Stores[objects.size()];
-                    ParseObject objActual;
-                    Stores storeActual;
-                    for(int i = 0; i < objects.size(); i++){
-                        objActual = objects.get(i);
-                        storeActual = new Stores(objActual.getBytes("imgId"), objActual.getString("name"), objActual.getString("address"),
-                                objActual.getString("description"), objActual.getString("mail"), objActual.getString("phone"), objActual.getParseGeoPoint("location"));
-                        arrStores[i] = storeActual;
-                    }
-                } else {
-                    Toast.makeText(con, "Ocurrió un error: " + e.toString(), Toast.LENGTH_LONG).show();
-                }
+        try {
+            List<ParseObject> objects = queryRes.find();
+            Log.i("Restaurants get","TAMANO OBJS: " + objects.size());
+            arrStores = new Stores[objects.size()];
+            Log.i("Restaurants get","TAMANO REST: " + arrStores.length);
+            ParseObject objActual;
+            Stores storeActual;
+            for(int i = 0; i < objects.size(); i++){
+                objActual = objects.get(i);
+                arrStores[i] = new Stores(objActual.getParseFile("imgId").getData(), objActual.getString("name"), objActual.getString("address"),
+                        objActual.getString("description"), objActual.getString("mail"), objActual.getString("phone"), objActual.getParseGeoPoint("location"));;
             }
-        });
+            Log.i("Restaurants get","TERMINE DE ITERAR: " + arrStores.length);
+        } catch (ParseException e) {
+            Log.i("Restaurant","Fallo el query");
+            e.printStackTrace();
+        }
 
         /*String[] arrNames = {"Primer Tienda", "Segunda Tienda", "Tercer Tienda"};
         String[] arrAdd = {"ALVARO OBREGON 250, AGUA BLANCA INDUSTRIAL , ZAPOPAN , JAL , C.P.45235",
