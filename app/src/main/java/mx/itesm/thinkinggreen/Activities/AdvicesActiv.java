@@ -44,8 +44,8 @@ public class AdvicesActiv extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.menu_weekly_advice:
                     tvMessage.setText("Consejo Semanal:");
-                    //loadWeekAdviceFrag();
-                    loadYoutubeFragment();
+                    loadWeekAdviceFrag();
+                    //loadYoutubeFragment();
                     return true;
 
                 case R.id.menu_advice_list:
@@ -80,7 +80,8 @@ public class AdvicesActiv extends AppCompatActivity {
             changeWeekly();
         tvMessage.setVisibility(View.INVISIBLE);
         btnAdvices.setVisibility(View.INVISIBLE);
-        loadYoutubeFragment();
+        //loadYoutubeFragment();
+        loadWeekAdviceFrag();
     }
 
     private void loadAdviceSettingsFrag() {
@@ -104,6 +105,7 @@ public class AdvicesActiv extends AppCompatActivity {
     // Web Frag
     private void loadWeekAdviceFrag() {
         AdviceWebFrag fragWeekAdvice = new AdviceWebFrag(); // Fragment of the advices of the week
+        //AdviceWebFrag fragWeekAdvice = AdviceWebFrag.newInstance("https://stackoverflow.com/questions/2662531/launching-google-maps-directions-via-an-intent-on-android");
         FragmentTransaction fragTrans = getSupportFragmentManager().beginTransaction();
         fragTrans.replace(R.id.frameAdvices, fragWeekAdvice); // Set the AdviceWeek Layout
         fragTrans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
@@ -114,7 +116,8 @@ public class AdvicesActiv extends AppCompatActivity {
 
     //Video View
     private void  loadYoutubeFragment(){
-        YoutubeFragment fragment = new YoutubeFragment();
+        //YoutubeFragment fragment = new YoutubeFragment();
+        YoutubeFragment fragment = YoutubeFragment.newInstance("NecoBo0BhEk");
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction()
                 .replace(R.id.frameAdvices, fragment)

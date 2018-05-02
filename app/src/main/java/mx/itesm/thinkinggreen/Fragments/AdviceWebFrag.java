@@ -23,12 +23,10 @@ import mx.itesm.thinkinggreen.R;
 public class AdviceWebFrag extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String URL = "url";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String url;
 
     private OnFragmentInteractionListener mListener;
 
@@ -40,16 +38,14 @@ public class AdviceWebFrag extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param link Parameter 1.
      * @return A new instance of fragment AdviceWebFrag.
      */
     // TODO: Rename and change types and number of parameters
-    public static AdviceWebFrag newInstance(String param1, String param2) {
+    public static AdviceWebFrag newInstance(String link) {
         AdviceWebFrag fragment = new AdviceWebFrag();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(URL, link);
         fragment.setArguments(args);
         return fragment;
     }
@@ -58,8 +54,10 @@ public class AdviceWebFrag extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            url = getArguments().getString(URL);
+        }
+        else {
+            url = "http://www.sustentator.com/blog-es/2017/07/tips-para-empezar-con-el-zero-waste/";
         }
     }
 
@@ -68,7 +66,7 @@ public class AdviceWebFrag extends Fragment {
         super.onStart();
         WebView webView;
         webView=getActivity().findViewById(R.id.webWiew);
-        webView.loadUrl("http://www.sustentator.com/blog-es/2017/07/tips-para-empezar-con-el-zero-waste/");
+        webView.loadUrl(url);
     }
 
     @Override

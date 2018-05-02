@@ -98,11 +98,11 @@ public class AdviceListFrag extends Fragment {
                     public void onItemClick(int position) {
                         FragmentTransaction fragTrans;
                         if(arrAdvs[position].getAdvType().equals("WEB")){
-                            AdviceWebFrag webFrag =  new AdviceWebFrag();
+                            AdviceWebFrag webFrag = AdviceWebFrag.newInstance(arrAdvs[position].getId());
                             fragTrans = getActivity().getSupportFragmentManager().beginTransaction();
                             fragTrans.replace(R.id.frameAdvices, webFrag); // Set the AdviceWeek Layout
                         } else {
-                            YoutubeFragment tubeFrag =  new YoutubeFragment();
+                            YoutubeFragment tubeFrag =  YoutubeFragment.newInstance(arrAdvs[position].getId());
                             fragTrans = getActivity().getSupportFragmentManager().beginTransaction();
                             fragTrans.replace(R.id.frameAdvices, tubeFrag); // Set the AdviceWeek Layout
                         }
