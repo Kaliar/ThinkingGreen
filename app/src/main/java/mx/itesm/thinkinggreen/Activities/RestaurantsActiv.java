@@ -1,6 +1,6 @@
 package mx.itesm.thinkinggreen.Activities;
 
-import android.annotation.SuppressLint;
+import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -8,53 +8,72 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import mx.itesm.thinkinggreen.Fragments.RestaurantsListFrag;
-import mx.itesm.thinkinggreen.Fragments.StoresListFrag;
 import mx.itesm.thinkinggreen.R;
 import mx.itesm.thinkinggreen.Settings;
 
 public class RestaurantsActiv extends AppCompatActivity implements LocationListener {
 
     private LocationManager gps;
-    private final int GPS = 10;
-    private Location userLocation;
-    private double userLatitude;
-    private double userLongitude;
+    public static Location userLocation;
+    private final Location defaultLocation = new Location("");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.setTheme(Settings.getCurrTheme());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurants);
+        defaultLocation.setAltitude(19.4153107);
+        defaultLocation.setLongitude(-99.1804615);
+        checkGPSPermissions();
+        Log.i("Restautan onCreaste","toy pidiendo chance");
+    }
 
+    private void loadList(){
+        Log.i("loadList","cargando cards");
         RestaurantsListFrag fragRestList = new RestaurantsListFrag(); // Fragment of a Person
         FragmentTransaction fragTrans = getSupportFragmentManager().beginTransaction();
         fragTrans.add(R.id.frameRestaurants, fragRestList); // Set the PersonFrag Layout
         fragTrans.setTransition(FragmentTransaction.TRANSIT_ENTER_MASK);
         fragTrans.commit(); // Schedule the operation into thread
-        //Toast.makeText(this,"AAAAHHH",Toast.LENGTH_LONG).show();
     }
 
     private void configureGPS() {
-        // Crea el administrador del gps
+        // Create the GPS
         gps = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        // Pregunta si está prendido el GPS en el sistema
+        // GPS is off
         if (!gps.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             // Abrir Settings para prender el GPS, no se puede hacer con código
             turnOnGPS();
         }
+        getUserLocation();
+    }
+
+    private void getUserLocation(){
+        // Has the permissions
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this,  "CONFIGURANDO GPS" , Toast.LENGTH_LONG).show();
+            gps.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, this);
+            userLocation = gps.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            Log.i("RESTAURANTE",userLocation.getLatitude() + "");
+            Log.i("RESTAURANTE",userLocation.getLongitude() + "");
+        }
+        else {
+            userLocation = defaultLocation;
+        }
     }
 
     private void turnOnGPS() {
-        // El usuario lo debe encender, no se puede con programación
+        // Ask the user to turn on the GPS
         final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
         builder.setMessage(R.string.strGPSOff)
                 .setCancelable(false)
@@ -67,31 +86,35 @@ public class RestaurantsActiv extends AppCompatActivity implements LocationListe
                 .setNegativeButton(R.string.strNo, new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialog, final int id) {
                         dialog.cancel();
+                        userLocation = defaultLocation;
                     }
                 });
         final android.support.v7.app.AlertDialog alert = builder.create();
         alert.show();
     }
 
-    @Override
-    @SuppressLint("MissingPermission")
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        if (requestCode == GPS && grantResults.length>0) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Contestó que SI, otorga el permiso. Iniciar actualizaciones.
-                gps.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, this);
+    private void checkGPSPermissions() {
+        int coarsePermission = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION);
+        int finePermission = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION);
+        Log.i("request Restaurante", "PERMISSION GRANTED: " + PackageManager.PERMISSION_GRANTED);
+        Log.i("request Restaurante:", "COARSE GRANTED: " + coarsePermission);
+        Log.i("request Restaurante:", "FINE GRANTED: " + finePermission);
 
-            } else {
-                Log.i("onRequestPerm...","Contestó NO, indicarle cómo dar permiso...");
-            }
+        if (coarsePermission == PackageManager.PERMISSION_GRANTED
+                && finePermission == PackageManager.PERMISSION_GRANTED){
+            configureGPS();
         }
+        else{
+            // Ask for a permission
+            userLocation = defaultLocation;
+        }
+        loadList();
     }
 
     @Override
     public void onLocationChanged(Location location) {
-        Log.i("onLocationChanged-Place",location.getLatitude() + "");
-        Log.i("onLocationChanged-Place",location.getLongitude() + "");
         userLocation = location;
     }
 
@@ -109,6 +132,4 @@ public class RestaurantsActiv extends AppCompatActivity implements LocationListe
     public void onProviderDisabled(String s) {
 
     }
-
-    //TODO: Link RecyclerView with fragments
 }

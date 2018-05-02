@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import mx.itesm.thinkinggreen.Activities.RestaurantsActiv;
 import mx.itesm.thinkinggreen.Adapters.RestaurantListAdapter;
 import mx.itesm.thinkinggreen.Adapters.StoreListAdapter;
 import mx.itesm.thinkinggreen.Models.Restaurants;

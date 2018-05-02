@@ -45,7 +45,6 @@ public class LoginActiv extends AppCompatActivity {
     private final int FINE_LOCATION = 20;
     private final int COARSE_LOCATION = 30;
     private final int GPS = 40;
-    private LocationManager gps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,36 +137,6 @@ public class LoginActiv extends AppCompatActivity {
             // permissions this app might request
     }
 
-    private void configureGPS() {
-        // Crea el administrador del gps
-        gps = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        // Pregunta si está prendido el GPS en el sistema
-        if (!gps.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            // Abrir Settings para prender el GPS, no se puede hacer con código
-            turnOnGPS();
-        }
-    }
-
-    private void turnOnGPS() {
-        // El usuario lo debe encender, no se puede con programación
-        final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
-        builder.setMessage(R.string.strGPSOff)
-                .setCancelable(false)
-                .setPositiveButton(R.string.strYes, new DialogInterface.OnClickListener() {
-                    public void onClick(final DialogInterface dialog, final int id) {
-                        startActivity(new
-                                Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS)); // Abre settings
-                    }
-                })
-                .setNegativeButton(R.string.strNo, new DialogInterface.OnClickListener() {
-                    public void onClick(final DialogInterface dialog, final int id) {
-                        dialog.cancel();
-                    }
-                });
-        final android.support.v7.app.AlertDialog alert = builder.create();
-        alert.show();
-    }
-
     private boolean requestPermission(){
         int internetPermission = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.INTERNET);
@@ -175,54 +144,46 @@ public class LoginActiv extends AppCompatActivity {
                 Manifest.permission.ACCESS_COARSE_LOCATION);
         int finePermission = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION);
-        configureGPS();
+
         Log.i("requestPermission:","PERMISSION GRANTED: "+ PackageManager.PERMISSION_GRANTED);
         Log.i("requestPermission:","INTERNET GRANTED: "+ internetPermission);
         Log.i("requestPermission:","COARSE GRANTED: "+ coarsePermission);
         Log.i("requestPermission:","FINE GRANTED: "+ finePermission);
 
-        if (internetPermission == PackageManager.PERMISSION_GRANTED
-                && coarsePermission == PackageManager.PERMISSION_GRANTED
-                && finePermission == PackageManager.PERMISSION_GRANTED ){   // All necessary permissions are granted
+            if (internetPermission == PackageManager.PERMISSION_GRANTED ){  // All necessary permissions are granted
+
+                if (coarsePermission != PackageManager.PERMISSION_GRANTED) {    // Optional permission
+                    ActivityCompat.requestPermissions(this,
+                            new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+                            COARSE_LOCATION);
+                }
+                if (finePermission != PackageManager.PERMISSION_GRANTED) {  // Optional permission
+                    ActivityCompat.requestPermissions(this,
+                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                            FINE_LOCATION);
+                }
             return true;
         }
-        else {  // Ask for a permission
+        else {  // Ask for a required permission
             if (internetPermission != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.INTERNET},
                         INTERNET);
             }
-            if (coarsePermission != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
-                        COARSE_LOCATION);
-            }
-            if (finePermission != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        FINE_LOCATION);
-            }
             return false;
         }
     }
-
 
     public void loginBtn(View v){
 
         if (requestPermission()){   // If Network and Location permissions are granted
             if (Settings.isNetAvailable((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE))
-                    && Settings.isOnline()
-                    && gps.isProviderEnabled(LocationManager.GPS_PROVIDER)){    // If device is online
+                    && Settings.isOnline()){    // If device is online
 
                 login(etUsername.getText().toString(),etPassword.getText().toString());
             }
             else {
-                if (!gps.isProviderEnabled(LocationManager.GPS_PROVIDER)){  // Turn on GPS
-                    turnOnGPS();
-                }
-                else{   // No connection
-                    Toast.makeText(LoginActiv.this, getString(R.string.strNoNetwork), Toast.LENGTH_LONG).show();
-                }
+                Toast.makeText(LoginActiv.this, getString(R.string.strNoNetwork), Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -230,17 +191,11 @@ public class LoginActiv extends AppCompatActivity {
     private void quickLogin(String username, String pwd){   // Previously logon
         if (requestPermission()){   // Permissions granted
             if (Settings.isNetAvailable((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE))
-                    && Settings.isOnline()
-                    && gps.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+                    && Settings.isOnline()){
                 login(username, pwd);   // Has connection
             }
             else {
-                if (!gps.isProviderEnabled(LocationManager.GPS_PROVIDER)){  // GPS is off
-                    turnOnGPS();
-                }
-                else{   // No connnection
-                    Toast.makeText(LoginActiv.this, getString(R.string.strNoNetwork), Toast.LENGTH_LONG).show();
-                }
+                Toast.makeText(LoginActiv.this, getString(R.string.strNoNetwork), Toast.LENGTH_LONG).show();
             }
         }
     }
