@@ -86,11 +86,11 @@ public class UserPreferencesActiv extends AppCompatActivity {
                     ParseUser.getCurrentUser().setEmail(mail);
                     ParseUser.getCurrentUser().setUsername(user);
                     if(newPwd.equals("")) {
-                        Settings.savePrefsUser(user, password, this);
+                        Settings.savePrefsUser(user, password, this, ParseUser.getCurrentUser());
                         ParseUser.getCurrentUser().setPassword(password);
                     }
                     else {
-                        Settings.savePrefsUser(user, newPwd, this);
+                        Settings.savePrefsUser(user, newPwd, this, ParseUser.getCurrentUser());
                         ParseUser.getCurrentUser().setPassword(newPwd);
                     }
                     ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {

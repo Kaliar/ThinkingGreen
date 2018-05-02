@@ -113,11 +113,11 @@ public class CreatePersonFrag extends Fragment {
         if (Settings.isNetAvailable((ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE))
             && Settings.isOnline()){
             //Create the user instance
-            ParseUser user=new ParseUser();
+            final ParseUser user=new ParseUser();
             // Get User Input
             final String name = etName.getText().toString();
             String mail = etMail.getText().toString();
-            String password = etPassword.getText().toString();
+            final String password = etPassword.getText().toString();
 
             //check if the fields arent empty
             if(name.equals("")){
@@ -140,6 +140,7 @@ public class CreatePersonFrag extends Fragment {
                         if (e == null) {
                             //in case of succes will display an alert displayer
                             alertDisplayer("¡Registrado exitosamente!", "¡Bienvenido " + name + "!");
+                            Settings.savePrefsUser(name, password, getContext(), user);
                         } else {
                             ParseUser.logOut();
                             Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();

@@ -5,6 +5,11 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
+import android.util.Log;
+
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -22,38 +27,45 @@ public class Settings {
         usrName = settings.getString("user",null);
         pwd = settings.getString("pwd", null);
         currTheme = settings.getInt("theme", R.style.AppTheme);
-        advCategory[0] = settings.getString("catReciclaje", "Reciclaje");
-        advCategory[1] = settings.getString("catReducir", "Reducir");
-        advCategory[2] = settings.getString("catDIY", "DIY");
-        advCategory[3] = settings.getString("catZero", "Zero Waste");
+        advCategory = settings.getString("advCat", "Reciclaje Reducir DIY ZeroWaste").split(" ");
     }
 
     public static boolean isUserLogged(){
         return usrName != null || pwd != null;
     }
 
-    public static void savePrefsUser(String usr, String password, Context con){
+    public static void savePrefsUser(String usr, String password, Context con, ParseUser user){
         SharedPreferences settings = con.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         usrName = usr;
         pwd = password;
+        advCategory = user.getString("catAdv").split(" ");
+        currTheme = user.getInt("savedTheme");
         SharedPreferences.Editor editor = settings.edit();
         editor.putString("user",usrName);
         editor.putString("pwd",pwd);
+        editor.putInt("theme", currTheme);
+        editor.putString("advCat", user.getString("catAdv"));
         editor.apply();
+
     }
 
-    public static void saveAdvPrefs(String catReciclaje, String catReducir, String catDIY, String catZero, Context con){
+    public static void saveAdvPrefs(String catPrefs, Context con){
         SharedPreferences settings = con.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        advCategory[0] = catReciclaje;
-        advCategory[1] = catReducir;
-        advCategory[2] = catDIY;
-        advCategory[3] = catZero;
+        advCategory = catPrefs.split(" ");
         SharedPreferences.Editor editor = settings.edit();
-        editor.putString("catReciclaje",advCategory[0]);
-        editor.putString("catReducir",advCategory[1]);
-        editor.putString("catDIY",advCategory[2]);
-        editor.putString("catZero",advCategory[3]);
+        editor.putString("advCat", catPrefs);
         editor.apply();
+        ParseUser.getCurrentUser().put("catAdv", catPrefs);
+        ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if(e == null){
+
+                }else{
+                    Log.i("Error Guardar CatAdv: ", " " + e.getMessage());
+                }
+            }
+        });
     }
 
     public static void logOut(Context con){
@@ -61,10 +73,12 @@ public class Settings {
         usrName = null;
         pwd = null;
         currTheme = R.style.AppTheme;
+        Log.i("Logout: ", "He hecho logout");
         SharedPreferences.Editor editor = settings.edit();
         editor.putString("user",usrName);
         editor.putString("pwd",pwd);
         editor.putInt("theme", currTheme);
+        editor.putString("catAdv", "Reciclaje Reducir DIY ZeroWaste");
         editor.commit();
     }
 
@@ -91,6 +105,14 @@ public class Settings {
         SharedPreferences.Editor editor = settings.edit();
         editor.putInt("theme", currTheme);
         editor.commit();
+        ParseUser.getCurrentUser().put("savedTheme", currTheme);
+        try {
+            ParseUser.getCurrentUser().save();
+        } catch (ParseException e) {
+            Log.i("Error guardar CurrTheme", " " + e.getMessage());
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -113,38 +135,6 @@ public class Settings {
             e.printStackTrace();
         }
         return false;
-    }
-
-    public static int setBtnOK(){
-        switch (currTheme){
-            case R.style.AppTheme:
-                return R.color.colorPrimaryDarkLight;
-            case R.style.AppThemeDark:
-                return R.color.colorPrimaryDarkLight;
-            case R.style.AppThemePastel:
-                return R.color.colorPrimaryDarkDark;
-            case R.style.AppThemeInverse:
-                return 0;
-            case R.style.AppThemeAqua:
-                return 0;
-        }
-        return 0;
-    }
-
-    public static int setBtnAlternate(){
-        switch (currTheme){
-            case R.style.AppTheme:
-                return R.color.colorPrimaryDarkLight;
-            case R.style.AppThemeDark:
-                return R.color.colorPrimaryDarkLight;
-            case R.style.AppThemePastel:
-                return R.color.colorPrimaryDarkDark;
-            case R.style.AppThemeInverse:
-                return 0;
-            case R.style.AppThemeAqua:
-                return 0;
-        }
-        return 0;
     }
 
 }

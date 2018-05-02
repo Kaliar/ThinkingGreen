@@ -9,11 +9,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerSupportFragment;
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import mx.itesm.thinkinggreen.R;
 
@@ -28,6 +32,11 @@ import mx.itesm.thinkinggreen.R;
 public class YoutubeFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
+    private Button btnPoints;
+    private boolean isRead =  false;
+
+
     private static final String VIDEO_ID = "videoID";
 
     private static final String API_KEY = "AIzaSyD7M-SzaSPu3gsAzYdYQ5Id4O1vYzf4Dyw";
@@ -57,6 +66,17 @@ public class YoutubeFragment extends Fragment {
         args.putString(VIDEO_ID, videoID);
         fragment.setArguments(args);
         return fragment;
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        btnPoints = getActivity().findViewById(R.id.btnRead);
+        btnPoints.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                obtainPoints();
+            }
+        });
     }
 
     @Override
@@ -119,6 +139,29 @@ public class YoutubeFragment extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }*/
+    }
+
+    public void obtainPoints(){
+        if(!isRead) {
+            ParseUser user = ParseUser.getCurrentUser();
+            int points = (Integer) user.get("points");
+            points++;
+            user.put("points", points);
+            user.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if (e == null) {
+                        Toast.makeText(getActivity().getApplicationContext(), getString(R.string.str_getPoints), Toast.LENGTH_SHORT).show();
+                        isRead = true;
+                    } else {
+                        Toast.makeText(getActivity().getApplicationContext(), getString(R.string.strFailTitle), Toast.LENGTH_LONG).show();
+
+                    }
+                }
+            });
+        } else{
+            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.str_AlreadyRead), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

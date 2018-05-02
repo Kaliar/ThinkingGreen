@@ -217,11 +217,11 @@ public class LoginActiv extends AppCompatActivity {
                     @Override
                     public void done(ParseUser user, ParseException e) {
                         if (user != null) {
-                            Settings.savePrefsUser(strUser, strPwd, LoginActiv.this);
+                            Settings.savePrefsUser(strUser, strPwd, LoginActiv.this, user);
                             loginSuccessAlert(getString(R.string.strSuccessTitle), getString(R.string.str_Welcome) + " " + strUser + "!");
                             pDiag.dismiss(); // Hide dialog
                         } else {
-                            ParseQuery<ParseObject> queryUs = ParseQuery.getQuery("Institution");
+                            /*ParseQuery<ParseObject> queryUs = ParseQuery.getQuery("Institution");
                             queryUs.whereFullText("name", strUser);
                             queryUs.whereEqualTo("password", strPwd);
 
@@ -230,7 +230,7 @@ public class LoginActiv extends AppCompatActivity {
                                 public void done(List<ParseObject> objects, ParseException e) {
                                     if (e == null) {
                                         if (objects.size() == 1) {
-                                            Settings.savePrefsUser(strUser, strPwd, LoginActiv.this);
+                                            Settings.savePrefsUser(strUser, strPwd, LoginActiv.this, );
                                             loginSuccessAlert(getString(R.string.strSuccessTitle), getString(R.string.str_Welcome) + " " + objects.get(0).get("name") + "!");
                                             pDiag.dismiss();
                                         } else {
@@ -242,7 +242,7 @@ public class LoginActiv extends AppCompatActivity {
                                         Toast.makeText(LoginActiv.this, getString(R.string.strFailTitle), Toast.LENGTH_LONG).show();
                                     }
                                 }
-                            });
+                            });*/
                         }
                     }
                 });
