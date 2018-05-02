@@ -3,6 +3,7 @@ package mx.itesm.thinkinggreen.Models;
 // TODO: Create the Advices model (image, title, description etc...)
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -11,9 +12,11 @@ import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.util.Arrays;
 import java.util.List;
 
 import mx.itesm.thinkinggreen.R;
+import mx.itesm.thinkinggreen.Settings;
 
 // Advices defining class (Model/Data Set)
 public class Advices {
@@ -84,18 +87,15 @@ public class Advices {
     }
 
     // Dummy method for generating an advice list
-    public static Advices[] getArrAdvs(ParseGeoPoint usrLocation, final Context con) {
-
-
+    public static Advices[] getArrAdvs() {
         ParseQuery<ParseObject> queryRes = ParseQuery.getQuery("Advices");
-        queryRes.whereNear("location", usrLocation);
-        queryRes.setLimit(20);
+        queryRes.whereContainedIn("Category", Arrays.asList(Settings.getAdvCategory()));
 
         try {
             List<ParseObject> objects = queryRes.find();
+            Log.i("Query de Advices: ",""+objects.size());
             arrAdvs = new Advices[objects.size()];
             ParseObject objActual;
-            Advices advActual;
             int imageId;
             String advType;
             for(int i = 0; i < objects.size(); i++) {
@@ -103,18 +103,16 @@ public class Advices {
                 advType = objActual.getString("Category");
 
                 if (advType.equals("Reciclaje")) {
-                    imageId = R.drawable.consejos;
+                    imageId = R.drawable.icons8_recycle_48;
                 } else if (advType.equals("DIY")) {
-                    imageId = R.drawable.consejos;
+                    imageId = R.drawable.icons8_drill_48;
                 } else if (advType.equals("Reducir")) {
-                    imageId = R.drawable.consejos;
-                } else if (advType.equals("Zero Waste")) {
-                    imageId = R.drawable.consejos;
+                    imageId = R.drawable.icons8_decline_48;
+                } else {
+                    imageId = R.drawable.icons8_circled_0_c_48;
                 }
-                imageId = R.drawable.consejos;
-                advActual = new Advices(imageId, objActual.getString("URL"), objActual.getString("Category"),
-                        objActual.getString("title"), objActual.getString("description"), objActual.getString("type"));
-                arrAdvs[i] = advActual;
+                arrAdvs[i] = new Advices(imageId, objActual.getString("URL"), objActual.getString("Category"), objActual.getString("title"),
+                        objActual.getString("description"), objActual.getString("type"));
             }
         } catch (ParseException e) {
             e.printStackTrace();

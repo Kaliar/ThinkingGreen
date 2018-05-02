@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import mx.itesm.thinkinggreen.Models.Advices;
@@ -60,7 +61,7 @@ public class AdviceListAdapter extends RecyclerView.Adapter<AdviceListAdapter.Vi
             // Find the components with the view passed by parameter
             TextView tvTitle = card.findViewById(R.id.tvTitleAdvItem);
             TextView tvDescr = card.findViewById(R.id.tvDescAdvItem);
-            ImageView img = card.findViewById(R.id.imgAdvItem);
+            ImageButton img = card.findViewById(R.id.imgAdvItem);
 
             // Set the Card contents according to the data set
             tvTitle.setText(advice.getTitle());

@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -83,13 +84,13 @@ public class RewardsCategoryItemAdapter extends RecyclerView.Adapter<RewardsCate
         public void bind(RewardsItems item) {
             TextView tvTitle = card.findViewById(R.id.tvDescItemRew);
             TextView tvDesc = card.findViewById(R.id.tvTitleItemRew);
-            ImageView img = card.findViewById(R.id.imgItemRew);
+            ImageButton img = card.findViewById(R.id.imgItemRew);
             TextView tvLeaf = card.findViewById(R.id.tvLeafRew);
 
             tvTitle.setText(item.getTitle());
             tvDesc.setText(item.getCode());
             tvLeaf.setText(item.getPrice()+"");
-            img.setImageDrawable(card.getResources().getDrawable(item.getImgID()));
+            //img.setImageDrawable(card.getResources().getDrawable(item.getImgID()));
 
             card.setOnClickListener(new View.OnClickListener() {
                 @Override

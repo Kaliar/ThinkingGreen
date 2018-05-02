@@ -87,9 +87,7 @@ public class AdviceListFrag extends Fragment {
     }
 
     private void createAdvListAdapter() {
-        //TODO PONER LOCALIZACION DEL USUARIO AQUI
-        ParseGeoPoint usrLocation = new ParseGeoPoint();
-        final Advices[] arrStores = Advices.getArrAdvs(usrLocation, getContext());  // Hardcoded Advices Array (Temporal)
+        final Advices[] arrAdvs = Advices.getArrAdvs();  // Hardcoded Advices Array (Temporal)
 
         // Instantiate an adapter for the advice list
         // Send the CardVIew XML for the advice

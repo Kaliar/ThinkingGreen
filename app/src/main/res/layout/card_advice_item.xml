@@ -27,11 +27,11 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageButton2"
+            app:layout_constraintStart_toEndOf="@+id/imgAdvItem"
             app:layout_constraintTop_toBottomOf="@+id/tvTitleAdvItem" />
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/imgAdvItem"
             android:layout_width="82dp"
             android:layout_height="80dp"
             android:layout_marginBottom="8dp"
@@ -59,7 +59,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageButton2"
+            app:layout_constraintStart_toEndOf="@+id/imgAdvItem"
             app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

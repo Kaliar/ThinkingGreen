@@ -4,11 +4,16 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.annotation.NonNull;
+
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Set;
 
 public class Settings {
 
     private static int currTheme;
-
+    private static String[] advCategory =  new String[4];
     private static String usrName;
     private static String pwd;
 
@@ -17,6 +22,10 @@ public class Settings {
         usrName = settings.getString("user",null);
         pwd = settings.getString("pwd", null);
         currTheme = settings.getInt("theme", R.style.AppTheme);
+        advCategory[0] = settings.getString("catReciclaje", "Reciclaje");
+        advCategory[1] = settings.getString("catReducir", "Reducir");
+        advCategory[2] = settings.getString("catDIY", "DIY");
+        advCategory[3] = settings.getString("catZero", "Zero Waste");
     }
 
     public static boolean isUserLogged(){
@@ -33,6 +42,20 @@ public class Settings {
         editor.apply();
     }
 
+    public static void saveAdvPrefs(String catReciclaje, String catReducir, String catDIY, String catZero, Context con){
+        SharedPreferences settings = con.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        advCategory[0] = catReciclaje;
+        advCategory[1] = catReducir;
+        advCategory[2] = catDIY;
+        advCategory[3] = catZero;
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("catReciclaje",advCategory[0]);
+        editor.putString("catReducir",advCategory[1]);
+        editor.putString("catDIY",advCategory[2]);
+        editor.putString("catZero",advCategory[3]);
+        editor.apply();
+    }
+
     public static void logOut(Context con){
         SharedPreferences settings = con.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         usrName = null;
@@ -43,6 +66,11 @@ public class Settings {
         editor.putString("pwd",pwd);
         editor.putInt("theme", currTheme);
         editor.commit();
+    }
+
+
+    public static String[] getAdvCategory() {
+        return advCategory;
     }
 
     public static String getUsrName() {
