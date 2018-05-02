@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     android:paddingBottom="16dp"
-    app:cardBackgroundColor="@color/colorPrimaryPastel"
+    app:cardBackgroundColor="?attr/colorBackgroundFloating"
     app:cardCornerRadius="25dp">
 
     <android.support.constraint.ConstraintLayout
@@ -14,23 +14,24 @@
         android:layout_height="match_parent"
         android:layout_margin="8dp">
 
-        <ImageView
-            android:id="@+id/imgLeafItemRew"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginEnd="68dp"
-            android:layout_marginTop="24dp"
-            android:layout_weight="1"
-            android:src="@drawable/leaf"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="51dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="?attr/colorBackgroundFloating"
+            android:tint="?attr/colorAccent"
+            app:layout_constraintStart_toEndOf="@+id/tvTitleItemRew"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_bug_report_black_48dp" />
 
         <TextView
             android:id="@+id/tvLeafRew"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="24dp"
             android:layout_weight="1"
             android:fontFamily="sans-serif-smallcaps"
@@ -40,36 +41,21 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textStyle="bold|italic"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.227"
-            app:layout_constraintStart_toEndOf="@+id/imgLeafItemRew"
+            app:layout_constraintStart_toEndOf="@+id/imageButton3"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imgItemRew"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/recompensa" />
 
         <TextView
             android:id="@+id/tvTitleItemRew"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="24dp"
             android:fontFamily="sans-serif-smallcaps"
             android:gravity="center"
             android:text="-20% de descuento"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/imgLeafItemRew"
-            app:layout_constraintStart_toEndOf="@+id/imgItemRew"
+            app:layout_constraintStart_toEndOf="@+id/imageButton4"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -78,15 +64,27 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-smallcaps"
             android:gravity="center"
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imgItemRew"
             app:layout_constraintTop_toBottomOf="@+id/tvTitleItemRew" />
+
+        <ImageButton
+            android:id="@+id/imageButton4"
+            android:layout_width="66dp"
+            android:layout_height="64dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="?attr/colorBackgroundFloating"
+            android:tint="?attr/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_card_giftcard_black_48dp" />
     </android.support.constraint.ConstraintLayout>
 
 </android.support.v7.widget.CardView>
