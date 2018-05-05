@@ -28,6 +28,7 @@
                 android:id="@+id/tePasswordAddInst"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-smallcaps"
                 android:hint="Contraseña"
                 android:inputType="textPassword"
                 android:textColor="#2c912c"
@@ -53,6 +54,7 @@
                 android:id="@+id/teNameAddInst"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-smallcaps"
                 android:hint="Nombre de institución"
                 android:textColor="#2c912c"
                 android:textColorHint="#2c912c" />
@@ -75,6 +77,7 @@
                 android:id="@+id/teMailAddInst"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-smallcaps"
                 android:hint="Correo"
                 android:inputType="textEmailAddress"
                 android:textColor="#2c912c"
@@ -110,6 +113,7 @@
                 android:id="@+id/teAddressAddInst"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-smallcaps"
                 android:hint="Dirección" />
         </android.support.design.widget.TextInputLayout>
 
@@ -129,6 +133,7 @@
                 android:id="@+id/tePhoneAddInst"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-smallcaps"
                 android:hint="Teléfono"
                 android:inputType="phone" />
         </android.support.design.widget.TextInputLayout>

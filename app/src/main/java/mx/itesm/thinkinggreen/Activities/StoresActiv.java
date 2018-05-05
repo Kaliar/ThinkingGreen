@@ -33,6 +33,7 @@ public class StoresActiv extends AppCompatActivity implements LocationListener{
     protected void onCreate(Bundle savedInstanceState) {
         this.setTheme(Settings.getCurrTheme());
         super.onCreate(savedInstanceState);
+        //setTitle("Tiendas ZeroWaste");
         setContentView(R.layout.activity_stores);
         checkGPSPermissions();
         Log.i("Restautan onCreaste","toy pidiendo chance");

@@ -42,8 +42,8 @@
             app:ss_rightIcon="@drawable/weekly"
             app:ss_rightText="@string/strWeekAdv"
             app:ss_selectedTextSize="18sp"
-            app:ss_sliderBackgroundColor="@color/colorPrimaryDefault"
-            app:ss_switchColor="@color/colorAccentDefault"
+            app:ss_sliderBackgroundColor="?attr/colorPrimary"
+            app:ss_switchColor="?attr/colorAccent"
             app:ss_textColor="@android:color/background_dark"
             app:ss_textSize="15sp"
             tools:ignore="MissingConstraints" />

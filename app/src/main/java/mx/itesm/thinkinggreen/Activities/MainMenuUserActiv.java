@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.parse.ParseUser;
 
@@ -29,7 +30,7 @@ public class MainMenuUserActiv extends AppCompatActivity {
         this.setTheme(Settings.getCurrTheme());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu_user);
-
+        //setTitle("Menu");
         tvMessage = findViewById(R.id.tvMessageUserMenu);
         tvMessage.setText(getString(R.string.strWelcome) + " " +ParseUser.getCurrentUser().getUsername());
         btnStores = findViewById(R.id.btnStoreUserMenu);

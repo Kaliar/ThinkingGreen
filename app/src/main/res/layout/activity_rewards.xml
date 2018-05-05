@@ -27,7 +27,7 @@
             android:fontFamily="sans-serif-smallcaps"
             android:text="@string/strRewardSelection"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textStyle="bold|italic" />
+            />
 
         <ImageButton
             android:id="@+id/imgHojaMoneda"

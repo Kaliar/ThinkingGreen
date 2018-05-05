@@ -6,7 +6,7 @@
 
     <color name="colorPrimaryDarkDefault">#388e3c</color>
 
-    <color name="colorAccentDefault">#ffc107</color>
+    <color name="colorAccentDefault">#ffa000</color>
     
     <color name="colorPrimaryLightDefault">#c8e6c9</color>
 
@@ -27,27 +27,27 @@
     <color name="colorPrimaryPastel">#8FA6CB</color>
     <color name="colorPrimaryPastelDark">#7D84B2</color>
     <color name="colorPrimaryPastelLight">#C5EBC3</color>
-    <color name="colorAccentPastel">#FFAC81</color>
+    <color name="colorAccentPastel">#FF5F32</color>
     <color name="colorNavBarPastel">#68C3D4</color>
 
     <!-- Theme Dark -->
     <color name="colorPrimaryDark">#3e92cc</color>
     <color name="colorPrimaryDarkLight">#98dfaf</color>
-    <color name="colorAccentDark">#414288</color>
+    <color name="colorAccentDark">#f06292</color>
     <color name="colorPrimaryDarkDark">#2a628f</color>
 
     <!-- Theme Inverse -->
     <color name="colorPrimaryInv">#0E3B43</color>
     <color name="colorPrimaryDarkInv">#011627</color>
     <color name="colorPrimaryLightInv">#A2D3C2</color>
-    <color name="colorAccentInverse">#E8D33F</color>
+    <color name="colorAccentInverse">#FF6F00</color>
     <color name="colorNavBarInverse">#357266</color>
 
     <!-- Theme Aqua -->
     <color name="colorPrimaryAqua">#01b6ad</color>
     <color name="colorPrimaryDarkAqua">#006064</color>
     <color name="colorPrimaryLightAqua">#b2ebf2</color>
-    <color name="colorAccentAqua">#FFC49E</color>
+    <color name="colorAccentAqua">#D32F2F</color>
     <color name="colorNavBarAqua">#4db6ac</color>
     <color name="colorStatBar">#3C474B</color>
 

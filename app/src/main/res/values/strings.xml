@@ -80,7 +80,7 @@
     <string name="strThemeDarkCode">THMDRK</string>
     <string name="strThemeLight">Tema claro</string>
     <string name="strThemeLightCode">THMCLR</string>
-    <string name="strThemeInv">Tema inverso</string>
+    <string name="strThemeInv">Tema opaco</string>
     <string name="strThemeInvCode">THMINVRS</string>
     <string name="strThemeSea">Tema acuático</string>
     <string name="strThemeSeaCode">THMAQUA</string>

@@ -6,8 +6,5 @@
         android:id="@+id/menu_add_person"
         android:icon="@drawable/pawn"
         android:title="@string/strPerson" />
-    <item
-        android:id="@+id/menu_add_institution"
-        android:icon="@drawable/institucion"
-        android:title="@string/strInst" />
+
 </menu>

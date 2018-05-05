@@ -17,26 +17,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import mx.itesm.thinkinggreen.Activities.LoginActiv;
 import mx.itesm.thinkinggreen.Activities.MainMenuUserActiv;
-import mx.itesm.thinkinggreen.Adapters.RestaurantListAdapter;
 import mx.itesm.thinkinggreen.Adapters.RewardsCategoryItemAdapter;
-import mx.itesm.thinkinggreen.Adapters.StoreListAdapter;
-import mx.itesm.thinkinggreen.Models.Restaurants;
 import mx.itesm.thinkinggreen.Models.RewardsCategories;
 import mx.itesm.thinkinggreen.Models.RewardsItems;
 import mx.itesm.thinkinggreen.R;
 import mx.itesm.thinkinggreen.Settings;
-import com.parse.FindCallback;
-import com.parse.Parse;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
+
 import com.parse.ParseUser;
-import com.parse.ParseInstallation;
-import com.parse.SaveCallback;
-import com.parse.SignUpCallback;
-import com.parse.LogInCallback;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -144,7 +132,7 @@ public class RewardsCategoryItemListFrag extends Fragment {
                 break;
             case 3: //Inv
                 if(points > 40) {
-                    Settings.setCurrTheme(R.style.AppThemeInverse, getContext());
+                    Settings.setCurrTheme(R.style.AppThemeOpaque, getContext());
                     flagChange = true;
                 }
                 break;
