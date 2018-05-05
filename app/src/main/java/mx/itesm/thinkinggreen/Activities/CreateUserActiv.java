@@ -33,9 +33,9 @@ public class CreateUserActiv extends AppCompatActivity {
                     loadPersonFrag();
                     return true;
 
-                case R.id.menu_add_institution: // Institute Selected
+                /*case R.id.menu_add_institution: // Institute Selected
                     loadInstitutionFrag();
-                    return true;
+                    return true;*/
             }
             return false;
         }
