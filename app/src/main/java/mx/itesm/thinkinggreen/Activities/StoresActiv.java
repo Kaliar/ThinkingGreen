@@ -1,6 +1,7 @@
 package mx.itesm.thinkinggreen.Activities;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -28,6 +29,7 @@ public class StoresActiv extends AppCompatActivity implements LocationListener{
     private LocationManager gps;
     public static Location userLocation;
     protected static final Location defaultLocation = new Location("");
+    private final int GPS_ON = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +37,10 @@ public class StoresActiv extends AppCompatActivity implements LocationListener{
         super.onCreate(savedInstanceState);
         //setTitle("Tiendas ZeroWaste");
         setContentView(R.layout.activity_stores);
-        checkGPSPermissions();
-        Log.i("Restautan onCreaste","toy pidiendo chance");
-        //Toast.makeText(this,"AAAAHHH",Toast.LENGTH_LONG).show();
 
+        defaultLocation.setAltitude(19.4153107);    // Initialize default coordiantes
+        defaultLocation.setLongitude(-99.1804615);
+        checkGPSPermissions(); // Check if location access is granted
     }
 
     private void loadList(){
@@ -50,75 +52,111 @@ public class StoresActiv extends AppCompatActivity implements LocationListener{
         fragTrans.commit(); // Schedule the operation into thread
     }
 
+    private void checkGPSPermissions() {
+        int coarsePermission = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION);
+        int finePermission = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION);
+        Log.i("StorActiv CHECKPERMISSO", "PERMISSION GRANTED: " + PackageManager.PERMISSION_GRANTED);
+        Log.i("StorActiv CHECKPERMISSO", "COARSE GRANTED: " + coarsePermission);
+        Log.i("StorActiv CHECKPERMISSO", "FINE GRANTED: " + finePermission);
+
+        if (coarsePermission == PackageManager.PERMISSION_GRANTED
+                && finePermission == PackageManager.PERMISSION_GRANTED) {   // All GPS permissions granted
+            Log.i("StorActiv CHECKPERMISSO", "Gonna configure the GPS");
+            configureGPS();
+        }
+        else { // Use default location
+            Log.i("StorActiv CHECKPERMISSO", "Permissions rejected, using default location");
+            userLocation = defaultLocation;
+            loadList();
+        }
+    }
+
     private void configureGPS() {
         // Create the GPS
         gps = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         // GPS is off
         if (!gps.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            // Abrir Settings para prender el GPS, no se puede hacer con código
+            // Open Settings
+            Log.i("StorActiv confGPS", "GPS is off, ask if wanna turn it on");
             turnOnGPS();
+            Log.i("StorActiv confGPS", "Already asked");
         }
-        getUserLocation();
-    }
-
-    private void getUserLocation(){
-        // Has the permissions
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(this,  "CONFIGURANDO GPS" , Toast.LENGTH_LONG).show();
-            gps.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, this);
-            userLocation = gps.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            Log.i("Tienda",userLocation.getLatitude() + "");
-            Log.i("Tienda",userLocation.getLongitude() + "");
-        }
-        else {
-            userLocation = defaultLocation;
+        else {    // GPS is on
+            getUserLocation();
+            loadList();
         }
     }
 
     private void turnOnGPS() {
         // Ask the user to turn on the GPS
         final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
-        builder.setMessage(R.string.strGPSOff)
+        builder.setMessage(R.string.strGPSOffStore)
                 .setCancelable(false)
                 .setPositiveButton(R.string.strYes, new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialog, final int id) {
-                        startActivity(new
-                                Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS)); // Abre settings
+                        Log.i("StorActiv TURNGPS", "Opening settings");
+                        startActivityForResult(new
+                                Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS), GPS_ON);
                     }
                 })
                 .setNegativeButton(R.string.strNo, new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialog, final int id) {
+                        Log.i("StorActiv TURNGPS", "Turning GPS on request rejected");
                         dialog.cancel();
                         userLocation = defaultLocation;
+                        loadList();
                     }
                 });
         final android.support.v7.app.AlertDialog alert = builder.create();
         alert.show();
     }
 
-    private void checkGPSPermissions() {
-        int coarsePermission = ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_COARSE_LOCATION);
-        int finePermission = ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION);
-        Log.i("request Tienda", "PERMISSION GRANTED: " + PackageManager.PERMISSION_GRANTED);
-        Log.i("request Tienda:", "COARSE GRANTED: " + coarsePermission);
-        Log.i("request Tienda:", "FINE GRANTED: " + finePermission);
-
-        if (coarsePermission == PackageManager.PERMISSION_GRANTED
-                && finePermission == PackageManager.PERMISSION_GRANTED){
-            configureGPS();
+    @SuppressLint("MissingPermission")
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == GPS_ON) {
+            Log.i("onActRes", "Returned from Settings");
+            if (gps.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                Log.i("onActRes", "GPS is on");
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+            } else {
+                Log.i("onActRes", "GPS is off");
+                checkGPSPermissions();
+            }
         }
-        else{
-            // Ask for a permission
+    }
+
+    private void getUserLocation() {
+        // Has the permissions
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                && gps.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+
+            gps.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, this);
+            userLocation = gps.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+            if (userLocation == null) {
+                userLocation = defaultLocation;
+                Toast.makeText(this, R.string.strGPSUnknown, Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Toast.makeText(this, R.string.strGPSUpdate, Toast.LENGTH_SHORT).show();
+            }
+            Log.i("StorActiv", userLocation.getAltitude() + "");
+            Log.i("StorActiv", userLocation.getLongitude() + "");
+        } else {
             userLocation = defaultLocation;
         }
-        loadList();
     }
 
     @Override
     public void onLocationChanged(Location location) {
+        //Log.i("onLocationChanged","CAMBIO LA UBICACION");
         userLocation = location;
     }
 
@@ -129,11 +167,19 @@ public class StoresActiv extends AppCompatActivity implements LocationListener{
 
     @Override
     public void onProviderEnabled(String s) {
-
+        Log.i("onProviderEnabled","GPS turned on");
+        getUserLocation();
     }
 
     @Override
     public void onProviderDisabled(String s) {
-
+        Log.i("onProviderDisabled","GPS turned off");
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            userLocation = gps.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            if (userLocation == null) {
+                userLocation = defaultLocation;
+            }
+        }
     }
 }

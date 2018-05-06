@@ -69,15 +69,18 @@ public class MainMenuUserActiv extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        alertDisplayer("¿"+getString(R.string.str_Logout)+"?",getString(R.string.strSure), getString(R.string.str_Logout), getString(R.string.strCancel));
+        alertDisplayer("¿"+getString(R.string.str_Exit)+"?",getString(R.string.strSure),
+                getString(R.string.str_Logout),
+                getString(R.string.strCancel),
+                getString(R.string.str_Exit));
     }
 
 
-    private void alertDisplayer(String title,String message, String btnPos, String btnNeg){
+    private void alertDisplayer(String title,String message, String btnLogout, String btnCancel, String btnExit){
         AlertDialog.Builder builder = new AlertDialog.Builder(this)
                 .setTitle(title)
                 .setMessage(message)
-                .setPositiveButton(btnPos, new DialogInterface.OnClickListener() {
+                .setNegativeButton(btnLogout, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         ParseUser.logOut();
@@ -89,10 +92,25 @@ public class MainMenuUserActiv extends AppCompatActivity {
 
                     }
                 })
-                .setNegativeButton(btnNeg, new DialogInterface.OnClickListener() {
+                .setNeutralButton(btnCancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.cancel();
+                    }
+                })
+                .setPositiveButton(btnExit, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        ParseUser.logOut();
+                        dialogInterface.cancel();
+                        Intent intLogin = new Intent(MainMenuUserActiv.this,LoginActiv.class);
+                        startActivity(intLogin);
+                        Intent intent = new Intent(Intent.ACTION_MAIN);
+                        intent.addCategory(Intent.CATEGORY_HOME);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                                |Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        |Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
                     }
                 });
         AlertDialog ok = builder.create();

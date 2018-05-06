@@ -106,7 +106,7 @@ public class RestaurantsListFrag extends Fragment {
                     @Override
                     public void onItemClick(int position) {
                         restaurant = arrRestaurants[position];
-                        Toast.makeText(getContext(),  "Seleccionaste el restaurante: " + restaurant.getName(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(),  "Seleccionaste el restaurante: " + restaurant.getName(), Toast.LENGTH_SHORT).show();
 
                         PlaceDetailsFrag fragPlaceDesc = PlaceDetailsFrag.newInstance(false); // Fragment of the advices of the week
                         FragmentTransaction fragTrans = getActivity().getSupportFragmentManager().beginTransaction();
