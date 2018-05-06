@@ -1,14 +1,17 @@
 package mx.itesm.thinkinggreen.Fragments;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +42,7 @@ public class CreatePersonFrag extends Fragment {
     private TextInputEditText etMail;
     private TextInputEditText etPassword;
     private Button btnAddUser;
+    private ProgressDialog pDiag;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -100,6 +104,7 @@ public class CreatePersonFrag extends Fragment {
         etMail = getActivity().findViewById(R.id.teMailAddUser);
         etPassword = getActivity().findViewById(R.id.tePasswordAddUser);
         btnAddUser = getActivity().findViewById(R.id.btnAddUser);
+        pDiag = new ProgressDialog(getContext());
         btnAddUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,37 +121,56 @@ public class CreatePersonFrag extends Fragment {
             final ParseUser user=new ParseUser();
             // Get User Input
             final String name = etName.getText().toString();
-            String mail = etMail.getText().toString();
+            final String mail = etMail.getText().toString();
             final String password = etPassword.getText().toString();
+            boolean fieldsAreEmpty = false;
 
             //check if the fields arent empty
             if(name.equals("")){
                 etName.setError(getResources().getString(R.string.strFieldError));
+                fieldsAreEmpty = true;
             }
             if(mail.equals("")){
                 etMail.setError(getResources().getString(R.string.strFieldError));
+                fieldsAreEmpty = true;
             }
             if(password.equals("")){
                 etPassword.setError(getResources().getString(R.string.strFieldError));
-            } else {
+                fieldsAreEmpty = true;
+            }
+            if (!fieldsAreEmpty) {
                 //assign the values to the user and send them to the db
-                user.setUsername(name);
-                user.setEmail(mail);
-                user.setPassword(password);
-                user.put("points", 0);
-                user.signUpInBackground(new SignUpCallback() {
+                Log.i("registerPerson","todo valido, creando cuenta");
+                pDiag.setMessage(getString(R.string.strLoading));
+                pDiag.setTitle(getString(R.string.strSigningUp));
+                pDiag.setIndeterminate(false);
+                pDiag.setCancelable(true);
+                pDiag.show();
+                new Handler().postDelayed(new Runnable() {
                     @Override
-                    public void done(ParseException e) {
-                        if (e == null) {
-                            //in case of succes will display an alert displayer
-                            alertDisplayer("¡Registrado exitosamente!", "¡Bienvenido " + name + "!");
-                            Settings.savePrefsUser(name, password, getContext(), user);
-                        } else {
-                            ParseUser.logOut();
-                            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-                        }
+                    public void run() {
+                        user.setUsername(name);
+                        user.setEmail(mail);
+                        user.setPassword(password);
+                        user.put("points", 0);
+                        user.put("catAdv", "Reciclaje Reducir DIY ZeroWaste");
+                        user.signUpInBackground(new SignUpCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                if (e == null) {
+                                    //in case of succes will display an alert displayer
+                                    pDiag.dismiss();
+                                    Settings.savePrefsUser(name, password, getContext(), user);
+                                    alertDisplayer("¡Registrado exitosamente!", "¡Bienvenido " + name + "!");
+                                } else {
+                                    pDiag.dismiss();
+                                    ParseUser.logOut();
+                                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
                     }
-                });
+                }, 1000);
             }
         }
         else {

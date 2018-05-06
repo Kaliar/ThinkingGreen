@@ -50,6 +50,9 @@ public class CreateUserActiv extends AppCompatActivity {
         imgSignUp = findViewById(R.id.imgSignUp);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        imgSignUp.setVisibility(View.INVISIBLE); // Hide Image
+        tvMessage.setText(getString(R.string.strInstSingUp)); // Set Instructions strin
+        loadPersonFrag();
     }
 
 

@@ -66,7 +66,9 @@ public class LoginActiv extends AppCompatActivity {
         //btnSignUp.setBackgroundColor(getResources().getColor(Settings.setBtnAlternate()));
         pDiag = new ProgressDialog(this);
         if(Settings.isUserLogged()){    // Previously Logon
-                quickLogin(Settings.getUsrName(), Settings.getPwd());
+            etUsername.setText(Settings.getUsrName());
+            etPassword.setText(Settings.getPwd());
+            quickLogin(Settings.getUsrName(), Settings.getPwd());
         }
     }
 
@@ -175,17 +177,26 @@ public class LoginActiv extends AppCompatActivity {
     }
 
     public void loginBtn(View v){
+        boolean fieldsAreEmpty = false;
+        if (etUsername.getText().toString().equals("")){
+            etUsername.setError(getString(R.string.strFieldError));
+            fieldsAreEmpty = true;
+        }
+        if (etPassword.getText().toString().equals("")){
+            etPassword.setError(getString(R.string.strFieldError));
+            fieldsAreEmpty = true;
+        }
 
-        if (requestPermission()){   // If Network and Location permissions are granted
+        if (requestPermission() && !fieldsAreEmpty) {   // If Network and Location permissions are granted
             if (Settings.isNetAvailable((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE))
-                    && Settings.isOnline()){    // If device is online
+                    && Settings.isOnline()) {    // If device is online
 
-                login(etUsername.getText().toString(),etPassword.getText().toString());
-            }
-            else {
+                login(etUsername.getText().toString(), etPassword.getText().toString());
+            } else {
                 Toast.makeText(LoginActiv.this, getString(R.string.strNoNetwork), Toast.LENGTH_LONG).show();
             }
         }
+
     }
 
     private void quickLogin(String username, String pwd){   // Previously logon

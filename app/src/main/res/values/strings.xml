@@ -99,6 +99,7 @@
     <string name="str_Welcome">¡Bienvenido</string>
     <string name="str_setting">Ajustes</string>
     <string name="strLoginIn">Iniciando sesión...</string>
+    <string name="strSigningUp">Creando cuenta...</string>
     <string name="strLoading">Cargando...</string>
 
     <string name="strDiscountsNotAvailable">¡Espéralos próximamente!</string>
@@ -116,7 +117,7 @@
     <string name="strDailyAdv">Día</string>
     <string name="strWeekAdv">Sem</string>
 
-    <string name="strNoNetwork">No hay conexión a Internet</string>
+    <string name="strNoNetwork">No hay conexión al Servidor :(</string>
     <string name="strGPSOffStore">Necesito el GPS para saber cuál tienda es la más cercana, ¿quieres prenderlo?</string>
     <string name="strGPSOffRestaurant">Necesito el GPS para saber cuál restaurante es el más cercano, ¿quieres prenderlo?</string>
     <string name="strGPSUpdate">Ubicación actualizada</string>
