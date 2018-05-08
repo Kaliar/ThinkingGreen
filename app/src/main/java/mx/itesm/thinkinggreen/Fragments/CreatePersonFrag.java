@@ -146,6 +146,7 @@ public class CreatePersonFrag extends Fragment {
                 pDiag.setIndeterminate(false);
                 pDiag.setCancelable(true);
                 pDiag.show();
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -154,6 +155,8 @@ public class CreatePersonFrag extends Fragment {
                         user.setPassword(password);
                         user.put("points", 0);
                         user.put("catAdv", "Reciclaje Reducir DIY ZeroWaste");
+                        user.put("frequency", "weekly");
+                        user.put("savedTheme", R.style.AppTheme);
                         user.signUpInBackground(new SignUpCallback() {
                             @Override
                             public void done(ParseException e) {

@@ -117,50 +117,6 @@ public class Advices {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-        /*queryRes.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-                if (e == null) {
-                    arrAdvs = new Advices[objects.size()];
-                    ParseObject objActual;
-                    Advices advActual;
-                    int imageId;
-                    String advType;
-                    for(int i = 0; i < objects.size(); i++){
-                        objActual = objects.get(i);
-                        advType = objActual.getString("Category");
-
-                        if(advType.equals("Reciclaje")){
-                            imageId = R.drawable.consejos;
-                        }else if(advType.equals("DIY")){
-                            imageId = R.drawable.consejos;
-                        }else if(advType.equals("Reducir")){
-                            imageId = R.drawable.consejos;
-                        }else if(advType.equals("Zero Waste")){
-                            imageId = R.drawable.consejos;
-                        }
-                        imageId = R.drawable.consejos;
-                        advActual = new Advices(imageId, objActual.getString("URL"), objActual.getString("Category"),
-                                objActual.getString("title"), objActual.getString("description"), objActual.getString("type"));
-                        arrAdvs[i] = advActual;
-                    }
-                } else {
-                    Toast.makeText(con, "Ocurrió un error: " + e.toString(), Toast.LENGTH_LONG).show();
-                }
-            }
-        });*/
-        /*String[] arrTitles = {"Primer Consejo", "Segundo Consejo", "Tercer Consejo"};
-        String[] arrDescriptions = {"Necesitas leer los mejores consejos de mis ecobloggers favoritos para una vida zero waste",
-                "Necesitas leer los mejores consejos de mis ecobloggers favoritos para una vida zero waste",
-                "Necesitas leer los mejores consejos de mis ecobloggers favoritos para una vida zero waste"};
-        int[] arrImgs = {R.drawable.recompensa, R.drawable.ayudarecompensas, R.drawable.consejos};
-
-        arrAdvs = new Advices[3];
-
-        for (int i = 0; i<arrAdvs.length; i++){
-            arrAdvs[i] = new Advices(arrImgs[i], arrTitles[i], arrDescriptions[i]);
-        }*/
         return arrAdvs;
     }
 }

@@ -6,6 +6,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -49,7 +50,7 @@ public class Settings {
 
     }
 
-    public static void saveAdvPrefs(String catPrefs, Context con){
+    public static void saveAdvPrefs(String catPrefs, final Context con){
         SharedPreferences settings = con.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         advCategory = catPrefs.split(" ");
         SharedPreferences.Editor editor = settings.edit();
@@ -60,7 +61,7 @@ public class Settings {
             @Override
             public void done(ParseException e) {
                 if(e == null){
-
+                    Toast.makeText(con, "Categorías guardadas correctamente", Toast.LENGTH_SHORT).show();
                 }else{
                     Log.i("Error Guardar CatAdv: ", " " + e.getMessage());
                 }
