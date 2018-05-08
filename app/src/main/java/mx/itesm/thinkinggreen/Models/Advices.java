@@ -38,6 +38,11 @@ public class Advices {
         this.advType = advType;
     }
 
+    public Advices(String url, String advType){
+        this.id = url;
+        this.advType = advType;
+    }
+
     public String getAdvType() {
         return advType;
     }
