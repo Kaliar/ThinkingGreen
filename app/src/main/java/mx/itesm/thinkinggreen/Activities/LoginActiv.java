@@ -233,6 +233,7 @@ public class LoginActiv extends AppCompatActivity {
                             pDiag.dismiss(); // Hide dialog
                         } else{
                             ParseUser.logOut();
+                            pDiag.dismiss(); // Hide dialog
                             Toast.makeText(LoginActiv.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
