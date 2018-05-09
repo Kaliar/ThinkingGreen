@@ -129,7 +129,6 @@
     <string name="strViewMap">Ver en un mapa</string>
 
 
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="strNewPwd">Nueva contraseña</string>
@@ -137,4 +136,17 @@
     <string name="strStoresMenu">Tiendas</string>
     <string name="strRestMenu">Restaurantes</string>
     <string name="strPerAdv">Consejo para ti</string>
+
+    <string name="strDevelopedBy">Creado por</string>
+    <string name="strAssigment">Proyecto de desarrollo para\nDispositivos Móviles</string>
+    <string name="strSchool">ITESM CEM</string>
+    <string name="strCamara">Alejandro Cámara Martínez</string>
+    <string name="strMatCamara">A01370909</string>
+    <string name="strJalay">Julio César González Menéndez</string>
+    <string name="strMatJalay">A013706667</string>
+    <string name="strDess">Desirée Isabel López Ramírez</string>
+    <string name="strMatDess">A01371590</string>
+    <string name="strSandy">Sandra Rodríguez Oseguera</string>
+    <string name="strMatSandy">A01371995</string>
+    <string name="strMailThinking">thinkingreenoficial@gmail.com</string>
 </resources>

@@ -2,9 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mx.itesm.thinkinggreen">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-feature android:name="android.hardware.location.gps"></uses-feature>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-feature android:name="android.hardware.location.gps" />
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
@@ -24,32 +26,41 @@
         <meta-data
             android:name="com.parse.CLIENT_KEY"
             android:value="@string/back4app_client_key" />
-        <activity android:name=".Activities.LoginActiv"
+
+        <activity
+            android:name=".Activities.LoginActiv"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".Activities.CreateUserActiv"
-            android:screenOrientation="portrait"/>
-        <!--activity android:name=".LoginActiv" /-->
-        <activity android:name=".Activities.RestaurantsActiv"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.UserPreferencesActiv"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activities.CreateUserActiv"
+            android:screenOrientation="portrait" />
+        <!-- activity android:name=".LoginActiv" / -->
+        <activity
+            android:name=".Activities.RestaurantsActiv"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.UserPreferencesActiv"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.AdvicesActiv"
             android:label="@string/titleAdvicesActiv"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.StoresActiv"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".Activities.MainMenuUserActiv"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.RewardsActiv"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.StoresActiv"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.MainMenuUserActiv"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.RewardsActiv"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Activities.AboutActiv"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
