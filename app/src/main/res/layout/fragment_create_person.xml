@@ -32,7 +32,7 @@
                 android:id="@+id/teNameAddUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-smallcaps"
+                android:fontFamily="sans-serif-condensed"
                 android:hint="Nombre" />
 
         </android.support.design.widget.TextInputLayout>
@@ -52,7 +52,7 @@
                 android:id="@+id/teMailAddUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-smallcaps"
+                android:fontFamily="sans-serif-condensed"
                 android:hint="Correo"
                 android:inputType="textEmailAddress"
                 android:textColor="#2c912c"
@@ -75,7 +75,7 @@
                 android:id="@+id/tePasswordAddUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-smallcaps"
+                android:fontFamily="sans-serif-condensed"
                 android:hint="Contraseña"
                 android:inputType="textPassword"
                 android:textColor="#2c912c"
@@ -91,7 +91,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="24dp"
-            android:fontFamily="sans-serif-smallcaps"
+            android:fontFamily="sans-serif-condensed"
             android:text="@string/strCreateAccount"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

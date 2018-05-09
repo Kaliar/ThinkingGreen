@@ -66,6 +66,11 @@ public class MainMenuUserActiv extends AppCompatActivity {
         startActivity(intPreferences);
     }
 
+    public void showAbout(View v){
+        Intent intAbout = new Intent(this, AboutActiv.class);
+        startActivity(intAbout);
+    }
+
 
     @Override
     public void onBackPressed() {
