@@ -14,7 +14,7 @@
             android:id="@+id/tvTitleWeeklyAdvice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-smallcaps"
+            android:fontFamily="sans-serif-condensed"
             android:text="@string/strWeeklyAdvice"
             android:textAlignment="center"
             android:textColor="@android:color/black"
@@ -42,7 +42,7 @@
                     android:id="@+id/tvDescriptionWeeklyAdvice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-smallcaps"
+                    android:fontFamily="sans-serif-condensed"
                     android:text="@string/large_text"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
