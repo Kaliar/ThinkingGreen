@@ -4,11 +4,18 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Toast;
+
+import java.util.Set;
 
 import mx.itesm.thinkinggreen.R;
+import mx.itesm.thinkinggreen.Settings;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,6 +37,13 @@ public class AdviceSettingsFrag extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+
+    private CheckBox cbRecycle;
+    private CheckBox cbReduce;
+    private CheckBox cbDIY;
+    private CheckBox cbZeroWaste;
+    private Button btnSaveCatPref;
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,6 +78,65 @@ public class AdviceSettingsFrag extends Fragment {
         }
     }
 
+    //
+    private void saveCatPrefs(){
+        String catPrefs = "";
+        if(cbRecycle.isChecked()){
+            catPrefs = catPrefs + "Reciclaje ";
+        }
+        if(cbReduce.isChecked()){
+            catPrefs = catPrefs + "Reducir ";
+        }
+        if(cbDIY.isChecked()){
+            catPrefs = catPrefs + "DIY ";
+        }
+        if(cbZeroWaste.isChecked()){
+            catPrefs = catPrefs + "ZeroWaste ";
+        }
+        if(catPrefs.equals(""))
+            Toast.makeText(getContext(), "Por favor selecciona al menos UNA categoría", Toast.LENGTH_SHORT).show();
+        else
+            Settings.saveAdvPrefs(catPrefs, getContext());
+    }
+
+    private boolean updateCheckboxes(CheckBox cb, String[] catPrefs , String cat){
+        //String[] cat = Settings.getAdvCategory();
+        for (int i = 0; i < catPrefs.length; i++){
+            if(cat.equals(catPrefs[i])){
+                return true;
+            }
+            Log.i("Checkbox", "Cambie " + cat);
+
+        }
+        return false;
+        /*switch (cat.length){
+            case 1:
+                cbRecycle.setChecked(true);
+                cbReduce.setChecked(false);
+                cbDIY.setChecked(false);
+                cbZeroWaste.setChecked(false);
+                break;
+            case 2:
+                cbRecycle.setChecked(true);
+                cbReduce.setChecked(true);
+                cbDIY.setChecked(false);
+                cbZeroWaste.setChecked(false);
+                break;
+            case 3:
+                cbRecycle.setChecked(true);
+                cbReduce.setChecked(true);
+                cbDIY.setChecked(true);
+                cbZeroWaste.setChecked(false);
+                break;
+            case 4:
+                cbRecycle.setChecked(true);
+                cbReduce.setChecked(true);
+                cbDIY.setChecked(true);
+                cbZeroWaste.setChecked(true);
+                break;
+        }*/
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -74,7 +147,30 @@ public class AdviceSettingsFrag extends Fragment {
     @Override
     public void onStart(){
         super.onStart();
-        //TODO: Link UI components
+
+        cbRecycle = getActivity().findViewById(R.id.cbRecycle);
+        cbReduce = getActivity().findViewById(R.id.cbReduce);
+        cbDIY = getActivity().findViewById(R.id.cbDIY);
+        cbZeroWaste = getActivity().findViewById(R.id.cbZeroWate);
+
+        //Setting checkboxes to user data
+        if(!updateCheckboxes(cbRecycle, Settings.getAdvCategory(), "Reciclaje"))
+            cbRecycle.setChecked(false);
+        if(!updateCheckboxes(cbReduce, Settings.getAdvCategory(), "Reducir"))
+            cbReduce.setChecked(false);
+        if(!updateCheckboxes(cbDIY, Settings.getAdvCategory(), "DIY"))
+            cbDIY.setChecked(false);
+        if(!updateCheckboxes(cbZeroWaste, Settings.getAdvCategory(), "ZeroWaste"))
+            cbZeroWaste.setChecked(false);
+
+
+        btnSaveCatPref = getActivity().findViewById(R.id.btnSaveCat);
+        btnSaveCatPref.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveCatPrefs();
+            }
+        });
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -87,6 +183,7 @@ public class AdviceSettingsFrag extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+
        /* if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {

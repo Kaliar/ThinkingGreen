@@ -231,29 +231,9 @@ public class LoginActiv extends AppCompatActivity {
                             Settings.savePrefsUser(strUser, strPwd, LoginActiv.this, user);
                             loginSuccessAlert(getString(R.string.strSuccessTitle), getString(R.string.str_Welcome) + " " + strUser + "!");
                             pDiag.dismiss(); // Hide dialog
-                        } else {
-                            /*ParseQuery<ParseObject> queryUs = ParseQuery.getQuery("Institution");
-                            queryUs.whereFullText("name", strUser);
-                            queryUs.whereEqualTo("password", strPwd);
-
-                            queryUs.findInBackground(new FindCallback<ParseObject>() {
-                                @Override
-                                public void done(List<ParseObject> objects, ParseException e) {
-                                    if (e == null) {
-                                        if (objects.size() == 1) {
-                                            Settings.savePrefsUser(strUser, strPwd, LoginActiv.this, );
-                                            loginSuccessAlert(getString(R.string.strSuccessTitle), getString(R.string.str_Welcome) + " " + objects.get(0).get("name") + "!");
-                                            pDiag.dismiss();
-                                        } else {
-                                            pDiag.dismiss();
-                                            Toast.makeText(LoginActiv.this, getString(R.string.strLogFail), Toast.LENGTH_SHORT).show();
-                                        }
-                                    } else {
-                                        pDiag.dismiss();
-                                        Toast.makeText(LoginActiv.this, getString(R.string.strFailTitle), Toast.LENGTH_LONG).show();
-                                    }
-                                }
-                            });*/
+                        } else{
+                            ParseUser.logOut();
+                            Toast.makeText(LoginActiv.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
                 });

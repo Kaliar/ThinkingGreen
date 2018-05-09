@@ -38,21 +38,6 @@
             app:layout_constraintTop_toBottomOf="@+id/tvMessageAdvices"
             app:srcCompat="@drawable/zero_waste_web_795x600" />
 
-        <TextView
-            android:id="@+id/tvMessageAdvices"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
-            android:fontFamily="sans-serif-smallcaps"
-            android:text="@string/strAdviceOption"
-            android:textAlignment="center"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/navigation" />
     </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>

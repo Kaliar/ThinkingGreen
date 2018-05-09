@@ -4,7 +4,7 @@
     <item
         android:id="@+id/menu_weekly_advice"
         android:icon="@android:drawable/ic_menu_edit"
-        android:title="@string/strWeeklyAdv" />
+        android:title="@string/strPerAdv" />
 
     <item
         android:id="@+id/menu_advice_list"

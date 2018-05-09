@@ -4,22 +4,30 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
 
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Random;
 
 import mx.itesm.thinkinggreen.Fragments.AdviceListFrag;
 import mx.itesm.thinkinggreen.Fragments.AdviceSettingsFrag;
@@ -28,10 +36,11 @@ import mx.itesm.thinkinggreen.Fragments.RestaurantsListFrag;
 import mx.itesm.thinkinggreen.R;
 import mx.itesm.thinkinggreen.Settings;
 import mx.itesm.thinkinggreen.Fragments.YoutubeFragment;
+import mx.itesm.thinkinggreen.Models.Advices;
 
 public class AdvicesActiv extends AppCompatActivity {
 
-    private TextView tvMessage;
+    private BottomNavigationItemView tvMessage;
     private ImageButton btnAdvices;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -40,22 +49,29 @@ public class AdvicesActiv extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             btnAdvices.setVisibility(View.INVISIBLE);
-            tvMessage.setVisibility(View.INVISIBLE);
             switch (item.getItemId()) {
                 case R.id.menu_weekly_advice:
-                    tvMessage.setText("Consejo Semanal:");
-                    loadWeekAdviceFrag();
+                    if(Settings.getFrequency().equals("weekly")){
+                        changeWeekly();
+                    }else{
+                        changeDaily();
+                    }
+                    if(Settings.getAdvType().equals("WEB")){
+                        loadWebAdviceFrag(Settings.getAdvID());
+                    }
+                    else{
+                        loadYoutubeFragment(Settings.getAdvID());
+                    }
+
                     //loadYoutubeFragment();
                     return true;
 
                 case R.id.menu_advice_list:
 
-                    tvMessage.setText("Lista de Consejos:");
                     loadAdvicesListFrag();
                     return true;
 
                 case R.id.menu_advices_preferences:
-                    tvMessage.setText("Preferencias de Consejos:");
                     loadAdviceSettingsFrag();
                     return true;
             }
@@ -69,19 +85,23 @@ public class AdvicesActiv extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_advices);
 
-        tvMessage = findViewById(R.id.tvMessageAdvices);
+        tvMessage = findViewById(R.id.menu_weekly_advice);
         btnAdvices = findViewById(R.id.btnAdvices);
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        if(ParseUser.getCurrentUser().get("frequency").equals("daily"))
+        if(Settings.getFrequency().equals("daily"))
             changeDaily();
         else
             changeWeekly();
-        tvMessage.setVisibility(View.INVISIBLE);
+        if(Settings.getAdvType().equals("WEB")){
+            loadWebAdviceFrag(Settings.getAdvID());
+        }
+        else{
+            loadYoutubeFragment(Settings.getAdvID());
+        }
         btnAdvices.setVisibility(View.INVISIBLE);
         //loadYoutubeFragment();
-        loadWeekAdviceFrag();
     }
 
     private void loadAdviceSettingsFrag() {
@@ -103,8 +123,8 @@ public class AdvicesActiv extends AppCompatActivity {
     }
 
     // Web Frag
-    private void loadWeekAdviceFrag() {
-        AdviceWebFrag fragWeekAdvice = new AdviceWebFrag(); // Fragment of the advices of the week
+    private void loadWebAdviceFrag(String id) {
+        AdviceWebFrag fragWeekAdvice = AdviceWebFrag.newInstance(id); // Fragment of the advices of the week
         //AdviceWebFrag fragWeekAdvice = AdviceWebFrag.newInstance("https://stackoverflow.com/questions/2662531/launching-google-maps-directions-via-an-intent-on-android");
         FragmentTransaction fragTrans = getSupportFragmentManager().beginTransaction();
         fragTrans.replace(R.id.frameAdvices, fragWeekAdvice); // Set the AdviceWeek Layout
@@ -115,9 +135,9 @@ public class AdvicesActiv extends AppCompatActivity {
     }
 
     //Video View
-    private void  loadYoutubeFragment(){
+    private void  loadYoutubeFragment(String id){
         //YoutubeFragment fragment = new YoutubeFragment();
-        YoutubeFragment fragment = YoutubeFragment.newInstance("NecoBo0BhEk");
+        YoutubeFragment fragment = YoutubeFragment.newInstance(id);
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction()
                 .replace(R.id.frameAdvices, fragment)
@@ -140,10 +160,12 @@ public class AdvicesActiv extends AppCompatActivity {
         if(lastDay != thisDay ){
             //New day, update View and preference:
             SharedPreferences.Editor edit = prefs.edit();
+            Settings.setPerAdv(getPeriodicAdv(), this);
             edit.putLong("date", todayMillis);
             edit.commit();
-            YoutubeFragment video = new YoutubeFragment();
-            video.setVideoID("BT59rohv6jw");
+
+            //YoutubeFragment video = new YoutubeFragment();
+            //video.setVideoID("BT59rohv6jw");
         }
 
     }
@@ -163,11 +185,52 @@ public class AdvicesActiv extends AppCompatActivity {
             //New week, update View and preference:
             SharedPreferences.Editor edit = prefs.edit();
             edit.putLong("date", todayMillis);
+            Settings.setPerAdv(getPeriodicAdv(), this);
+            edit.putLong("date", todayMillis);
             edit.commit();
-            YoutubeFragment video = new YoutubeFragment();
-            video.setVideoID("BT59rohv6jw");
-
         }
+
+    }
+
+    private Advices getPeriodicAdv(){
+        ParseQuery<ParseObject> queryRes = ParseQuery.getQuery("Advices");
+        queryRes.whereContainedIn("Category", Arrays.asList(Settings.getAdvCategory()));
+        queryRes.selectKeys(Arrays.asList("URL","type"));
+        String arrObjetos[];
+        Random rand = new Random();
+
+        try {
+            List<ParseObject> objects = queryRes.find();
+            Log.i("Query de Advices: ",""+objects.size());
+            ParseObject objActual;
+            arrObjetos = new String[objects.size()];
+            Log.i("Query","Consejos jalados para hacer random " + objects.size());
+            int imageId;
+            String advType;
+            for(int i = 0; i < objects.size(); i++) {
+                arrObjetos[i] = (String)objects.get(i).getObjectId();
+            }
+
+            int id = rand.nextInt(arrObjetos.length);
+            ParseQuery<ParseObject> queryAdv = ParseQuery.getQuery("getAdv");
+            queryAdv.get(arrObjetos[id]);
+            //queryAdv.selectKeys(Arrays.asList("URL", "type"));
+
+            try {
+                List<ParseObject> advice = queryAdv.find();
+                Log.i("Consejo random","Tamano de query " + advice.size());
+                if(advice.size() == 1){
+                    Advices adv = new Advices((String)advice.get(0).get("URL"), (String)advice.get(0).get("type"));
+                    return adv;
+                }
+            } catch (ParseException e){
+                Toast.makeText(this, "Algo salió mal con la BD, inténtalo más tarde", Toast.LENGTH_SHORT).show();
+            }
+        } catch (ParseException e) {
+            Toast.makeText(this, "Algo salió mal con la conexión, inténtalo más tarde", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+        return null;
 
     }
 

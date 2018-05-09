@@ -65,7 +65,7 @@ public class AdviceWebFrag extends Fragment {
             url = getArguments().getString(URL);
         }
         else {
-            url = "http://www.sustentator.com/blog-es/2017/07/tips-para-empezar-con-el-zero-waste/";
+            url = "https://orgranico.com/recopilatorio-11-alternativas-zero-waste/";
         }
     }
 
