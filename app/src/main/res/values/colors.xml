@@ -36,7 +36,7 @@
     <color name="colorAccentDark">#f06292</color>
     <color name="colorPrimaryDarkDark">#2a628f</color>
 
-    <!-- Theme Inverse -->
+    <!-- Theme Opaque -->
     <color name="colorPrimaryInv">#0E3B43</color>
     <color name="colorPrimaryDarkInv">#011627</color>
     <color name="colorPrimaryLightInv">#A2D3C2</color>
