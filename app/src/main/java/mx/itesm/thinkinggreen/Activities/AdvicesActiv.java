@@ -228,7 +228,7 @@ public class AdvicesActiv extends AppCompatActivity {
         try {
             //List<ParseObject> advice = queryAdv.find();
             ParseObject advice = queryAdv.get(arrObjetos[id]);
-            Log.i("Consejo random","id de query " + advice.getObjectId());
+            Log.i("Consejo rand","id de query " + advice.getObjectId());
             Advices adv = new Advices((String)advice.get("URL"), (String)advice.get("type"));
             return adv;
 
