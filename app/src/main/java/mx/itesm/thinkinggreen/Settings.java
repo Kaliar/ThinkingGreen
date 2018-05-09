@@ -123,14 +123,19 @@ public class Settings {
             Log.i("Error guardar CurrTheme", " " + e.getMessage());
             e.printStackTrace();
         }
-
     }
 
     public static void setPerAdv(Advices adv, Context con){
         SharedPreferences settings = con.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putString("ID", "https://orgranico.com/recopilatorio-11-alternativas-zero-waste/");
-        editor.putString("type", "WEB");
+        advType = adv.getAdvType();
+        advID = adv.getId();
+        //editor.putString("ID", "https://orgranico.com/recopilatorio-11-alternativas-zero-waste/");
+        //editor.putString("type", "WEB");
+        editor.putString("ID", adv.getId());
+        editor.putString("type", adv.getAdvType());
+        Log.i("ConsejoTipo",""+advType);
+        Log.i("ConsejoID", ""+advID);
         editor.commit();
     }
 

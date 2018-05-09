@@ -84,12 +84,31 @@ public class RewardsCategoryItemAdapter extends RecyclerView.Adapter<RewardsCate
         public void bind(RewardsItems item) {
             TextView tvTitle = card.findViewById(R.id.tvDescItemRew);
             TextView tvDesc = card.findViewById(R.id.tvTitleItemRew);
-            ImageButton img = card.findViewById(R.id.imgItemRew);
+            ImageButton imgCart = card.findViewById(R.id.imgItemRew);
             TextView tvLeaf = card.findViewById(R.id.tvLeafRew);
+            ImageView imgPrev = card.findViewById(R.id.imgThemePrev);
 
             tvTitle.setText(item.getTitle());
             tvDesc.setText(item.getCode());
             tvLeaf.setText(item.getPrice()+"");
+            switch (item.getCode()){
+                case R.string.strThemeDefaultCode:
+                    imgPrev.setImageDrawable(card.getResources().getDrawable(R.drawable.defaulttheme));
+                    break;
+                case R.string.strThemeDarkCode:
+                    imgPrev.setImageDrawable(card.getResources().getDrawable(R.drawable.darktheme));
+                    break;
+                case R.string.strThemeInvCode:
+                    imgPrev.setImageDrawable(card.getResources().getDrawable(R.drawable.opaquetheme));
+                    break;
+                case R.string.strThemeLightCode:
+                    imgPrev.setImageDrawable(card.getResources().getDrawable(R.drawable.pasteltheme));
+                    break;
+                case R.string.strThemeSeaCode:
+                    imgPrev.setImageDrawable(card.getResources().getDrawable(R.drawable.aquatheme));
+                    break;
+
+            }
             //img.setImageDrawable(card.getResources().getDrawable(item.getImgID()));
 
             card.setOnClickListener(new View.OnClickListener() {

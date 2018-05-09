@@ -57,9 +57,11 @@ public class AdvicesActiv extends AppCompatActivity {
                         changeDaily();
                     }
                     if(Settings.getAdvType().equals("WEB")){
+                        Log.i("OnCreate","Se creo web");
                         loadWebAdviceFrag(Settings.getAdvID());
                     }
                     else{
+                        Log.i("OnCreate","Se creo youtube");
                         loadYoutubeFragment(Settings.getAdvID());
                     }
 
@@ -95,9 +97,11 @@ public class AdvicesActiv extends AppCompatActivity {
         else
             changeWeekly();
         if(Settings.getAdvType().equals("WEB")){
+            Log.i("OnCreate","Se creo web");
             loadWebAdviceFrag(Settings.getAdvID());
         }
         else{
+            Log.i("OnCreate","Se creo youtube");
             loadYoutubeFragment(Settings.getAdvID());
         }
         btnAdvices.setVisibility(View.INVISIBLE);
@@ -210,27 +214,30 @@ public class AdvicesActiv extends AppCompatActivity {
             for(int i = 0; i < objects.size(); i++) {
                 arrObjetos[i] = (String)objects.get(i).getObjectId();
             }
-
-            int id = rand.nextInt(arrObjetos.length);
-            ParseQuery<ParseObject> queryAdv = ParseQuery.getQuery("getAdv");
-            queryAdv.get(arrObjetos[id]);
-            //queryAdv.selectKeys(Arrays.asList("URL", "type"));
-
-            try {
-                List<ParseObject> advice = queryAdv.find();
-                Log.i("Consejo random","Tamano de query " + advice.size());
-                if(advice.size() == 1){
-                    Advices adv = new Advices((String)advice.get(0).get("URL"), (String)advice.get(0).get("type"));
-                    return adv;
-                }
-            } catch (ParseException e){
-                Toast.makeText(this, "Algo salió mal con la BD, inténtalo más tarde", Toast.LENGTH_SHORT).show();
-            }
         } catch (ParseException e) {
+            arrObjetos = new String[0];
             Toast.makeText(this, "Algo salió mal con la conexión, inténtalo más tarde", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
-        return null;
+
+        int id = rand.nextInt(arrObjetos.length);
+        ParseQuery<ParseObject> queryAdv = ParseQuery.getQuery("Advices");
+        //queryAdv.get(arrObjetos[id]);
+        //queryAdv.selectKeys(Arrays.asList("URL", "type"));
+
+        try {
+            //List<ParseObject> advice = queryAdv.find();
+            ParseObject advice = queryAdv.get(arrObjetos[id]);
+            Log.i("Consejo random","id de query " + advice.getObjectId());
+            Advices adv = new Advices((String)advice.get("URL"), (String)advice.get("type"));
+            return adv;
+
+        } catch (ParseException e){
+            Log.i("segundo Query","La vida vale verga con el consejo malo");
+            Toast.makeText(this, "Algo salió mal con la BD, inténtalo más tarde", Toast.LENGTH_SHORT).show();
+        }
+
+        return new Advices("https://orgranico.com/recopilatorio-11-alternativas-zero-waste/", "WEB");
 
     }
 
